@@ -4,7 +4,7 @@
             padding: 0;
             background-color: #F7E3AC;
         }
-        h1{
+        h1 {
         	color: #5D6BBA; 
             text-align: center;
             font-size:48px;
@@ -21,9 +21,9 @@
         .logo-container{
         text-align: center;
         }
-		.sort{
+		.sort {
 			text-align: right;
-			margin-right: 40px;
+			margin-right: 120px;
 		}
         .product {
             background-color: #C8F437;
