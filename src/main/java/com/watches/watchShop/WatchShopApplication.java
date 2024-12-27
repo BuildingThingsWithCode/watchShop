@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"controllers"})
+@ComponentScan(basePackages = {"controllers", "service"})
 public class WatchShopApplication {
 
 	public static void main(String[] args) {

@@ -21,6 +21,10 @@
         .logo-container{
         text-align: center;
         }
+		.sort{
+			text-align: right;
+			margin-right: 40px;
+		}
         .product {
             background-color: #C8F437;
             padding: 20px;
