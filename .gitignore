@@ -34,3 +34,4 @@ build/
 
 # Sensitive configuration files
 env.properties
+application.properties
