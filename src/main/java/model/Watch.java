@@ -1,5 +1,7 @@
 package model;
 
+import java.math.BigDecimal;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,15 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor 
 public class Watch {
 	
+	private Long id;
+	private String name;
 	private String brand;
-	private String movement;
-	private double caseSize;
-	private double height;
-	private double lugToLug;
-	private double lugWidth;
-	private double color;
-	private int waterResistance;
-	private String crystal;
-	private String caseMaterial;
-	private String bandMaterial;
+	private BigDecimal price;
+	// movement, caseSize, height, lugToLug, lugWidth, color, waterResistance, crystal
+	// caseMaterial, bandMaterial -> these all go in description.
+	private String description;
 }

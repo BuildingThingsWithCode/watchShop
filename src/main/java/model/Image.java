@@ -19,7 +19,8 @@ public class Image {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String description;
+	// -> description belongs to watch,not to image, have to adjust.
+	private String description; 
 	@Column(name = "pathtoimage")
 	private String pathToImage;
 
