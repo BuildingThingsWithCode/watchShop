@@ -41,15 +41,14 @@ public class ImageService {
         return imageRepository.findAll();
     }
     
-    public void updateImagePaths() {
+    public void rename() {
         List<Image> images = imageRepository.findAll();
         for (Image image : images) {
-            String absolutePath = image.getPathToImage();
-            System.out.println(absolutePath);
-            absolutePath = absolutePath.replace('\\', '/');
-            System.out.println("after= "+absolutePath);
-            image.setPathToImage(absolutePath);
-            imageRepository.save(image);  
+        	String description = image.getDescription();
+           	int l = description.indexOf('.');
+        	description = description.substring(0, l);
+        	image.setDescription(description);
+        	imageRepository.save(image);  
         }
     }
 }

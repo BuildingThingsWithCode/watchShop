@@ -21,6 +21,6 @@ public class ImageController {
     
     @PostMapping("/rename")
     public void rename() {
-    	imageService.updateImagePaths();
+    	imageService.rename();;
     }
 }
