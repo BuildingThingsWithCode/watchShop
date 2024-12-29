@@ -18,69 +18,13 @@
     </select>
     </div>
 	    <div class="container">
-        <!-- Product 1 -->
-        <div class="product">
-            <img src="images/ALangeSohne.jpg" alt="Product 1">
-            <h3>Product Name 1</h3>
-            <div class="product-description">A brief description of the product goes here. It highlights the features and benefits.</div>
-            <div class="price">€19.99</div>
-        </div>
-
-        <!-- Product 2 -->
-        <div class="product">
-            <img src="images/Cartier.jpg" alt="Product 2">
-            <h3>Product Name 2</h3>
-            <div class="product-description">A brief description of the product goes here. It highlights the features and benefits.</div>
-            <div class="price">€29.99</div>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="product">
-            <img src="images/Nomos Tangente.jpg" alt="Product 3">
-            <h3>Product Name 3</h3>
-            <div class="product-description">A brief description of the product goes here. It highlights the features and benefits.</div>
-            <div class="price">€39.99</div>
-        </div>
-
-        <!-- Product 4 -->
-        <div class="product">
-            <img src="images/Seiko Alpinist.jpg" alt="Product 4">
-            <h3>Product Name 4</h3>
-            <div class="product-description">A brief description of the product goes here. It highlights the features and benefits.</div>
-            <div class="price">€49.99</div>
-        </div>
-        <!-- Product 5 -->
-        <div class="product">
-            <img src="images/Seiko Arnie Padi.jpg" alt="Product 1">
-            <h3>Product Name 1</h3>
-            <div class="product-description">A brief description of the product goes here. It highlights the features and benefits.</div>
-            <div class="price">€19.99</div>
-        </div>
-
-        <!-- Product 6 -->
-        <div class="product">
-            <img src="images/Orient Bambino.jpg" alt="Product 2">
-            <h3>Product Name 2</h3>
-            <div class="product-description">A brief description of the product goes here. It highlights the features and benefits.</div>
-            <div class="price">€29.99</div>
-        </div>
-
-        <!-- Product 7 -->
-        <div class="product">
-            <img src="images/Sinn 556.jpg" alt="Product 3">
-            <h3>Product Name 3</h3>
-            <div class="product-description">A brief description of the product goes here. It highlights the features and benefits.</div>
-            <div class="price">€39.99</div>
-        </div>
-
-        <!-- Product 8 -->
-        <div class="product">
-            <img src="images/Seiko Padi Turtle.jpg" alt="Product 4">
-            <h3>Product Name 4</h3>
-            <div class="product-description">A brief description of the product goes here. It highlights the features and benefits.</div>
-            <div class="price">€49.99</div>
+      <!-- Thymeleaf Loop for Images -->
+        <div class="product" th:each="image : ${images}">
+            <img th:src="@{${image.pathToImage}}" alt="Product Image">
+            <h3 th:text="${image.description}">Product Name</h3>
+            <div class="product-description" th:text="${image.description}">Product description</div>
+            <div class="price">€19.99</div> <!-- Update with dynamic price if needed -->
         </div>
     </div>
-
 </body>
 </html>
