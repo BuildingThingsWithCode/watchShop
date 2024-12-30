@@ -1,4 +1,4 @@
-package service;
+package com.watchShop.service;
 
 import java.io.File;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import model.Image;
-import repository.ImageRepository;
+import com.watchShop.model.Image;
+import com.watchShop.repository.ImageRepository;
 
 @Service
 public class ImageService {

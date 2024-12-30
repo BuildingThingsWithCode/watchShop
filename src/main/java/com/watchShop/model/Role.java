@@ -1,4 +1,4 @@
-package model;
+package com.watchShop.model;
 
 public enum Role {
 	 GUEST_VISITOR,       

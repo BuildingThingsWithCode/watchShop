@@ -1,4 +1,4 @@
-package model;
+package com.watchShop.model;
 
 import java.math.BigDecimal;
 

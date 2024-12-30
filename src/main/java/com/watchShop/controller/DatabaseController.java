@@ -1,4 +1,4 @@
-package controller;
+package com.watchShop.controller;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import service.DatabaseService;
+import com.watchShop.service.DatabaseService;
 
 @RestController
 public class DatabaseController {
