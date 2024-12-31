@@ -26,7 +26,7 @@
 	<div class="container">
     <!-- Thymeleaf Loop for Images -->
      	<div class="product" th:each="image : ${images}">
-            <img th:src="@{${image.pathToImage}}" alt="Product Image">
+     		<img th:src="${image.pathToImage}" alt="Product Image">
             <h3 th:text="${image.description}">Product Name</h3>
             <div class="product-description" th:text="${image.description}">Product description</div>
             <div class="price">€19.99</div> <!-- Update with dynamic price if needed -->
