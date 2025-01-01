@@ -22,18 +22,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name = "watch")
 public class Watch {
-	
+
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String brand;
 	private BigDecimal price;
-	// movement, caseSize, height, lugToLug, lugWidth, color, waterResistance, crystal
-	// caseMaterial, bandMaterial -> these all go in description.
 	private String description;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "image_id")  // Foreign key column in the watch table
-    private Image image;
+	@JoinColumn(name = "image_id")
+	private Image image;
 }
