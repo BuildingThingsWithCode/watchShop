@@ -26,7 +26,7 @@
 	<div class="container">
     <!-- Thymeleaf Loop for Images -->
      	<div class="product" th:each="image : ${images}">
-     		<a th:href="@{/watch(id=${image.id})}"> <!-- Dynamically generated link -->
+     		<a th:href="@{/watch/{id}(id=${image.id})}"> <!-- Dynamically generated link -->
             <img th:src="${image.pathToImage}" alt="Product Image">
         </a>
             <h3 th:text="${image.description}">Product Name</h3>

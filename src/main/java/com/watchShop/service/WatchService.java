@@ -13,4 +13,5 @@ public interface WatchService {
 	ResponseEntity<String> getWatchDescription(@PathVariable Long id);
 	ResponseEntity<HttpStatus> deleteWatch(@PathVariable Long id);
 	ResponseEntity<String> getWatchInfo(@PathVariable Long id);
+	Watch getWatchByImage(@PathVariable Long id);
 }

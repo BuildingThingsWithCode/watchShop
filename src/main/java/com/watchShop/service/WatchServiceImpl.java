@@ -2,9 +2,12 @@ package com.watchShop.service;
 
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.watchShop.dto.WatchDTO;
 import com.watchShop.dto.WatchMapper;
@@ -30,7 +33,11 @@ public class WatchServiceImpl implements WatchService{
 		}
 		else throw new RuntimeException("Image not found");
 	}
-
+	
+	public Watch getWatchByImage(Long imageId) {
+	    return watchRepository.findByImageId(imageId)
+	            .orElseThrow(() -> new EntityNotFoundException("Watch not found for image id: " + imageId));
+	}
 
 	public Watch getWatchById(Long id) {
 		Optional<Watch> watch = watchRepository.findById(id); 
@@ -64,13 +71,11 @@ public class WatchServiceImpl implements WatchService{
 
 	@Override
 	public ResponseEntity<String> getWatchInfo(Long id) {
-		System.out.println("info gets called");
 		Optional<Watch> watchOpt = watchRepository.findById(id);
 		if (watchOpt.isPresent()) {
-			System.out.println("and watch is present");
 			Watch watch = watchOpt.get();
 			return ResponseEntity.status(HttpStatus.OK).body(watch.getId() + " " + watch.getName() + " " + watch.getBrand() + " " + 
-			watch.getPrice());
+			watch.getPrice() + " " +watch.getImage().getId());
 		}
 		else return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Watch not found");
 	}

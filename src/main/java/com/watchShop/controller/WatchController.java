@@ -31,13 +31,22 @@ public class WatchController {
 
 	final private WatchService watchService;
 	final private ImageService imageService;
-
-	@GetMapping("/info")
-	public String getProductPage(@RequestParam("id") Long id, Model model) {
-		Watch watch = watchService.getWatchById(id); 
+	
+	@GetMapping("/{id}")
+	public String getProductPage(@PathVariable("id") Long id, Model model) {
+		System.out.println("hellabaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		Watch watch = watchService.getWatchByImage(id); 
+		System.out.println("Watch is " + watch.getId());
 		model.addAttribute("watch", watch);
 		return "watch";
 	}
+	
+//	@GetMapping("/info")
+//	public String getProductPage(@RequestParam("id") Long id, Model model) {
+//		Watch watch = watchService.getWatchById(id); 
+//		model.addAttribute("watch", watch);
+//		return "watch";
+//	}
 
 	@GetMapping("/add")
 	public String showAddWatchForm(Model model) {
@@ -49,7 +58,6 @@ public class WatchController {
 
 	@PostMapping("/add")
 	public String addWatch(@ModelAttribute WatchDTO watchDTO, Model model) {
-		System.out.println("post wordt aanroepen");
 		watchService.saveWatch(watchDTO);
 		return "redirect:/watch/add";
 	}

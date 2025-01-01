@@ -1,29 +1,22 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${watch.name}">Watch Details</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Add your CSS file here -->
+    <title>Watch Details</title>
+	<link rel="stylesheet" type="text/css" href="/css/home.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Watch Image -->
-        <div class="watch-image">
-            <img th:src="${watch.image.pathToImage}" alt="Watch Image">
+	<div class="top">
+	<div class="right-div">
+     		<img src="images/basketEmpty.png" alt="basket Logo">
+     	</div>
+	 <div class="logo">
+    <img src="images/logo.png" alt="Company Logo">
+	</div>
         </div>
-
-        <!-- Watch Details -->
-        <div class="watch-details">
-            <h1 th:text="${watch.name}">Watch Name</h1>
-            <p class="watch-description" th:text="${watch.description}">Watch description</p>
-            <p class="watch-price" th:text="'€' + ${watch.price}">€19.99</p>
-
-            <!-- Add to Cart or Buy Button -->
-            <button class="btn btn-buy" th:onclick="'location.href=\'/add-to-cart?id=' + ${watch.id}'">
-                Add to Cart
-            </button>
-        </div>
-    </div>
+    <h1 th:text="${watch.name}">Watch Name</h1>
+    <p th:text="${watch.description}">Description</p>
+    <p th:text="${watch.brand}">Brand</p>
+    <p th:text="${watch.price}">Price</p>
 </body>
 </html>
