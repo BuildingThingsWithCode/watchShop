@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${product.name}">Product Details</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Add your CSS file here -->
+</head>
+<body>
+    <div class="container">
+        <!-- Product Image -->
+        <div class="product-image">
+            <img th:src="${product.pathToImage}" alt="Product Image">
+        </div>
+
+        <!-- Product Details -->
+        <div class="product-details">
+            <h1 th:text="${product.name}">Product Name</h1>
+            <p class="product-description" th:text="${product.description}">Product description</p>
+            <p class="product-price" th:text="'€' + ${product.price}">€19.99</p>
+
+            <!-- Add to Cart or Buy Button -->
+            <button class="btn btn-buy" th:onclick="'location.href=\'/add-to-cart?id=' + ${product.id}'">
+                Add to Cart
+            </button>
+        </div>
+    </div>
+</body>
+</h

@@ -2,6 +2,7 @@ package com.watchShop.service;
 
 import java.io.File;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,6 @@ public class ImageService {
 
     public Image saveImage(String description, String pathToImage) {
         Image image = new Image();
-        image.setDescription(description);
         image.setPathToImage(pathToImage);
         return imageRepository.save(image); 
     }
@@ -30,7 +30,6 @@ public class ImageService {
         if (files != null) {
             for (File file : files) {
                 Image image = new Image();
-                image.setDescription(file.getName()); 
                 image.setPathToImage(file.getAbsolutePath());
                 imageRepository.save(image);
             }
@@ -41,14 +40,7 @@ public class ImageService {
         return imageRepository.findAll();
     }
     
-    public void rename() {
-        List<Image> images = imageRepository.findAll();
-        for (Image image : images) {
-        	String description = image.getDescription();
-           	int l = description.indexOf('.');
-        	description = description.substring(0, l);
-        	image.setDescription(description);
-        	imageRepository.save(image);  
-        }
+   public Optional<Image> findById(Long id){
+    	return imageRepository.findById(id);
     }
 }

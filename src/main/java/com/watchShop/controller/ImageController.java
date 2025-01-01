@@ -18,9 +18,5 @@ public class ImageController {
         imageService.saveImagesFromFolder(folderPath);
         return "Images imported successfully!";
     }
-    
-    @PostMapping("/rename")
-    public void rename() {
-    	imageService.rename();;
-    }
+     
 }
