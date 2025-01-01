@@ -1,28 +1,16 @@
 package com.watchShop.service;
 
-import java.util.Optional;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 
-import org.springframework.stereotype.Service;
-
+import com.watchShop.dto.WatchDTO;
 import com.watchShop.model.Watch;
-import com.watchShop.repository.WatchRepository;
 
-import lombok.RequiredArgsConstructor;
-
-@RequiredArgsConstructor
-@Service
-public class WatchService {
-	
-	 private final WatchRepository watchRepository;
-
-	    public Watch saveWatch(Watch watch) {
-	         return watchRepository.save(watch);
-	    }
-
-	
-	public Optional<Watch> getWatchById(Long id) {
-		return watchRepository.findById(id);
-	}
+public interface WatchService {
+	Watch saveWatch(WatchDTO watchDTO);
+	Watch getWatchById(Long id);
+	ResponseEntity<String> getWatchDescription(@PathVariable Long id);
+	ResponseEntity<HttpStatus> deleteWatch(@PathVariable Long id);
+	ResponseEntity<String> getWatchInfo(@PathVariable Long id);
 }
-
-

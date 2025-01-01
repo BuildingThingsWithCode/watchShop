@@ -9,5 +9,5 @@ import com.watchShop.model.Image;
 
 @Repository
 public interface ImageRepository extends JpaRepository<Image, Long> {
-	Optional<Image> findById(Long id);
+	
 }

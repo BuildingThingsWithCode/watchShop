@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${product.name}">Product Details</title>
+    <title th:text="${watch.name}">Watch Details</title>
     <link rel="stylesheet" href="styles.css"> <!-- Add your CSS file here -->
 </head>
 <body>
     <div class="container">
-        <!-- Product Image -->
-        <div class="product-image">
-            <img th:src="${product.pathToImage}" alt="Product Image">
+        <!-- Watch Image -->
+        <div class="watch-image">
+            <img th:src="${watch.image.pathToImage}" alt="Watch Image">
         </div>
 
-        <!-- Product Details -->
-        <div class="product-details">
-            <h1 th:text="${product.name}">Product Name</h1>
-            <p class="product-description" th:text="${product.description}">Product description</p>
-            <p class="product-price" th:text="'€' + ${product.price}">€19.99</p>
+        <!-- Watch Details -->
+        <div class="watch-details">
+            <h1 th:text="${watch.name}">Watch Name</h1>
+            <p class="watch-description" th:text="${watch.description}">Watch description</p>
+            <p class="watch-price" th:text="'€' + ${watch.price}">€19.99</p>
 
             <!-- Add to Cart or Buy Button -->
-            <button class="btn btn-buy" th:onclick="'location.href=\'/add-to-cart?id=' + ${product.id}'">
+            <button class="btn btn-buy" th:onclick="'location.href=\'/add-to-cart?id=' + ${watch.id}'">
                 Add to Cart
             </button>
         </div>
     </div>
 </body>
-</h
+</html>

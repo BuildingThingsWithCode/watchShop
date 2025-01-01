@@ -1,4 +1,4 @@
-<form th:action="@{/add-watch}" th:object="${watchDTO}" method="post">
+<form th:action="@{/watch/add}" th:object="${watchDTO}" method="post">
     <label for="name">Watch Name:</label>
     <input type="text" th:field="*{name}" required />
     
