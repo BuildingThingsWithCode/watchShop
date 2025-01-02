@@ -1,13 +1,14 @@
 package com.watchShop.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.watchShop.dto.WatchDTO;
 import com.watchShop.dto.WatchMapper;
@@ -78,6 +79,26 @@ public class WatchServiceImpl implements WatchService{
 			watch.getPrice() + " " +watch.getImage().getId());
 		}
 		else return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Watch not found");
+	}
+
+	@Override
+	public List<Watch> getAllWatches() {
+		return watchRepository.findAll();
+	}
+
+	@Override
+	public List<Watch> findAllByOrderByPriceDesc() {
+		return watchRepository.findAll(Sort.by(Sort.Order.desc("price")));
+	}
+
+	@Override
+	public List<Watch> findAllByOrderByPriceAsc() {
+		return watchRepository.findAll(Sort.by(Sort.Order.asc("price")));
+	}
+
+	@Override
+	public List<Watch> findAllByOrderByBrand() {
+		return watchRepository.findAll(Sort.by(Sort.Order.asc("brand")));
 	}
 
 }

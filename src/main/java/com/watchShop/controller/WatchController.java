@@ -33,7 +33,7 @@ public class WatchController {
 	
 	@GetMapping("/{id}")
 	public String getInfoPage(@PathVariable("id") Long id, Model model) {
-		Watch watch = watchService.getWatchByImage(id); 
+		Watch watch = watchService.getWatchById(id); 
 		model.addAttribute("watch", watch);
 		StringBuilder image = new StringBuilder(watch.getImage().getPathToImage());
 		image.insert(0, '/');

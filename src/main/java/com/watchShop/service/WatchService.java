@@ -1,5 +1,7 @@
 package com.watchShop.service;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,4 +16,8 @@ public interface WatchService {
 	ResponseEntity<HttpStatus> deleteWatch(@PathVariable Long id);
 	ResponseEntity<String> getWatchInfo(@PathVariable Long id);
 	Watch getWatchByImage(@PathVariable Long id);
+	List<Watch> getAllWatches();
+	List<Watch> findAllByOrderByPriceDesc();
+	List<Watch> findAllByOrderByPriceAsc();
+	List<Watch> findAllByOrderByBrand();
 }
