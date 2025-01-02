@@ -35,9 +35,7 @@ public class WatchController {
 	public String getInfoPage(@PathVariable("id") Long id, Model model) {
 		Watch watch = watchService.getWatchById(id); 
 		model.addAttribute("watch", watch);
-		StringBuilder image = new StringBuilder(watch.getImage().getPathToImage());
-		image.insert(0, '/');
-		model.addAttribute("image", image);
+		model.addAttribute("image", "/" + watch.getImage().getPathToImage());
 		return "info";
 	}
 	
