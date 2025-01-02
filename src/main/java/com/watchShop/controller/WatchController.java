@@ -28,26 +28,19 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class WatchController {
 
-
 	final private WatchService watchService;
 	final private ImageService imageService;
 	
 	@GetMapping("/{id}")
-	public String getProductPage(@PathVariable("id") Long id, Model model) {
-		System.out.println("hellabaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+	public String getInfoPage(@PathVariable("id") Long id, Model model) {
 		Watch watch = watchService.getWatchByImage(id); 
-		System.out.println("Watch is " + watch.getId());
 		model.addAttribute("watch", watch);
-		return "watch";
+		StringBuilder image = new StringBuilder(watch.getImage().getPathToImage());
+		image.insert(0, '/');
+		model.addAttribute("image", image);
+		return "info";
 	}
 	
-//	@GetMapping("/info")
-//	public String getProductPage(@RequestParam("id") Long id, Model model) {
-//		Watch watch = watchService.getWatchById(id); 
-//		model.addAttribute("watch", watch);
-//		return "watch";
-//	}
-
 	@GetMapping("/add")
 	public String showAddWatchForm(Model model) {
 		List<Image> images = imageService.getAllImages(); 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,32 +8,37 @@
     <title>WatchShop</title>
     <link rel="stylesheet" type="text/css" href="/css/home.css">
 </head>
+
 <body>
-<div class="top">
- <div class="right-div">
-     		<img src="images/basketEmpty.png" alt="basket Logo">
-     	</div>
-	 <div class="logo">
-    <img src="images/logo.png" alt="Company Logo">
-	</div>
+    <div class="top">
+        <div class="right-div">
+            <img src="images/basketEmpty.png" alt="basket Logo">
         </div>
-      <div class="sort">
-    <label for="price-sort">Sort by price: </label>
-    <select id="price-sort" name="price-sort">
-        <option value="low-to-high">Low to High</option>
-        <option value="high-to-low">High to Low</option>
-    </select>
+        <div class="logo">
+            <img src="images/logo.png" alt="Company Logo">
+        </div>
     </div>
-	<div class="container">
-    <!-- Thymeleaf Loop for Images -->
-     	<div class="product" th:each="image : ${images}">
-     		<a th:href="@{/watch/{id}(id=${image.id})}"> <!-- Dynamically generated link -->
-            <img th:src="${image.pathToImage}" alt="Product Image">
-        </a>
+
+    <div class="sort">
+        <label for="price-sort">Sort by price: </label>
+        <select id="price-sort" name="price-sort">
+            <option value="low-to-high">Low to High</option>
+            <option value="high-to-low">High to Low</option>
+        </select>
+    </div>
+
+    <div class="container">
+        <!-- Thymeleaf Loop for Images -->
+        <div class="product" th:each="image : ${images}">
+            <a th:href="@{/watch/{id}(id=${image.id})}">
+                <!-- Dynamically generated link -->
+                <img th:src="${image.pathToImage}" alt="Product Image">
+            </a>
             <h3 th:text="${image.description}">Product Name</h3>
             <div class="product-description" th:text="${image.description}">Product description</div>
             <div class="price">€19.99</div> <!-- Update with dynamic price if needed -->
         </div>
     </div>
 </body>
+
 </html>

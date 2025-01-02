@@ -14,6 +14,10 @@ public class MainController {
 	
 	 private final ImageService imageService;
 	
+	 /*
+	  * Todo:
+	  * Get all watches and set Brand, name , price + picture.
+	  */
 	@GetMapping("/")
 	public String home(Model model) {
 		model.addAttribute("images", imageService.getAllImages());

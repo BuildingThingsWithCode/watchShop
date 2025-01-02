@@ -9,15 +9,15 @@ body {
 	background-color: #e4fa9e;
 }
 .logo {
-    text-align: center; /* Centers the logo horizontally */
+    text-align: center; 
 	background-color: #e4fa9e;
    }
 
 .logo img {
 	padding-top:10px;
-    max-width: 100%; /* Ensure the image is responsive */
-    height: auto; /* Keep aspect ratio */
-    width: 450px; /* Set a max width for the logo (adjust as needed) */
+    max-width: 100%; 
+    height: auto;
+    width: 450px; 
 }
 
 .right-div {
@@ -25,9 +25,9 @@ body {
 	padding-right:20px;
 }
 .right-div img {
-	max-width: 100%; /* Ensure the image is responsive */
-    height: auto; /* Keep aspect ratio */
-    width: 100px; /* Set a max width for the logo (adjust as needed) */
+	max-width: 100%; 
+    height: auto; 
+    width: 100px; 
 	padding-top: 20px;
 }
 
@@ -46,6 +46,15 @@ h1 {
     padding: 20px;
 }
 
+.watch-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
+    width: 80%; 
+    max-width: 900px; 
+}
 .sort {
     text-align: right;
     margin-right: 120px;

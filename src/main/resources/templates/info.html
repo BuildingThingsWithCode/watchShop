@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link rel="icon" href="/images/favicon.ico" />
+    <title>Watch Details</title>
+	<link rel="stylesheet" type="text/css" href="/css/info.css">
+</head>
+<body>
+	<div class="top">
+		<div class="right-div">
+     		<img src="/images/basketEmpty.png" alt="basket Logo">
+     	</div>
+		<div class="logo">
+        	<img src="/images/logo.png" alt="Company Logo">
+		</div>
+    </div>
+
+	<div class="watch-container">
+        <!-- Watch Info + Button on the Right -->
+		<div class="product-image">
+			<img th:src="@{${image}}" alt="Product Image">
+		</div>
+
+        <!-- Product Info Left -->
+		<div class="product-info">
+			<p th:text="${watch.brand}">Brand</p>
+    		<p th:text="${watch.name}">Watch Name</p>
+    		<p th:text="${watch.description}">Description</p>
+    		<p th:text="'€ ' + ${watch.price}">Price</p>
+
+			<!-- Basket Button -->
+			<form th:action="@{/add-to-basket}" method="post">
+				<input type="hidden" name="watchId" th:value="${watch.id}" />
+				<button type="submit" class="btn">Add to Basket</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
