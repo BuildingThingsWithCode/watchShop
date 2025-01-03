@@ -34,10 +34,10 @@ public class WatchServiceImpl implements WatchService{
 		}
 		else throw new RuntimeException("Image not found");
 	}
-	
+
 	public Watch getWatchByImage(Long imageId) {
-	    return watchRepository.findByImageId(imageId)
-	            .orElseThrow(() -> new EntityNotFoundException("Watch not found for image id: " + imageId));
+		return watchRepository.findByImageId(imageId)
+				.orElseThrow(() -> new EntityNotFoundException("Watch not found for image id: " + imageId));
 	}
 
 	public Watch getWatchById(Long id) {
@@ -45,9 +45,9 @@ public class WatchServiceImpl implements WatchService{
 		if (watch.isPresent()) return watch.get();
 		else throw new RuntimeException("Watch not found");
 	}
-	
-	
-	
+
+
+
 	public ResponseEntity<HttpStatus> deleteWatch(Long id) {
 		try {
 			watchRepository.deleteById(id);
@@ -66,7 +66,7 @@ public class WatchServiceImpl implements WatchService{
 			return ResponseEntity.status(HttpStatus.OK).body(watchOpt.get().getDescription()); 
 		}
 		else return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Watch not found");
-		
+
 	}
 
 
@@ -76,7 +76,7 @@ public class WatchServiceImpl implements WatchService{
 		if (watchOpt.isPresent()) {
 			Watch watch = watchOpt.get();
 			return ResponseEntity.status(HttpStatus.OK).body(watch.getId() + " " + watch.getName() + " " + watch.getBrand() + " " + 
-			watch.getPrice() + " " +watch.getImage().getId());
+					watch.getPrice() + " " +watch.getImage().getId());
 		}
 		else return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Watch not found");
 	}
@@ -100,7 +100,6 @@ public class WatchServiceImpl implements WatchService{
 	public List<Watch> findAllByOrderByBrand() {
 		return watchRepository.findAll(Sort.by(Sort.Order.asc("brand")));
 	}
-
 }
 
 

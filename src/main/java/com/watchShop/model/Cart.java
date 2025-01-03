@@ -26,11 +26,9 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column(name = "user_id")
-	private Integer userId;
-
+	private Long userId;
 	@Column(name = "created_date")
 	private Date createdDate;
-
 	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<CartItem> items = new ArrayList<>();
 	private BigDecimal sum = BigDecimal.ZERO;
@@ -38,38 +36,9 @@ public class Cart {
 	public Cart() {
 	}
 
-	public Cart(Integer userId) {
+	public Cart(Long userId) {
 		this.userId = userId;
-		this.createdDate = new Date();
 	}
 
-	public void addItem(CartItem cartItem) {
-		for (CartItem item : items) {
-			if (item.equals(cartItem)) {
-				item.setQuantity(item.getQuantity() + cartItem.getQuantity());
-			}
-			else items.add(cartItem);
-		}
-		addAmount(cartItem);
-	}
-
-	public void addItem(Watch watch) {
-		for (CartItem item : items) {
-			if (item.getWatch().getBrand().equals(watch.getBrand()) && item.getWatch().getName().equals(watch.getName())) {
-				item.setQuantity(item.getQuantity() + 1);
-				addAmount(watch);
-			}
-			else items.add(new CartItem(this, watch, 1));
-		}
-		addAmount(watch);
-	}
-
-	private void addAmount(CartItem cartItem) {
-		BigDecimal toAdd = cartItem.getWatch().getPrice().multiply(new BigDecimal(cartItem.getQuantity()));
-		sum = sum.add(toAdd);
-	}
 	
-	private void addAmount(Watch watch) {
-		sum = sum.add(watch.getPrice());
-	}
 }

@@ -10,7 +10,7 @@ import com.watchShop.dto.WatchDTO;
 import com.watchShop.model.Watch;
 
 public interface WatchService {
-	Watch saveWatch(WatchDTO watchDTO);
+	Watch saveWatch(WatchDTO watchDT);
 	Watch getWatchById(Long id);
 	ResponseEntity<String> getWatchDescription(@PathVariable Long id);
 	ResponseEntity<HttpStatus> deleteWatch(@PathVariable Long id);

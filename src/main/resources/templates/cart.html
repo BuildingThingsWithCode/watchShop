@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" th:href="@{/images/favicon.ico}" />
+    <title>WatchShop</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/cart.css}">
+</head>
+<body>
+    <div class="top">
+        <div class="right-div">
+            <img th:src="@{${isCartEmpty} ? '/images/basketEmpty.png' : '/images/basketFull.png'}" alt="Basket Logo">
+        </div>
+        <div class="logo">
+            <img th:src="@{/images/logo.png}" alt="Company Logo">
+        </div>
+    </div>
+
+    <div class="cart-container">
+        <!-- Form for deleting selected items -->
+        <form th:action="@{/delete-from-cart}" method="post">
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Brand</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="entry : ${cartItems}">
+                            <td th:text="${entry.key.brand}">Brand</td>
+                            <td th:text="${entry.key.name}">Name</td>
+                            <td th:text="'€ ' + ${entry.key.price}">Price</td>
+                            <td th:text="${entry.value}">Quantity</td>
+                            <td th:text="'€ ' + (${entry.key.price} * ${entry.value})">Subtotal</td>
+
+                            <!-- Checkbox for row selection -->
+                            <td style="text-align: center;">
+                                <input type="checkbox" name="deleteItems" th:value="${entry.key.id}" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="total">
+                    <button type="submit" class="btn">Delete</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <div class="total">
+        <p>Total: <span th:text="'€ ' + ${totalPrice}"></span></p>
+    </div>
+</body>
+</html>

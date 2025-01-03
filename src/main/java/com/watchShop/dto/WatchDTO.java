@@ -15,6 +15,7 @@ public class WatchDTO {
 		private String name;
 	    private String brand;
 	    private BigDecimal price;
+	    private String description;
 	    private Long imageId;
 	
 

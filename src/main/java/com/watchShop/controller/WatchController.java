@@ -1,7 +1,6 @@
 package com.watchShop.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,11 +12,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.watchShop.dto.WatchDTO;
 import com.watchShop.model.Image;
 import com.watchShop.model.Watch;
+import com.watchShop.service.CartService;
 import com.watchShop.service.ImageService;
 import com.watchShop.service.WatchService;
 
@@ -30,10 +29,14 @@ public class WatchController {
 
 	final private WatchService watchService;
 	final private ImageService imageService;
+    private final CartService cartService;
+
 	
 	@GetMapping("/{id}")
 	public String getInfoPage(@PathVariable("id") Long id, Model model) {
-		Watch watch = watchService.getWatchById(id); 
+		Watch watch = watchService.getWatchById(id);
+		boolean isCartEmpty = cartService.isEmpty();
+        model.addAttribute("isCartEmpty", isCartEmpty);
 		model.addAttribute("watch", watch);
 		model.addAttribute("image", "/" + watch.getImage().getPathToImage());
 		return "info";
@@ -41,6 +44,8 @@ public class WatchController {
 	
 	@GetMapping("/add")
 	public String showAddWatchForm(Model model) {
+		boolean isCartEmpty = cartService.isEmpty();
+        model.addAttribute("isCartEmpty", isCartEmpty);
 		List<Image> images = imageService.getAllImages(); 
 		model.addAttribute("images", images);
 		model.addAttribute("watchDTO", new WatchDTO());
@@ -49,6 +54,8 @@ public class WatchController {
 
 	@PostMapping("/add")
 	public String addWatch(@ModelAttribute WatchDTO watchDTO, Model model) {
+		boolean isCartEmpty = cartService.isEmpty();
+        model.addAttribute("isCartEmpty", isCartEmpty);
 		watchService.saveWatch(watchDTO);
 		return "redirect:/watch/add";
 	}
@@ -65,9 +72,9 @@ public class WatchController {
 		return watchService.deleteWatch(id);
 	}
 	
-	@GetMapping("/info/{id}")
-	public ResponseEntity<String> getWatchInfo(@PathVariable Long id) {
-		return watchService.getWatchInfo(id);
-	}
+//	@GetMapping("/info/{id}")
+//	public ResponseEntity<String> getWatchInfo(@PathVariable Long id) {
+//		return watchService.getWatchInfo(id);
+//	}
 	
 }
