@@ -14,7 +14,6 @@ public class WatchMapper {
         		watch.getName(), 
         		watch.getBrand(),
         		watch.getPrice(), 
-        		watch.getDescription(), 
         		watch.getImage().getId());
 	}
 	
@@ -24,7 +23,6 @@ public class WatchMapper {
         watch.setName(dto.getName());
         watch.setBrand(dto.getBrand());
         watch.setPrice(dto.getPrice());
-        watch.setDescription(dto.getDescription());
         watch.setImage(image);
         return watch;
     }
