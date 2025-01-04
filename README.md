@@ -5,4 +5,5 @@ Still to do:
 - Add navigation header.
 - Add custom exceptions.
 - Add security and authentication.
+- Add payment/checkout functionality.
 
