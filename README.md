@@ -6,7 +6,7 @@ Still to do:
 - ~~Populate database.~~
 - ~~Design logo + shopping cart icon.~~
 - ~~Add sorting functionality.~~
-- ~~reate information page.~~
+- ~~create information page.~~
 - ~~Add shopping cart functionality.~~
 - Add navigation header.
 - Add custom exceptions and custom error page.
