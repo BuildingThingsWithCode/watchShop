@@ -5,7 +5,7 @@ Still to do:
 -  ~~Set up environmental variables and connect to online datbase.~~
 - ~~Populate database.~~
 - ~~Design logo + shopping cart icon.~~
-- ~~Add sorting functionality.~~
+- ~~Create product page and add sorting functionality.~~
 - ~~create information page.~~
 - ~~Add shopping cart functionality.~~
 - Add navigation header.
