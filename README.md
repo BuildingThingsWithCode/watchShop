@@ -9,6 +9,7 @@ Still to do:
 - ~~create information page.~~
 - ~~Add shopping cart functionality.~~
 - Add navigation header.
+- Create Thymeleaf fragments for recurring HTML elements.
 - Add custom exceptions and custom error page.
 - Add security and authentication.
 - Add payment/checkout functionality.
