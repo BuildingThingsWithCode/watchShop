@@ -21,7 +21,7 @@
         <!-- Form for deleting selected items -->
         <form th:action="@{/delete-from-cart}" method="post">
             <div class="table-wrapper">
-                <table>
+                    <table>
                     <thead>
                         <tr>
                             <th>Brand</th>
@@ -29,34 +29,35 @@
                             <th>Price</th>
                             <th>Quantity</th>
                             <th>Subtotal</th>
-                            <th>Delete</th>
+                            <th>Select</th>
+							<th>
+           						 <!-- Place the Delete Button in this header cell -->
+            						<button type="submit" class="btn">Delete</button>
+        					</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr th:each="entry : ${cartItems}">
-                            <td th:text="${entry.key.brand}">Brand</td>
-                            <td th:text="${entry.key.name}">Name</td>
-                            <td th:text="'€ ' + ${entry.key.price}">Price</td>
-                            <td th:text="${entry.value}">Quantity</td>
-                            <td th:text="'€ ' + (${entry.key.price} * ${entry.value})">Subtotal</td>
+<tbody>
+    <tr th:each="entry : ${cartItems}">
+        <td th:text="${entry.key.brand}">Brand</td>
+        <td th:text="${entry.key.name}">Name</td>
+        <td th:text="'€ ' + ${entry.key.price}">Price</td>
+        <td th:text="${entry.value}">Quantity</td>
+        <td th:text="'€ ' + (${entry.key.price} * ${entry.value})">Subtotal</td>
+        <td style="text-align: center;">
+            <input type="checkbox" name="deleteItems" th:value="${entry.key.id}" />
+        </td>
+	   </tr>
 
-                            <!-- Checkbox for row selection -->
-                            <td style="text-align: center;">
-                                <input type="checkbox" name="deleteItems" th:value="${entry.key.id}" />
-                            </td>
-                        </tr>
-                    </tbody>
+    <!-- Total row -->
+    <tr>
+        <td colspan="4" style="border: none;"></td> <!-- Empty cells to align the Total row -->
+        <td th:text="'€ ' + ${totalPrice}" style="text-align: right; font-weight: bold;"></td>
+    </tr>
+</tbody>
                 </table>
 
-                <div class="total">
-                    <button type="submit" class="btn">Delete</button>
-                </div>
             </div>
         </form>
-    </div>
-    
-    <div class="total">
-        <p>Total: <span th:text="'€ ' + ${totalPrice}"></span></p>
-    </div>
+    </div>   
 </body>
 </html>

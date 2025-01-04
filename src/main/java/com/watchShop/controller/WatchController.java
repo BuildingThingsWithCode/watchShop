@@ -2,6 +2,8 @@ package com.watchShop.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -33,15 +35,19 @@ public class WatchController {
 
 	
 	@GetMapping("/{id}")
-	public String getInfoPage(@PathVariable("id") Long id, Model model) {
+	public String getInfoPage(@PathVariable("id") Long id, Model model, HttpServletResponse response) {
 		Watch watch = watchService.getWatchById(id);
 		boolean isCartEmpty = cartService.isEmpty();
         model.addAttribute("isCartEmpty", isCartEmpty);
 		model.addAttribute("watch", watch);
 		model.addAttribute("image", "/" + watch.getImage().getPathToImage());
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	    response.setHeader("Pragma", "no-cache");
+	    response.setDateHeader("Expires", 0);
 		return "info";
 	}
 	
+	//all methods below this point were only used to populate the database.
 	@GetMapping("/add")
 	public String showAddWatchForm(Model model) {
 		boolean isCartEmpty = cartService.isEmpty();
@@ -72,9 +78,9 @@ public class WatchController {
 		return watchService.deleteWatch(id);
 	}
 	
-//	@GetMapping("/info/{id}")
-//	public ResponseEntity<String> getWatchInfo(@PathVariable Long id) {
-//		return watchService.getWatchInfo(id);
-//	}
+	@GetMapping("/info/{id}")
+	public ResponseEntity<String> getWatchInfo(@PathVariable Long id) {
+		return watchService.getWatchInfo(id);
+	}
 	
 }
