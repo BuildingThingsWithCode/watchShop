@@ -1,0 +1,21 @@
+<form th:action="@{/watch/add}" th:object="${watchDTO}" method="post">
+    <label for="name">Watch Name:</label>
+    <input type="text" th:field="*{name}" required />
+    
+    <label for="brand">Brand:</label>
+    <input type="text" th:field="*{brand}" required />
+    
+    <label for="price">Price:</label>
+    <input type="number" th:field="*{price}" required />
+    
+    <label for="description">Description:</label>
+    <textarea th:field="*{description}" required></textarea>
+    
+    <label for="imageId">Select Image:</label>
+    <select th:field="*{imageId}">
+        <option th:each="image : ${images}" th:value="${image.id}" th:text="${image.id}"></option>
+    </select>
+
+    <button type="submit">Add Watch</button>
+</form>
+
