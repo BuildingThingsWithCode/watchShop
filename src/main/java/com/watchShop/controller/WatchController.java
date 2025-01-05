@@ -74,12 +74,12 @@ public class WatchController {
 
 
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<HttpStatus> deleteWatch(@PathVariable Long id) {
-		return watchService.deleteWatch(id);
+	public void deleteWatch(@PathVariable Long id) {
+		 watchService.deleteWatch(id);
 	}
 	
 	@GetMapping("/info/{id}")
-	public ResponseEntity<String> getWatchInfo(@PathVariable Long id) {
+	public String getWatchInfo(@PathVariable Long id) {
 		return watchService.getWatchInfo(id);
 	}
 	

@@ -6,8 +6,8 @@ import java.util.Optional;
 import com.watchShop.model.Image;
 
 public interface ImageService {
-	Image saveImage(String description, String pathToImage);
-	void saveImagesFromFolder(String folderPath);
-	List<Image> getAllImages();
-	Optional<Image> findById(Long id);
+	Image saveImage(String pathToImage);//done
+	void saveImagesFromFolder(String folderPath);//done
+	List<Image> getAllImages();//done
+	Image findById(Long id);//done
 }

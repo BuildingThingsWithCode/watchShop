@@ -1,6 +1,7 @@
 package com.watchShop.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,14 +11,12 @@ import com.watchShop.dto.WatchDTO;
 import com.watchShop.model.Watch;
 
 public interface WatchService {
-	Watch saveWatch(WatchDTO watchDT);
-	Watch getWatchById(Long id);
-	ResponseEntity<String> getWatchDescription(@PathVariable Long id);
-	ResponseEntity<HttpStatus> deleteWatch(@PathVariable Long id);
-	ResponseEntity<String> getWatchInfo(@PathVariable Long id);
-	Watch getWatchByImage(@PathVariable Long id);
-	List<Watch> getAllWatches();
-	List<Watch> findAllByOrderByPriceDesc();
-	List<Watch> findAllByOrderByPriceAsc();
-	List<Watch> findAllByOrderByBrand();
+	Watch saveWatch(WatchDTO watchDT); //done
+	Watch getWatchById(Long id); // done
+	String getWatchDescription(@PathVariable Long id); // done
+	void deleteWatch(@PathVariable Long id); //done
+	String getWatchInfo(@PathVariable Long id); //done
+	Watch getWatchByImage(@PathVariable Long id); //done
+	List<Watch> getAllWatches();//done
+	List<Watch> findAllByOrder(String sortOrder);//done
 }

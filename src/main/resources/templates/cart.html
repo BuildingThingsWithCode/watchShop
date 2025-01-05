@@ -19,7 +19,7 @@
 
     <div class="cart-container">
         <!-- Form for deleting selected items -->
-        <form th:action="@{/delete-from-cart}" method="post">
+        <form th:action="@{/delete-from-cart}" method="post" autocomplete="off">
             <div class="table-wrapper">
                     <table>
                     <thead>
@@ -30,7 +30,7 @@
                             <th>Quantity</th>
                             <th>Subtotal</th>
                             <th>Select</th>
-							<th>
+							<th style="border: none;">
            						 <!-- Place the Delete Button in this header cell -->
             						<button type="submit" class="btn">Delete</button>
         					</th>

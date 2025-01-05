@@ -75,24 +75,6 @@ table {
     width: 90%; 
     max-width: 1000px; 
 }
-
-.button-row {
-    text-align: center; /* Center-align the button in its column */
-    padding: 10px;
-    background-color: #f9f9f9; /* Optional styling for the row */
+button.btn{
+	background-color: #484d9a;
 }
-
-.button-row button {
-    margin: 0 auto; /* Center the button */
-    padding: 10px 20px;
-    background-color: #d9534f;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.button-row button:hover {
-    background-color: #c9302c;
-}
-

@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import com.watchShop.exception.DatabaseException;
+
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -21,7 +23,7 @@ public class DatabaseServiceImpl implements DatabaseService {
 			jdbcTemplate.execute("SELECT * FROM images");
 			return ResponseEntity.status(HttpStatus.OK).body("Database is connected!"); 
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body("Database connection failed! " + e.getMessage());  
+			throw new DatabaseException("Database connection failed! ", e.getCause());
 		}
 	}
 
@@ -32,19 +34,26 @@ public class DatabaseServiceImpl implements DatabaseService {
 			jdbcTemplate.execute(createTableSql); 
 			return ResponseEntity.status(HttpStatus.OK).body("Table '" + tableName + "' created successfully (if not already present)."); 
 		} catch (Exception e) {
-			System.out.println("Error executing SQL script: " + e.getMessage());
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage()); 
+			throw new DatabaseException("Database table " + tableName + " could not be created", e.getCause()); 
 		}
 	}
 
 	public List<String> getTableColumns(String tableName) {
 		String query = "SELECT column_name FROM information_schema.columns WHERE table_name = ?";
-		return jdbcTemplate.query(query, (rs, rowNum) -> rs.getString("column_name"), tableName);
+		try {
+			return jdbcTemplate.query(query, (rs, rowNum) -> rs.getString("column_name"), tableName);
+		} catch (Exception e) {
+			throw new DatabaseException("Could not fetch columns from database table " + tableName + ".", e.getCause()); 
+		}
 	}	
 
 	public List<String> getTableRows(String tableName) {
 		String query = "SELECT name FROM " + tableName;  
-		return jdbcTemplate.query(query, (rs, rowNum) -> rs.getString("name"));
+		try {
+			return jdbcTemplate.query(query, (rs, rowNum) -> rs.getString("name"));
+		} catch (Exception e) {
+			throw new DatabaseException("Could not fetch rows from database table " + tableName + ".", e.getCause()); 
+		}
 	}
 
-	}
+}

@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.watchShop.exception.WatchNotInStockException;
 import com.watchShop.model.Watch;
 
 import lombok.RequiredArgsConstructor;
@@ -45,15 +44,9 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public BigDecimal getTotal() throws WatchNotInStockException {
+	public BigDecimal getTotal() {
 		BigDecimal sum = BigDecimal.ZERO;
 		for (Map.Entry<Watch, Integer> entry : items.entrySet()) {
-			try {
-			watchService.getWatchById(entry.getKey().getId());
-			}
-			catch (Exception e) {
-				throw new WatchNotInStockException();
-			}
 			sum = sum.add(entry.getKey().getPrice().multiply(new BigDecimal(entry.getValue())));
 		}
 		return sum;
@@ -76,10 +69,4 @@ public class CartServiceImpl implements CartService {
 	public Boolean isEmpty() {
 		return items.isEmpty();
 	}
-
-	
-
-	
-	
-	
 }

@@ -25,24 +25,13 @@ public class HomeController {
 	@GetMapping("/")
 	public String home(@RequestParam(name = "sortOrder", defaultValue = "brand") String sortOrder, Model model, HttpServletResponse response) {
 		boolean isCartEmpty = cartService.isEmpty();
-		List<Watch> watches = getSortedWatches(sortOrder);
+		List<Watch> watches = watchService.findAllByOrder(sortOrder);
 		model.addAttribute("isCartEmpty", isCartEmpty);
 		model.addAttribute("watches", watches);
 		model.addAttribute("sortOrder", sortOrder);
 		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-	    response.setHeader("Pragma", "no-cache");
-	    response.setDateHeader("Expires", 0);
+		response.setHeader("Pragma", "no-cache");
+		response.setDateHeader("Expires", 0);
 		return "home";  
 	}
-
-	private List<Watch> getSortedWatches(String sortOrder) {
-		if ("high-to-low".equals(sortOrder)) {
-			return watchService.findAllByOrderByPriceDesc();
-		} 
-		if ("low-to-high".equals(sortOrder)) {
-			return watchService.findAllByOrderByPriceAsc();
-		}
-		else return watchService.findAllByOrderByBrand();
-	}
-
 }
