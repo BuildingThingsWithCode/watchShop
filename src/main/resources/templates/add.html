@@ -13,7 +13,7 @@
     
     <label for="imageId">Select Image:</label>
     <select th:field="*{imageId}">
-        <option th:each="image : ${images}" th:value="${image.id}" th:text="${image.description}"></option>
+        <option th:each="image : ${images}" th:value="${image.id}" th:text="${image.id}"></option>
     </select>
 
     <button type="submit">Add Watch</button>

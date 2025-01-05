@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.watchShop.dto.WatchDTO;
 import com.watchShop.model.Image;
@@ -52,7 +53,8 @@ public class WatchController {
 	public String showAddWatchForm(Model model) {
 		boolean isCartEmpty = cartService.isEmpty();
         model.addAttribute("isCartEmpty", isCartEmpty);
-		List<Image> images = imageService.getAllImages(); 
+		List<Image> images = imageService.getAllImages();
+		System.out.println("image list size= "+images.size());
 		model.addAttribute("images", images);
 		model.addAttribute("watchDTO", new WatchDTO());
 		return "add";
@@ -79,7 +81,8 @@ public class WatchController {
 	}
 	
 	@GetMapping("/info/{id}")
-	public String getWatchInfo(@PathVariable Long id) {
+	@ResponseBody
+	public ResponseEntity<String> getWatchInfo(@PathVariable Long id) {
 		return watchService.getWatchInfo(id);
 	}
 	

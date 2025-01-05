@@ -2,14 +2,12 @@ package com.watchShop.service;
 
 import java.io.File;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.watchShop.exception.DatabaseException;
 import com.watchShop.exception.ImageNotFoundException;
 import com.watchShop.exception.IncorrectFilePathException;
-import com.watchShop.exception.WatchNotFoundException;
 import com.watchShop.model.Image;
 import com.watchShop.repository.ImageRepository;
 

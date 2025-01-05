@@ -70,11 +70,11 @@ public class WatchServiceImpl implements WatchService{
 
 
 	@Override
-	public String getWatchDescription(Long id) {
+	public ResponseEntity<String> getWatchDescription(Long id) {
 		try {
-			return watchRepository.findById(id)
+			return new ResponseEntity<String>(watchRepository.findById(id)
 					.orElseThrow(() -> new WatchNotFoundException("Watch not found for ID: " + id))
-					.getDescription();
+					.getDescription(), HttpStatus.OK);
 		} catch (DatabaseException e) {
 			throw new DatabaseException("Database error occurred while retrieving watch with ID: " + id, e);
 		}
@@ -82,12 +82,12 @@ public class WatchServiceImpl implements WatchService{
 
 
 	@Override
-	public String getWatchInfo(Long id) {
+	public ResponseEntity<String> getWatchInfo(Long id) {
 		try {
 			Watch watch = watchRepository.findById(id)
 					.orElseThrow(() -> new WatchNotFoundException("Watch not found for ID: " + id));
-			return watch.getId() + " " + watch.getName() + " " + watch.getBrand() + " " + 
-			watch.getPrice() + " " +watch.getImage().getId();
+			return new ResponseEntity<String>(watch.getId() + " " + watch.getName() + " " + watch.getBrand() + " " + 
+					watch.getPrice() + " " +watch.getImage().getId(), HttpStatus.OK);
 		} catch (DatabaseException e) {
 			throw new DatabaseException("Database error occurred while retrieving watch with ID: " + id, e);
 		}

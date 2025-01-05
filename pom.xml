@@ -7,7 +7,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.7.6</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<relativePath /> 
 	</parent>
 	<groupId>com.watches</groupId>
 	<artifactId>watchShop</artifactId>
@@ -20,19 +20,19 @@
 	</properties>
 
 	<dependencies>
-		<!-- Spring Boot Starter for Thymeleaf (for rendering HTML templates) -->
+		<!-- Spring Boot Starter for Thymeleaf-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
-		<!-- Spring Boot Starter Web (for building web applications) -->
+		<!-- Spring Boot Starter Web -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!-- Spring Boot DevTools (for live reload and development-time features) -->
+		<!-- Spring Boot DevTools -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -40,30 +40,28 @@
 			<optional>true</optional>
 		</dependency>
 
-		<!-- Spring Boot Starter Data JPA (for integrating Spring Data JPA with 
-			Hibernate) -->
+		<!-- Spring Boot Starter Data JPA -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
-		<!-- PostgreSQL JDBC Driver (for connecting to PostgreSQL databases) -->
+		<!-- PostgreSQL JDBC Driver -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>42.5.1</version> <!-- Use the latest stable version -->
+			<version>42.5.1</version> 
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- Lombok (for reducing boilerplate code such as getters/setters) -->
+		<!-- Lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Spring Boot Starter Test (for testing, includes JUnit and other testing 
-			libraries) -->
+		<!-- Spring Boot Starter Test -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -75,7 +73,7 @@
 
 	<build>
 		<plugins>
-			<!-- Maven Compiler Plugin (to compile Java source code) -->
+			<!-- Maven -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -92,8 +90,7 @@
 				</configuration>
 			</plugin>
 
-			<!-- Spring Boot Maven Plugin (for building and running the Spring Boot 
-				application) -->
+			<!-- Spring Boot Maven Plugin -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

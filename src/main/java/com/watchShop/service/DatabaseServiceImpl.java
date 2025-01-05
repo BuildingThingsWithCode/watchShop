@@ -48,10 +48,11 @@ public class DatabaseServiceImpl implements DatabaseService {
 	}	
 
 	public List<String> getTableRows(String tableName) {
-		String query = "SELECT name FROM " + tableName;  
+		String query = "SELECT * FROM TableName" + tableName;  
 		try {
 			return jdbcTemplate.query(query, (rs, rowNum) -> rs.getString("name"));
 		} catch (Exception e) {
+			System.out.println(e.toString());
 			throw new DatabaseException("Could not fetch rows from database table " + tableName + ".", e.getCause()); 
 		}
 	}

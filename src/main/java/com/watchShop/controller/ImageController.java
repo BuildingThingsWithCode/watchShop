@@ -10,7 +10,7 @@ import com.watchShop.service.ImageService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/img")
+//@RequestMapping("/img")
 @RequiredArgsConstructor
 public class ImageController {
 
