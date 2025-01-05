@@ -1,16 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" th:href="@{/images/favicon.ico}" />
-    <title>WatchShop</title>
+    <title>Cart</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/cart.css}">
 </head>
+
 <body>
-    <div class="top">
-        <div class="right-div">
-            <img th:src="@{${isCartEmpty} ? '/images/basketEmpty.png' : '/images/basketFull.png'}" alt="Basket Logo">
+    <nav>
+        <ul>
+            <li>
+                <a th:href="@{/}"> Shop </a>
+            </li>
+            <li>
+                <a th:href="@{/cart}"> Cart </a>
+            </li>
+            <li>
+                <a th:href="@{/error}"> Register </a>
+            </li>
+            <li>
+                <a th:href="@{/error}"> Login </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="right-div">
+            <div class="right-div">
+                <img th:src="@{${isCartEmpty} ? '/images/basketEmpty.png' : '/images/basketFull.png'}" alt="Basket Logo">
+            </div>
         </div>
         <div class="logo">
             <img th:src="@{/images/logo.png}" alt="Company Logo">
@@ -18,7 +38,6 @@
     </div>
 
     <div class="cart-container">
-        <!-- Form for deleting selected items -->
         <form th:action="@{/delete-from-cart}" method="post" autocomplete="off">
             <div class="table-wrapper">
                     <table>
@@ -30,8 +49,7 @@
                             <th>Quantity</th>
                             <th>Subtotal</th>
                             <th>Select</th>
-							<th style="border: none;">
-           						 <!-- Place the Delete Button in this header cell -->
+                            <th style="border: none;">
             						<button type="submit" class="btn">Delete</button>
         					</th>
                         </tr>
@@ -46,18 +64,17 @@
         <td style="text-align: center;">
             <input type="checkbox" name="deleteItems" th:value="${entry.key.id}" />
         </td>
-	   </tr>
+    </tr>
 
-    <!-- Total row -->
     <tr>
-        <td colspan="4" style="border: none;"></td> <!-- Empty cells to align the Total row -->
+        <td colspan="4" style="border: none;"></td>
         <td th:text="'€ ' + ${totalPrice}" style="text-align: right; font-weight: bold;"></td>
     </tr>
 </tbody>
                 </table>
-
             </div>
         </form>
     </div>   
 </body>
 </html>
+

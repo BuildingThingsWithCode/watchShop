@@ -8,25 +8,41 @@
     <title>WatchShop</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}">
 </head>
+
 <body>
-<!-- Include the 'navigation' fragment -->
+    <nav>
+        <ul>
+            <li>
+                <a th:href="@{/}"> Shop </a>
+            </li>
+            <li>
+                <a th:href="@{/cart}"> Cart </a>
+            </li>
+            <li>
+                <a th:href="@{/error}"> Register </a>
+            </li>
+            <li>
+                <a th:href="@{/error}"> Login </a>
+            </li>
+        </ul>
+    </nav>
 
     <div class="top">
         <div class="right-div">
             <div class="right-div">
-            <img th:src="@{${isCartEmpty} ? '/images/basketEmpty.png' : '/images/basketFull.png'}" alt="Basket Logo">
-        </div>
+                <img th:src="@{${isCartEmpty} ? '/images/basketEmpty.png' : '/images/basketFull.png'}" alt="Basket Logo">
+            </div>
         </div>
         <div class="logo">
             <img th:src="@{/images/logo.png}" alt="Company Logo">
         </div>
     </div>
 
-     <div class="sort">
+    <div class="sort">
         <form action="#" th:action="@{/}" method="get">
             <label for="price-sort">Sort by: </label>
             <select id="price-sort" name="sortOrder" onchange="this.form.submit()">
-				<option value="brand" th:selected="${sortOrder == 'brand'}">Brand</option>
+                <option value="brand" th:selected="${sortOrder == 'brand'}">Brand</option>
                 <option value="low-to-high" th:selected="${sortOrder == 'low-to-high'}">Price: Low to High</option>
                 <option value="high-to-low" th:selected="${sortOrder == 'high-to-low'}">Price: High to Low</option>
             </select>
@@ -36,11 +52,11 @@
     <div class="container" id="product-container" th:fragment="product-container">
         <div class="product" th:each="watch : ${watches}">
             <a th:href="@{/watch/{id}(id=${watch.id})}">
-			 <img th:src="${watch.image.pathToImage}" alt="Watch Image">
-	        </a>
+                <img th:src="${watch.image.pathToImage}" alt="Watch Image">
+            </a>
             <h3 th:text="${watch.name}">Name</h3>
             <div class="product-description" th:text="${watch.brand}">Brand</div>
-           <div class="price" th:text="'€' + ${watch.price}">Price</div>
+            <div class="price" th:text="'€' + ${watch.price}">Price</div>
         </div>
     </div>
 </body>

@@ -5,40 +5,27 @@ body {
     background-color: #e4fa9e;
     direction: ltr;
 }
-
-.top {
-    background-color: #e4fa9e;
+.top{
+	background-color: #e4fa9e;
 }
-
 .logo {
-    text-align: center;
-    background-color: #e4fa9e;
-}
-
-.table-wrapper {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    overflow-x: auto;
-}
+    text-align: center; 
+	background-color: #e4fa9e;
+   }
 
 .logo img {
-    padding-top: 10px;
-    max-width: 100%;
+	padding-top:10px;
+    max-width: 100%; 
     height: auto;
-    width: 450px;
+    width: 450px; 
 }
+
 
 .cart-container {
     display: flex;
     flex-direction: column; 
     align-items: center; 
     margin-top: 20px; 
-}
-
-.right-div {
-    float: right;
-    padding-right: 20px;
 }
 
 table th, table td {
@@ -51,30 +38,127 @@ table td:nth-child(4){
 	text-align: right;
 }
 
+
+
+.right-div {
+    float: right;
+	padding-right:20px;
+}
 .right-div img {
-    max-width: 100%;
-    height: auto;
-    width: 100px;
-    padding-top: 20px;
-.total {
-    margin-top: 20px; 
-    font-size: 1.2em;
-    font-weight: bold;
-    text-align: right; 
-    width: 90%; 
-    max-width: 1000px; 
+	max-width: 100%; 
+    height: auto; 
+    width: 100px; 
+	padding-top: 20px;
 }
 
-table td:nth-child(7) { /* This targets the checkbox column */
+h1 {
+    color: #5D6BBA; 
     text-align: center;
-    width: 80px; /* Optional: adjust the width of the checkbox column */
+    font-size: 48px;
 }
 
-table {
-    border-collapse: collapse; 
-    width: 90%; 
-    max-width: 1000px; 
+/* Button in the product info */
+.btn {
+    background-color: #484d9a;  
+    color: white;               
+   
 }
-button.btn{
-	background-color: #484d9a;
+
+/* Hover effect */
+.btn:hover {
+    background-color: #3e4391;  
+    border-color: #3e4391;      
 }
+
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+
+
+.watch-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
+    width: 80%; 
+    max-width: 900px; 
+}
+.sort {
+    text-align: right;
+    margin-right: 120px;
+}
+
+.product {
+    background-color: #e4fa9e;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(189, 138, 89, 1);
+    text-align: center;
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.product-description {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+.price {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.product h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;  
+}
+
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;  
+}
+
+
+nav {
+    background-color: #484d9a; 
+    padding: 10px;
+}
+
+
+nav ul li a:hover {
+    background-color: #e4fa9e;  
+    border-radius: 5px;
+	color:black;
+}
+
