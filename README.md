@@ -14,5 +14,6 @@ Still to do:
 - ~~Add exception handling, custom exceptions~~ and custom error page.
 - Add security and authentication.
 - Add payment/checkout functionality.
+- Add tests.
 - Use this project to learn HTMX.
 
