@@ -9,9 +9,9 @@ Still to do:
 - ~~create information page.~~
 - ~~Add shopping cart functionality.~~
 - ~~set up local postgres db, free online hosting limited to 50 hours.~~
-- Add navigation header.
+- ~~Add navigation header.~~
 - Create Thymeleaf fragments for recurring HTML elements.
-- ~~Add exception handling, custom exceptions~~ and custom error page.
+- ~~Add exception handling, custom exceptions and custom error page.~~
 - Add security and authentication.
 - Add payment/checkout functionality.
 - Add tests.
