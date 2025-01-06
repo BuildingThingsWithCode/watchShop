@@ -20,7 +20,7 @@ public class DatabaseServiceImpl implements DatabaseService {
 
 	public ResponseEntity<String> pingDatabase() {
 		try {
-			jdbcTemplate.execute("SELECT * FROM images");
+			jdbcTemplate.execute("SELECT VERSION();");
 			return ResponseEntity.status(HttpStatus.OK).body("Database is connected!"); 
 		} catch (Exception e) {
 			throw new DatabaseException("Database connection failed! ", e.getCause());

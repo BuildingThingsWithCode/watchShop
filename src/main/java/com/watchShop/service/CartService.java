@@ -12,7 +12,7 @@ public interface CartService {
 	void add(Watch watch);
 	void remove(Watch watch);
 	void emptyCart();
-	void removeItems(List<Long> itemIds) throws WatchNotFoundException;
+	void removeItems(List<Long> itemIds);
 	Set<Entry<Watch, Integer>> getAll();
 	BigDecimal getTotal();
 	Boolean isEmpty();
