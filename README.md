@@ -1,6 +1,5 @@
 A webshop portfolio project. Goal: to practice working with Spring and with a Postgres database.
-This project is a work in progress. 
-Still to do:
+This project is a work in progress. Still to do:
 - ~~Get familiar with Spring.~~
 -  ~~Set up environmental variables and connect to online datbase.~~
 - ~~Populate database.~~
@@ -12,6 +11,7 @@ Still to do:
 - ~~Add navigation header.~~
 - Create Thymeleaf fragments for recurring HTML elements.
 - ~~Add exception handling, custom exceptions and custom error page.~~
+- ~~Create login~~ and register pages.
 - Add security and authentication.
 - Add payment/checkout functionality.
 - Add tests.
