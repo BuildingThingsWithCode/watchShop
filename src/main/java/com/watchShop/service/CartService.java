@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import com.watchShop.exception.WatchNotFoundException;
 import com.watchShop.model.Watch;
 
 public interface CartService {
