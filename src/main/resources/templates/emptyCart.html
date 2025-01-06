@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" th:href="@{/images/favicon.ico}" />
+    <title>Cart</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/cart.css}">
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li>
+                <a th:href="@{/}"> Shop </a>
+            </li>
+            <li>
+                <a th:href="@{/cart}"> Cart </a>
+            </li>
+            <li>
+                <a th:href="@{/error}"> Register </a>
+            </li>
+            <li>
+                <a th:href="@{/error}"> Login </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="right-div">
+            <div class="right-div">
+                <img th:src="@{${isCartEmpty} ? '/images/basketEmpty.png' : '/images/basketFull.png'}" alt="Basket Logo">
+            </div>
+        </div>
+        <div class="logo">
+            <img th:src="@{/images/logo.png}" alt="Company Logo">
+        </div>
+    </div>
+
+   <h1> There are no items in your cart. </h1>
+    </div>   
+</body>
+</html>
+

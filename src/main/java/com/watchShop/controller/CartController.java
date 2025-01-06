@@ -23,12 +23,12 @@ public class CartController {
 
 	@GetMapping("/cart")
 	public String getCart(Model model, HttpServletResponse response) {
-		//doChecksAndSetHeader(model, response);
 		model.addAttribute("cartItems", cartService.getAll());
 		model.addAttribute("totalPrice", cartService.getTotal());
+		if (cartService.isEmpty()) return "emptyCart";
 		return "cart"; 
 	}
-	
+
 	@PostMapping("/addToCart")
 	public String addToCart(@RequestParam("watchId") Long watchId, Model model, HttpServletResponse response) {
 		cartService.add(watchService.getWatchById(watchId));
