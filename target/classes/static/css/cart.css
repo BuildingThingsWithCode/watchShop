@@ -2,15 +2,15 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #e4fa9e;
+    background-color: #eeebe3;
     direction: ltr;
 }
 .top{
-	background-color: #e4fa9e;
+	background-color: #eeebe3;
 }
 .logo {
     text-align: center; 
-	background-color: #e4fa9e;
+	background-color: #eeebe3;
    }
 
 .logo img {
@@ -52,25 +52,25 @@ table td:nth-child(4){
 }
 
 h1 {
-    color: #484d9a; 
+    color: #4C5C69; 
     text-align: center;
     }
 
 h3 {
-	 color: #484d9a; 
+	 color: #4C5C69; 
     text-align: center;
 }
 
 /* Button in the product info */
 .btn {
-    background-color: #484d9a;  
+    background-color: #1A85A1;  
     color: white;               
    
 }
 
 /* Hover effect */
 .btn:hover {
-    background-color: #3e4391;  
+    background-color: #4C5C69;  
     border-color: #3e4391;      
 }
 
@@ -155,13 +155,13 @@ nav ul li a {
 
 
 nav {
-    background-color: #484d9a; 
+    background-color: #1A85A1; 
     padding: 10px;
 }
 
 
 nav ul li a:hover {
-    background-color: #e4fa9e;  
+    background-color: #eeebe3;  
     border-radius: 5px;
 	color:black;
 }

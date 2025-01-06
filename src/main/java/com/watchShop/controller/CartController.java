@@ -1,5 +1,6 @@
 package com.watchShop.controller;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -36,11 +37,8 @@ public class CartController {
 	}
 
 	@PostMapping("/delete-from-cart")
-	public String deleteFromCart(@RequestParam(value = "deleteItems", required = false) List<Long> deleteItemIds, Model model, HttpServletResponse response) {
-		if (deleteItemIds == null || deleteItemIds.isEmpty()) {
-			return "redirect:/cart";
-		}
-		cartService.removeItems(deleteItemIds);
+	public String deleteFromCart(@RequestParam(value = "deleteItems", required = false) Optional<List<Long>> deleteItemIds, Model model, HttpServletResponse response) {
+		deleteItemIds.ifPresent(v -> cartService.removeItems(v));
 		return "redirect:/cart";
 	}
 }

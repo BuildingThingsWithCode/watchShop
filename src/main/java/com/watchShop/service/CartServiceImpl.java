@@ -22,20 +22,20 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 @RequiredArgsConstructor
 public class CartServiceImpl implements CartService {
-	
+
 	private final WatchService watchService;
 	private Map<Watch, Integer> items = new HashMap<>();
 
 	@Override
 	public void add(Watch watch) {
 		items.put(watch, items.getOrDefault(watch, 0) + 1);
-		
+
 	}
 
 	@Override
 	public void remove(Watch watch) {
 		items.computeIfPresent(watch, (key, count) -> count == 1 ? null : count - 1);
-		
+
 	}
 
 	@Override
@@ -62,7 +62,6 @@ public class CartServiceImpl implements CartService {
 		for (Long id : itemIds) {
 			items.remove(watchService.getWatchById(id));
 		}
-		
 	}
 
 	@Override
