@@ -48,7 +48,7 @@ public class DatabaseServiceImpl implements DatabaseService {
 	}	
 
 	public List<String> getTableRows(String tableName) {
-		String query = "SELECT * FROM TableName" + tableName;  
+		String query = "SELECT * FROM " + tableName;  
 		try {
 			return jdbcTemplate.query(query, (rs, rowNum) -> rs.getString("name"));
 		} catch (Exception e) {
