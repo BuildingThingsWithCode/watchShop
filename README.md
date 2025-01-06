@@ -1,7 +1,7 @@
 A webshop portfolio project. Goal: to practice working with Spring and with a Postgres database.
 This project is a work in progress. 
 Still to do:
-- ~~Learn the basics of Spring.~~
+- ~~Get familiar with Spring.~~
 -  ~~Set up environmental variables and connect to online datbase.~~
 - ~~Populate database.~~
 - ~~Design logo + shopping cart icon.~~
