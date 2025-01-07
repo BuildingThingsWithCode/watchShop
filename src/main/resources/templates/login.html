@@ -19,7 +19,7 @@
         </ul>
     </nav>
 
-    <form class="login-form">
+    <form class="login-form" th:action="@{/login}" method="post">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
 
