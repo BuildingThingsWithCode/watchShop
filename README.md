@@ -11,7 +11,7 @@ This project is a work in progress. Still to do:
 - ~~Add navigation header.~~
 - Create Thymeleaf fragments for recurring HTML elements.
 - ~~Add exception handling, custom exceptions and custom error page.~~
-- ~~Create login~~ and register pages.
+- ~~Create login and register pages.~~
 - Add security and authentication.
 - Add payment/checkout functionality.
 - Add tests.
