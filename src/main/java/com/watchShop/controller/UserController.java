@@ -36,11 +36,8 @@ public class UserController {
 	public String createAndSaveUser(@RequestParam("username") String username, 
 			@RequestParam("password") String password, 
 			@RequestParam("email") String email) {
-		System.out.println("UserController is being called !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		userRegistrationService.registerUser(username, password, email);
-		System.out.println("UserController is being called 22222222222222222222222222222222222222222222!!!!!!");
 		authenticateUser(username, password);
-		System.out.println("UserController is being called 333333333333333333333333333333333333333333333333333!!!!!!");
 		return "redirect:/";
 	}
 

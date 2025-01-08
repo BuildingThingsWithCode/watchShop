@@ -31,6 +31,7 @@ public class GlobalControllerAdvice {
 	 @ExceptionHandler(Exception.class)
 	    public String handleException(Exception ex, Model model) {
 	        model.addAttribute("isCartEmpty", cartService.isEmpty());
+	        model.addAttribute("errorMessage", ex.getMessage());
 	        return "error";  
 	    }
 }
