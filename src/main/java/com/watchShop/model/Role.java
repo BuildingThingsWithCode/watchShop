@@ -1,8 +1,9 @@
 package com.watchShop.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Collection;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,17 +14,19 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name="roles")
+@Table(name = "role")
 @Data
 public class Role {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "role_id")
     private Long id;
-    private String name; 
-    @ManyToMany(mappedBy = "roles")
-    private Set<AppUser> users = new HashSet<>();
-    
-    public Role(String name) {
-    	this.name = name;
-    }
+
+    @Column(name = "role", unique = true)
+    private String name;
+
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "roles")
+    private Collection<User> users;
+
 }
