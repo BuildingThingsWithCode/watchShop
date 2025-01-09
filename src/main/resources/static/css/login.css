@@ -6,6 +6,7 @@
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
+			background-color: #eeebe3;
             background-image: url('/images/1100.jpg'); 
             background-size: cover;
             background-position: center;

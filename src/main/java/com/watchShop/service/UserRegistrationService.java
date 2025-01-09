@@ -36,10 +36,8 @@ public class UserRegistrationService {
         user.setPassword(passwordEncoder.encode(password));  
         user.setEmail(email);
         Set<Role> roles = new HashSet<>();
-        System.out.println("11111111111111111111111111111111111111111111111111111");
         Role userRole = roleRepository.findByName("USER")
                 .orElseThrow(() -> new RuntimeException("Role USER not found"));
-        System.out.println("222222222222222222222222222222222222222222222222222222");
         roles.add(userRole);
         user.setRoles(roles);
         return userRepository.save(user);
