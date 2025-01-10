@@ -15,6 +15,7 @@ This project is a work in progress. Still to do:
 - ~~Create login and register pages.~~
 - Get familiar with Spring Security.
 - Add security and authentication.
+- Add form validation.
 - Add payment/checkout functionality.
 - Add tests.
 - Use this project to learn HTMX.
