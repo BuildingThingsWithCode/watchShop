@@ -23,14 +23,10 @@ public class UserController {
 	private final AuthenticationManager authenticationManager;
 
 	@GetMapping("/register")
-	public String register() {
+	public String showRegisterPage() {
 		return "register";
 	}
 
-	@GetMapping("/login")
-	public String login() {
-		return "login";
-	}
 
 	@PostMapping("/register")
 	public String createAndSaveUser(@RequestParam("username") String username, 
@@ -41,6 +37,18 @@ public class UserController {
 		return "redirect:/";
 	}
 
+	@GetMapping("/login")
+	public String showLoginPage() {
+		System.out.println("login is called");
+		return "login";
+	}
+	
+	@PostMapping("/login")
+	public String loginUser() {
+		System.out.println("login is called");
+		return "login";
+	}
+	
 	private void authenticateUser(String username, String password) {
 		UsernamePasswordAuthenticationToken authenticationToken = 
 				new UsernamePasswordAuthenticationToken(username, password);

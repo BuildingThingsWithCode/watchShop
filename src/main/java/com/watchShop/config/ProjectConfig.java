@@ -1,5 +1,7 @@
 package com.watchShop.config;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -41,14 +43,14 @@ public class ProjectConfig  {
 	SecurityFilterChain configure(HttpSecurity http) throws Exception {
 		http
 		.authorizeHttpRequests()
-		.antMatchers("/", "/home", "/register", "/css/**", "/images/**").permitAll()
+		.antMatchers("/", "/register", "/css/**", "/images/**").permitAll()
 		.antMatchers("/cart", "/checkout").authenticated()
 		.antMatchers("/admin/**").hasRole("ADMIN")
 		.anyRequest().authenticated()
 		.and()
 		.formLogin()
 		.loginPage("/login")
-		.defaultSuccessUrl("/home")
+		.defaultSuccessUrl("/")
 		.permitAll();
 		return http.build();
 	}

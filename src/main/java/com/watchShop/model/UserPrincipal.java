@@ -9,6 +9,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class UserPrincipal implements UserDetails {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final User user;
 	
 	public UserPrincipal(User user) {
@@ -17,6 +21,7 @@ public class UserPrincipal implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
+		System.out.println("getAuthorities is being called");
 		return user.getRoles().stream()
 	            .map(role -> new SimpleGrantedAuthority(role.getName())) 
 	            .collect(Collectors.toList());
