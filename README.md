@@ -13,8 +13,8 @@ This project is a work in progress. Still to do:
 - Create Thymeleaf fragments for recurring HTML elements.
 - ~~Add exception handling, custom exceptions and custom error page.~~
 - ~~Create login and register pages.~~
-- Get familiar with Spring Security.
-- Add security and authentication.
+- ~~Get familiar with Spring Security.~~
+- ~~Add security and authentication.~~
 - Add form validation.
 - Add payment/checkout functionality.
 - Add tests.
