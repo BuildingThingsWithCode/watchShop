@@ -1,5 +1,10 @@
 package com.watchShop.controller;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.security.authentication.AuthenticationManager;
@@ -10,10 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.watchShop.model.Form;
 import com.watchShop.service.MyUserDetailsService;
@@ -34,7 +37,6 @@ public class UserController {
 		return "register";
 	}
 
-
 	@PostMapping("/register")
 	public String createAndSaveUser(@RequestParam("username") String username, 
 			@RequestParam("password") String password, 
@@ -45,27 +47,20 @@ public class UserController {
 	}
 
 	@GetMapping("/login")
-	public String showLoginPage(Model model) {
-		model.addAttribute("form", new Form());
-		System.out.println("login is called");
+	public String showLoginPage(Model model, Form form) {
 		return "login";
 	}
 
 	@PostMapping("/login")
-	public String loginUser(@Valid Form form, BindingResult result, Model model) {
+	public String loginUser(@Valid Form form, BindingResult result, Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (result.hasErrors()) {
 			model.addAttribute("form", form); 
 			return "login"; 
 		}
-		return "redirect:/"; 
+		else authenticateUser(form.getUsername(), form.getPassword());
+		return "redirect:/";
 	}
-
-	@GetMapping("/login-auth")
-	public String loginAuth(@ModelAttribute("username") String username, 
-	                       @ModelAttribute("password") String password) {
-	    return "login-auth";
-	}
-
+	
 	private void authenticateUser(String username, String password) {
 		UsernamePasswordAuthenticationToken authenticationToken = 
 				new UsernamePasswordAuthenticationToken(username, password);
@@ -73,6 +68,4 @@ public class UserController {
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		System.out.println("Authenticate user should have happened");
 	}
-
-
 }

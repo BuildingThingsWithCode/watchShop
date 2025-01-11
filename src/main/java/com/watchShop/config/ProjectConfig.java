@@ -25,9 +25,9 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class ProjectConfig  {
-	
+
 	private final MyUserDetailsService myUserDetailsService;
-	
+
 	@Bean 
 	public AuthenticationProvider authenticationProvider(@Autowired PasswordEncoder passwordEncoder) {
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -35,37 +35,39 @@ public class ProjectConfig  {
 		provider.setPasswordEncoder(passwordEncoder);
 		return provider;
 	}
-	
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+
 	@Bean
 	SecurityFilterChain configure(HttpSecurity http) throws Exception {
-	    http
-	        .authorizeHttpRequests()
-	        .antMatchers("/", "/register", "/css/**", "/images/**", "/login").permitAll()
-	        .antMatchers("/cart", "/checkout").authenticated()
-	        .antMatchers("/admin/**").hasRole("ADMIN")
-	        .anyRequest().authenticated()
-	        .and()
-	        .formLogin()
-	        .loginPage("/login")                    
-	        .defaultSuccessUrl("/")
-	        .permitAll();
-	    return http.build();
+		http
+		.authorizeHttpRequests()
+		.antMatchers("/", "/register", "/css/**", "/images/**", "/login").permitAll()
+		.antMatchers("/cart", "/checkout").authenticated()
+		.antMatchers("/admin/**").hasRole("ADMIN")
+		.anyRequest().authenticated()
+		.and()
+		.formLogin(form -> form
+	            .loginPage("/login")               // Custom login page endpoint
+	            .loginProcessingUrl("/authentication") // Custom authentication endpoint
+	            .permitAll()
+	            );
+
+		return http.build();
 	}
-	
+
 	@Bean
-    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+	public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
 		System.out.println("AuthenticationManager is being called");
-        return http.getSharedObject(AuthenticationManagerBuilder.class)
-                .userDetailsService(myUserDetailsService)
-                .passwordEncoder(passwordEncoder())
-                .and()
-                .build();
-    }
+		return http.getSharedObject(AuthenticationManagerBuilder.class)
+				.userDetailsService(myUserDetailsService)
+				.passwordEncoder(passwordEncoder())
+				.and()
+				.build();
+	}
 
 }
 

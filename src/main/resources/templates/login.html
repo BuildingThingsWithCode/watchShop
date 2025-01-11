@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,14 +9,15 @@
 </head>
 <body>
     <div th:insert="fragments/navbar :: header"></div>
-    <form action="#" class="login-form" th:action="@{/login}" th:object="${form}" method="post">
+    <form class="login-form" th:action="@{/login}" th:object="${form}" method="post">
 	    <label for="username">Username:</label>
         <input type="text" th:field="*{username}" >
-		<label th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color:red;">Username error</label>
+		<label th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color:#4C5C69;">Username error</label>
         <label for="password">Password:</label>
         <input type="password" th:field="*{password}">
-		<label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:red;">Password error</label>
+		<label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:#4C5C69;">Password error</label>
         <button type="submit">Login</button>
     </form>
 </body>
 </html>
+
