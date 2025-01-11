@@ -11,20 +11,20 @@
     <form class="register-form" th:action="@{/register}" th:object="${form}" method="post">
         <label for="username">Username:</label>
         <input type="text" id="username" th:field="*{username}" />
-        <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color:#4C5C69;">Username error</label>
+        <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color:#4C5C69; font-size: 13px;">Username error</label>
 
         <label for="email">Email:</label>
         <input type="text" id="email" th:field="*{email}" />
-        <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:#4C5C69;">Email error</label>
+        <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:#4C5C69; font-size: 13px;">Email error</label>
 
         <label for="password">Password:</label>
         <input type="text" id="password" th:field="*{password}" />
-        <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:#4C5C69;">Password error</label>
+        <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:#4C5C69; font-size: 13px;">Password error</label>
 
         <label for="confirm">Confirm Password:</label>
         <input type="text" id="confirm" th:field="*{confirm}" />
-        <label th:if="${#fields.hasErrors('confirm')}" th:errors="*{confirm}" style="color:#4C5C69;">Confirm password error</label>
-		<label th:if="${#fields.hasErrors('passwordsMatching')}" th:errors="*{passwordsMatching}" style="color:#4C5C69;">Confirm password error</label>
+        <label th:if="${#fields.hasErrors('confirm')}" th:errors="*{confirm}" style="color:#4C5C69; font-size: 13px;">Confirm password error</label>
+		<label th:if="${#fields.hasErrors('passwordsMatching')}" th:errors="*{passwordsMatching}" style="color:#4C5C69; font-size: 13px;">Confirm password error</label>
 		<button type="submit">Register</button>
     </form>
 </body>

@@ -12,10 +12,10 @@
     <form class="login-form" th:action="@{/login}" th:object="${form}" method="post">
 	    <label for="username">Username:</label>
         <input type="text" th:field="*{username}" >
-		<label th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color:#4C5C69;">Username error</label>
+		<label th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color:#4C5C69; font-size: 13px;">Username error</label>
         <label for="password">Password:</label>
         <input type="password" th:field="*{password}">
-		<label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:#4C5C69;">Password error</label>
+		<label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:#4C5C69; font-size: 13px;">Password error</label>
         <button type="submit">Login</button>
     </form>
 </body>

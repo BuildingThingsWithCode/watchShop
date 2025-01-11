@@ -29,13 +29,11 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public void add(Watch watch) {
 		items.put(watch, items.getOrDefault(watch, 0) + 1);
-
 	}
 
 	@Override
 	public void remove(Watch watch) {
 		items.computeIfPresent(watch, (key, count) -> count == 1 ? null : count - 1);
-
 	}
 
 	@Override
