@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}">
 </head>
 <body>
-    <div th:insert="fragments/navbar :: header"></div>
+    <div th:insert="fragments/navbar :: navbar"></div>
     <form class="login-form" th:action="@{/login}" th:object="${form}" method="post">
 	    <label for="username">Username:</label>
         <input type="text" th:field="*{username}" >

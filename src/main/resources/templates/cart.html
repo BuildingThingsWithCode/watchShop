@@ -10,7 +10,8 @@
 </head>
 
 <body>
-   <div th:insert="fragments/headerNoSort :: header"></div>
+	<div th:insert="fragments/navbar :: navbar"></div>
+	<div th:insert="fragments/visuals :: visuals"></div>
 
     <div class="cart-container">
         <form th:action="@{/delete-from-cart}" method="post" autocomplete="off">

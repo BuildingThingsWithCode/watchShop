@@ -4,25 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Form</title>
-	<link rel="preload" href="/images/1100.jpg" as="image">   
-	<link rel="stylesheet" type="text/css" th:href="@{/css/register.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/register.css}">
 </head>
 <body>
-    <div th:insert="fragments/navbar :: header"></div>
-    <form class="register-form" th:action="@{/register}" method="post">
+	<div th:insert="fragments/navbar :: navbar"></div>
+    <form class="register-form" th:action="@{/register}" th:object="${form}" method="post">
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-		
-		<label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+        <input type="text" id="username" th:field="*{username}" />
+        <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color:#4C5C69;">Username error</label>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" th:field="*{email}" />
+        <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:#4C5C69;">Email error</label>
 
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+        <input type="text" id="password" th:field="*{password}" />
+        <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:#4C5C69;">Password error</label>
 
-        <label for="confirm-password">Confirm Password:</label>
-        <input type="password" id="confirm-password" name="confirm-password" required>
-
-        <button type="submit">Register</button>
+        <label for="confirm">Confirm Password:</label>
+        <input type="text" id="confirm" th:field="*{confirm}" />
+        <label th:if="${#fields.hasErrors('confirm')}" th:errors="*{confirm}" style="color:#4C5C69;">Confirm password error</label>
+		<label th:if="${#fields.hasErrors('passwordsMatching')}" th:errors="*{passwordsMatching}" style="color:#4C5C69;">Confirm password error</label>
+		<button type="submit">Register</button>
     </form>
 </body>
 </html>

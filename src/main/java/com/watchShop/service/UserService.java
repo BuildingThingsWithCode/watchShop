@@ -5,6 +5,10 @@ import java.util.Set;
 
 import javax.transaction.Transactional;
 
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +21,12 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class UserRegistrationService {
+public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
+    private final AuthenticationManager authenticationManager;
 
     
     public User registerUser(String username, String password, String email) {
@@ -42,4 +47,11 @@ public class UserRegistrationService {
         user.setRoles(roles);
         return userRepository.save(user);
     }
+    
+    public void authenticateUser(String username, String password) {
+		UsernamePasswordAuthenticationToken authenticationToken = 
+				new UsernamePasswordAuthenticationToken(username, password);
+		Authentication authentication = authenticationManager.authenticate(authenticationToken);
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+	}
 }

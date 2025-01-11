@@ -7,29 +7,12 @@
 	<link rel="stylesheet" type="text/css" href="/css/error.css">
 </head>
 <body>
-<nav>  
-	<ul>
-            <li><a th:href="@{/}">Shop</a></li>
-            <li><a th:href="@{/cart}">Cart</a></li>
-            <li><a th:href="@{/register}">Register</a></li>
-            <li><a th:href="@{/login}">Login</a></li>
-        </ul>
-	</nav> 
-	<div class="right-div">
-            <div class="right-div">
-                <img th:src="@{${isCartEmpty} ? '/images/basketEmpty.png' : '/images/basketFull.png'}" alt="Basket Logo">
-            </div>
-        </div>
-        <div class="logo">
-            <img th:src="@{/images/logo.png}" alt="Company Logo">
-        </div>
-    </div>
+	<div th:insert="fragments/navbar :: navbar"></div>
+	<div th:insert="fragments/visuals :: visuals"></div>
 	
     <div class="error-container">
             <h1>An error occurred.</h1>
     <h1 th:text="${errorMessage}">Error message will appear here</h1>
-
-       
     </div>
 </body>
 </html>

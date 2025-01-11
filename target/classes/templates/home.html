@@ -10,7 +10,9 @@
 </head>
 
 <body>
-    <div th:insert="fragments/header :: header"></div>
+    <div th:insert="fragments/navbar :: navbar"></div>
+	<div th:insert="fragments/visuals :: visuals"></div>
+	<div th:insert="fragments/sort :: sort"></div>
 
     <div class="container" id="product-container" th:fragment="product-container">
         <div class="product" th:each="watch : ${watches}">

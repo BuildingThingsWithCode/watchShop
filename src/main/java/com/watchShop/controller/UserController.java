@@ -1,10 +1,5 @@
 package com.watchShop.controller;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,12 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.watchShop.model.Form;
+import com.watchShop.model.RegisterForm;
 import com.watchShop.service.MyUserDetailsService;
-import com.watchShop.service.UserRegistrationService;
+import com.watchShop.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -28,44 +24,37 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserController {
 
-	private final MyUserDetailsService myUserDetailsService;
-	private final UserRegistrationService userRegistrationService;
-	private final AuthenticationManager authenticationManager;
-
-	@GetMapping("/register")
-	public String showRegisterPage() {
-		return "register";
-	}
-
-	@PostMapping("/register")
-	public String createAndSaveUser(@RequestParam("username") String username, 
-			@RequestParam("password") String password, 
-			@RequestParam("email") String email) {
-		userRegistrationService.registerUser(username, password, email);
-		authenticateUser(username, password);
-		return "redirect:/";
-	}
-
+	private final UserService userService;
+	
 	@GetMapping("/login")
-	public String showLoginPage(Model model, Form form) {
+	public String showLoginPage(Form form, Model model) {
 		return "login";
 	}
 
 	@PostMapping("/login")
-	public String loginUser(@Valid Form form, BindingResult result, Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String loginUser(@Valid Form form, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			model.addAttribute("form", form); 
 			return "login"; 
 		}
-		else authenticateUser(form.getUsername(), form.getPassword());
+		else userService.authenticateUser(form.getUsername(), form.getPassword());
 		return "redirect:/";
 	}
-	
-	private void authenticateUser(String username, String password) {
-		UsernamePasswordAuthenticationToken authenticationToken = 
-				new UsernamePasswordAuthenticationToken(username, password);
-		Authentication authentication = authenticationManager.authenticate(authenticationToken);
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-		System.out.println("Authenticate user should have happened");
+		
+	@GetMapping("/register")
+	public String showRegisterPage(Model model) {
+	    model.addAttribute("form", new RegisterForm());
+	    return "register"; 
+	}
+
+	@PostMapping("/register")
+	public String createAndSaveUser(@Valid @ModelAttribute("form") RegisterForm form, BindingResult result, Model model) {
+	    if (result.hasErrors()) {
+	        model.addAttribute("form", form); 
+	        return "register";
+	    }
+		userService.registerUser(form.getUsername(), form.getPassword(), form.getEmail());
+		userService.authenticateUser(form.getUsername(), form.getPassword());
+		return "redirect:/";
 	}
 }
