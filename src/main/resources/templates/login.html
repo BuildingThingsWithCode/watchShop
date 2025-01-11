@@ -10,22 +10,14 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a th:href="@{/}">Shop</a></li>
-            <li><a th:href="@{/cart}">Cart</a></li>
-            <li><a th:href="@{/register}">Register</a></li>
-            <li><a th:href="@{/login}">Login</a></li>
-        </ul>
-    </nav>
-
-    <form class="login-form" th:action="@{/login}" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-
+    <div th:insert="fragments/navbar :: header"></div>
+    <form action="#" class="login-form" th:action="@{/login}" th:object="${form}" method="post">
+	    <label for="username">Username:</label>
+        <input type="text" th:field="*{username}" >
+		<label th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color:red;">Username error</label>
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-
+        <input type="password" th:field="*{password}">
+		<label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:red;">Password error</label>
         <button type="submit">Login</button>
     </form>
 </body>

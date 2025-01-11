@@ -1,0 +1,22 @@
+    <div th:fragment="header">
+        <div class="header">
+            <nav>
+                <ul>
+                    <li><a th:href="@{/}">Shop</a></li>
+                    <li><a th:href="@{/cart}">Cart</a></li>
+                    <li><a th:href="@{/register}">Register</a></li>
+                    <li><a th:href="@{/login}">Login</a></li>
+                </ul>
+            </nav>
+
+            <div class="top">
+                <div class="right-div">
+                   <img th:if="${isCartEmpty}" th:src="@{/images/basketEmpty.png}" alt="Basket Icon">
+				   <img th:if="${!isCartEmpty}" th:src="@{/images/basketFull.png}" alt="Basket Icon">
+                </div>
+                <div class="logo">
+                    <img th:src="@{/images/logo.png}" alt="Company Logo">
+                </div>
+            </div>
+      </div>
+    </div>

@@ -11,9 +11,11 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.thymeleaf.spring5.view.AbstractThymeleafView;
 
 import com.watchShop.service.MyUserDetailsService;
 
@@ -41,22 +43,23 @@ public class ProjectConfig  {
 	
 	@Bean
 	SecurityFilterChain configure(HttpSecurity http) throws Exception {
-		http
-		.authorizeHttpRequests()
-		.antMatchers("/", "/register", "/css/**", "/images/**").permitAll()
-		.antMatchers("/cart", "/checkout").authenticated()
-		.antMatchers("/admin/**").hasRole("ADMIN")
-		.anyRequest().authenticated()
-		.and()
-		.formLogin()
-		.loginPage("/login")
-		.defaultSuccessUrl("/")
-		.permitAll();
-		return http.build();
+	    http
+	        .authorizeHttpRequests()
+	        .antMatchers("/", "/register", "/css/**", "/images/**", "/login").permitAll()
+	        .antMatchers("/cart", "/checkout").authenticated()
+	        .antMatchers("/admin/**").hasRole("ADMIN")
+	        .anyRequest().authenticated()
+	        .and()
+	        .formLogin()
+	        .loginPage("/login")                    
+	        .defaultSuccessUrl("/")
+	        .permitAll();
+	    return http.build();
 	}
 	
 	@Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+		System.out.println("AuthenticationManager is being called");
         return http.getSharedObject(AuthenticationManagerBuilder.class)
                 .userDetailsService(myUserDetailsService)
                 .passwordEncoder(passwordEncoder())

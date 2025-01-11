@@ -22,6 +22,7 @@ public class MyUserDetailsService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) {
+		System.out.println("UserDetailsService is being called");
 		User user = userRepository.findByUsername(username)
 				.orElseThrow(() -> new UsernameNotFoundException("User with username " + username + "was not found"));
 		user.getRoles().forEach(r -> System.out.println("In MyUserDetailsService user= " + user.getName() + " role= " + r.getName()));
