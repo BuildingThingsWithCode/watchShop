@@ -5,6 +5,13 @@ body {
     padding: 0;
     background-color: #eeebe3;
     direction: ltr;
+	height: 100%; 
+	flex-direction: column;
+	display:flex;
+}
+
+main {
+    flex-grow: 1;  
 }
 
 .top {
@@ -68,7 +75,7 @@ body {
 /* Button in the product info */
 .product-info .btn {
     background-color: #1A85A1;  
-    color: white;               
+    color: #eeebe3;               
     padding: 15px 32px;        
     border: 2px solid #484d9a; 
     border-radius: 5px;         
@@ -102,7 +109,7 @@ nav ul li {
 
 
 nav ul li a {
-    color: white;
+    color: #eeebe3;
     text-decoration: none;
     padding: 10px 15px;
     display: block;  
@@ -120,4 +127,13 @@ nav ul li a:hover {
     border-radius: 5px;
 	color:black;
 }
+.footer {
+            background-color: #1A85A1;
+            color: #eeebe3;
+            text-align: center;
+             padding: 10px 15px;
+            font-size: 16px;
+			font-family: Arial, sans-serif;
+			margin-top: auto;
+        }
 

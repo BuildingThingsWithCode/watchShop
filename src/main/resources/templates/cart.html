@@ -10,47 +10,12 @@
 </head>
 
 <body>
-	<div th:insert="fragments/navbar :: navbar"></div>
-	<div th:insert="fragments/visuals :: visuals"></div>
-
-    <div class="cart-container">
-        <form th:action="@{/delete-from-cart}" method="post" autocomplete="off">
-            <div class="table-wrapper">
-                    <table>
-                    <thead>
-                        <tr>
-                            <th>Brand</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Subtotal</th>
-                            <th>Select</th>
-                            <th style="border: none;">
-            				<button type="submit" class="btn">Delete</button>
-        					</th>
-                        </tr>
-                    </thead>
-<tbody>
-    <tr th:each="entry : ${cartItems}">
-        <td th:text="${entry.key.brand}">Brand</td>
-        <td th:text="${entry.key.name}">Name</td>
-        <td th:text="'€ ' + ${entry.key.price}">Price</td>
-        <td th:text="${entry.value}">Quantity</td>
-        <td th:text="'€ ' + (${entry.key.price} * ${entry.value})">Subtotal</td>
-        <td style="text-align: center;">
-            <input type="checkbox" name="deleteItems" th:value="${entry.key.id}" />
-        </td>
-    </tr>
-
-    <tr>
-        <td colspan="4" style="border: none;"></td>
-        <td th:text="'€ ' + ${totalPrice}" style="text-align: right; font-weight: bold;"></td>
-    </tr>
-</tbody>
-                </table>
-            </div>
-        </form>
-    </div>   
+	<div th:insert="fragments/structural :: header"></div>
+	<main>
+	<div th:insert="fragments/structural :: visuals"></div>
+	<div th:insert="fragments/content :: cart"></div>
+	</main>
+   	<div th:insert="fragments/structural ::footer"></div>
 </body>
 </html>
 

@@ -1,18 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout">
 <head>
-    <meta charset="UTF-8">
 	<link rel="icon" href="/images/favicon.ico" />
-    <title>Watch Details</title>
-	<link rel="stylesheet" type="text/css" href="/css/error.css">
+    <title>Error</title>
+    <link rel="stylesheet" th:href="@{/css/error.css}" />
 </head>
 <body>
-	<div th:insert="fragments/navbar :: navbar"></div>
-	<div th:insert="fragments/visuals :: visuals"></div>
-	
-    <div class="error-container">
-            <h1>An error occurred.</h1>
-    <h1 th:text="${errorMessage}">Error message will appear here</h1>
-    </div>
+    <header th:insert="fragments/structural :: header"></header>
+    <main>
+    	<div class="error-container">
+     		<label>An error occurred.</label>
+    		<h1 th:text="${errorMessage}">Error message</h1>
+    	</div>
+    </main>
+    <footer th:insert="fragments/structural :: footer"></footer>
 </body>
 </html>

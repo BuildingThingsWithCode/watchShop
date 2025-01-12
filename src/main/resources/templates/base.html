@@ -1,17 +1,12 @@
 <html xmlns:th="http://www.thymeleaf.org" th:fragment="layout">
 <head>
 	<link rel="icon" href="/images/favicon.ico" />
-    <title>Error</title>
-    <link rel="stylesheet" th:href="@{/css/error.css}" />
+    <title>Default Title</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}" />
 </head>
 <body>
     <header th:insert="fragments/structural :: header"></header>
-    <main>
-    	<div class="error-container">
-     		<label>An error occurred.</label>
-    		<h1 th:text="${errorMessage}">Error message</h1>
-    	</div>
-    </main>
+    <main th:insert="fragments/form :: register"></main>
     <footer th:insert="fragments/structural :: footer"></footer>
 </body>
 </html>

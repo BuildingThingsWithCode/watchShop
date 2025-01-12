@@ -1,57 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-	<link rel="icon" href="/images/favicon.ico" />
-    <title>Watch Details</title>
-	<link rel="stylesheet" type="text/css" href="/css/info.css">
+    <title>Watch details</title>
+    <link rel="stylesheet" th:href="@{/css/info.css}" />
 </head>
 <body>
-<nav>  
-		<ul>  
-			<li>  
-				<a th:href="@{/}"> Shop </a>  
-			</li>  
-			<li>  
-				<a th:href="@{/cart}"> Cart </a>  
-			</li>  
-			<li>  
-				<a th:href="@{/error}"> Register </a>  
-			</li>  
-				<li> <a th:href="@{/error}"> Login </a>  
-			</li>  
-		</ul>  
-	</nav>  
-	<div class="top">
-		<div class="right-div">
-     		<div class="right-div">
-            <img th:src="@{${isCartEmpty} ? '/images/basketEmpty.png' : '/images/basketFull.png'}" alt="Basket Logo">
-        </div>
-     	</div>
-		<div class="logo">
-        	<img src="/images/logo.png" alt="Company Logo">
-		</div>
-    </div>
-
-	<div class="watch-container">
-        <!-- Watch Info + Button on the Right -->
-		<div class="product-image">
-			<img th:src="@{${image}}" alt="Product Image">
-		</div>
-
-        <!-- Product Info Left -->
-		<div class="product-info">
-			<p th:text="${watch.brand}">Brand</p>
-    		<p th:text="${watch.name}">Watch Name</p>
-    		<p th:text="${watch.description}">Description</p>
-    		<p th:text="'€ ' + ${watch.price}">Price</p>
-
-			<!-- Basket Button -->
-			<form th:action="@{/addToCart}" method="post">
-				<input type="hidden" name="watchId" th:value="${watch.id}" />
-				<button type="submit" class="btn">Add to shopping cart</button>
-			</form>
-		</div>
-	</div>
+    <header th:insert="fragments/structural :: header"></header>
+    <main>
+		<div th:insert="fragments/structural :: visuals"></div>
+        <div th:insert="fragments/content :: info"></div>
+    </main>
+    <footer th:insert="fragments/structural :: footer"></footer>
 </body>
 </html>

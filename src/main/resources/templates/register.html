@@ -3,29 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" th:href="@{/images/favicon.ico}" />
     <title>Register Form</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/register.css}">
 </head>
 <body>
-	<div th:insert="fragments/navbar :: navbar"></div>
-    <form class="register-form" th:action="@{/register}" th:object="${form}" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" th:field="*{username}" />
-        <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color:#4C5C69; font-size: 13px;">Username error</label>
-
-        <label for="email">Email:</label>
-        <input type="text" id="email" th:field="*{email}" />
-        <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:#4C5C69; font-size: 13px;">Email error</label>
-
-        <label for="password">Password:</label>
-        <input type="text" id="password" th:field="*{password}" />
-        <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:#4C5C69; font-size: 13px;">Password error</label>
-
-        <label for="confirm">Confirm Password:</label>
-        <input type="text" id="confirm" th:field="*{confirm}" />
-        <label th:if="${#fields.hasErrors('confirm')}" th:errors="*{confirm}" style="color:#4C5C69; font-size: 13px;">Confirm password error</label>
-		<label th:if="${#fields.hasErrors('passwordsMatching')}" th:errors="*{passwordsMatching}" style="color:#4C5C69; font-size: 13px;">Confirm password error</label>
-		<button type="submit">Register</button>
-    </form>
+	<div th:insert="fragments/structural :: header"></div>
+	<main>
+    <div th:if="${authentication}">
+        <h1 style="color: #4C5C69; background-color: white; padding: 10px; border-radius: 5px;">
+    		You are already registered.
+		</h1>
+    </div>
+    <div th:unless="${authentication}">
+        <div th:insert="fragments/form :: register"></div>
+    </div>
+</main>
+    <div th:insert="fragments/structural ::footer"></div>
 </body>
 </html>

@@ -1,0 +1,81 @@
+<!-- Fragment for displaying pictures of all the watches in the database with a picture -->
+<div th:fragment="supply">
+<div class="container" id="product-container">
+        <div class="product" th:each="watch : ${watches}">
+            <a th:href="@{/watch/{id}(id=${watch.id})}">
+                <img th:src="${watch.image.pathToImage}" alt="Watch Image">
+            </a>
+            <h3 th:text="${watch.name}">Name</h3>
+            <div class="product-description" th:text="${watch.brand}">Brand</div>
+            <div class="price" th:text="'€ ' + ${watch.price}">Price</div>
+        </div>
+    </div>
+</div>
+
+<!-- Fragments that displays one watch with picture, info and a button to add to cart -->
+<div th:fragment="info">
+    <div class="watch-container">
+        <div class="product-image">
+            <img th:src="${image}" alt="Product Image">
+        </div>
+
+        <div class="product-info">
+            <p th:text="${watch.brand}">Brand</p>
+            <p th:text="${watch.name}">Watch Name</p>
+            <p th:text="${watch.description}">Description</p>
+            <p th:text="'€ ' + ${watch.price}">Price</p>
+
+            <form th:action="@{/addToCart}" method="post">
+                <input type="hidden" name="watchId" th:value="${watch.id}" />
+                <button type="submit" class="btn">Add to shopping cart</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Fragment to display the contents of the shopping cart in table form -->
+<div th:fragment="cart">
+<div class="cart-container">
+    <div th:if="${isCartEmpty}">
+        <h1> There are no items in your cart. </h1>
+    </div>
+    <div th:if="${!cartItems.isEmpty()}">
+        <form th:action="@{/delete-from-cart}" method="post" autocomplete="off">
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Brand</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                            <th>Select</th>
+                            <th style="border: none;">
+                                <button type="submit" class="btn">Delete</button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="entry : ${cartItems}">
+                            <td th:text="${entry.key.brand}">Brand</td>
+                            <td th:text="${entry.key.name}">Name</td>
+                            <td th:text="'€ ' + ${entry.key.price}">Price</td>
+                            <td th:text="${entry.value}">Quantity</td>
+                            <td th:text="'€ ' + (${entry.key.price} * ${entry.value})">Subtotal</td>
+                            <td style="text-align: center;">
+                                <input type="checkbox" name="deleteItems" th:value="${entry.key.id}" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="4" style="border: none;"></td>
+                            <td th:text="'€ ' + ${totalPrice}" style="text-align: right; font-weight: bold;"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

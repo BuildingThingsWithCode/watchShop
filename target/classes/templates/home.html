@@ -1,29 +1,16 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" th:href="@{/images/favicon.ico}" />
-    <title>WatchShop</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}">
+	<link rel="icon" href="/images/favicon.ico" />
+    <title>Shop</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
 </head>
-
 <body>
-    <div th:insert="fragments/navbar :: navbar"></div>
-	<div th:insert="fragments/visuals :: visuals"></div>
-	<div th:insert="fragments/sort :: sort"></div>
-
-    <div class="container" id="product-container" th:fragment="product-container">
-        <div class="product" th:each="watch : ${watches}">
-            <a th:href="@{/watch/{id}(id=${watch.id})}">
-                <img th:src="${watch.image.pathToImage}" alt="Watch Image">
-            </a>
-            <h3 th:text="${watch.name}">Name</h3>
-            <div class="product-description" th:text="${watch.brand}">Brand</div>
-            <div class="price" th:text="'€ ' + ${watch.price}">Price</div>
-        </div>
-    </div>
+    <header th:insert="fragments/structural :: header"></header>
+    <main>
+        <div th:insert="fragments/structural :: visuals"></div>
+        <div th:insert="fragments/structural :: sort"></div>
+		<div th:insert="fragments/content :: supply"></div>
+	</main>
+    <footer th:insert="fragments/structural :: footer"></footer>
 </body>
-
 </html>

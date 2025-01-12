@@ -45,7 +45,7 @@ public class ProjectConfig  {
 	SecurityFilterChain configure(HttpSecurity http) throws Exception {
 		http
 		.authorizeHttpRequests()
-		.antMatchers("/", "/register", "/css/**", "/images/**", "/login").permitAll()
+		.antMatchers("/", "/register", "/css/**", "/images/**", "/login", "/info", "/base").permitAll()
 		.antMatchers("/cart", "/checkout").authenticated()
 		.antMatchers("/admin/**").hasRole("ADMIN")
 		.anyRequest().authenticated()
@@ -53,8 +53,9 @@ public class ProjectConfig  {
 		.formLogin(form -> form
 	            .loginPage("/login")               // Custom login page endpoint
 	            .loginProcessingUrl("/authentication") // Custom authentication endpoint
-	            .permitAll()
-	            );
+	            .permitAll());
+//		.securityContext(securityContext -> securityContext
+//		        .requireExplicitSave(false)); 
 
 		return http.build();
 	}

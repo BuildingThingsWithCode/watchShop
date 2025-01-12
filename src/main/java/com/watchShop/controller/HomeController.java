@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.watchShop.model.Watch;
@@ -28,4 +29,10 @@ public class HomeController {
 		model.addAttribute("sortOrder", sortOrder);
 		return "home";  
 	}
-}
+	
+	@GetMapping("/test")
+	public String test() {
+		return "base";
+	}
+}	
+

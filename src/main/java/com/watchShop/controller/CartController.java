@@ -26,7 +26,6 @@ public class CartController {
 	public String getCart(Model model, HttpServletResponse response) {
 		model.addAttribute("cartItems", cartService.getAll());
 		model.addAttribute("totalPrice", cartService.getTotal());
-		if (cartService.isEmpty()) return "emptyCart";
 		return "cart"; 
 	}
 

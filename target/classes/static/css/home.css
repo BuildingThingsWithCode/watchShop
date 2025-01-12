@@ -3,36 +3,36 @@ body {
     margin: 0;
     padding: 0;
     background-color: #eeebe3;
-    direction: ltr;
 }
-.top{
-	background-color: #eeebe3;
+
+.top, .logo {
+    background-color: #eeebe3;
+	text-align:center;
 }
-.logo {
-    text-align: center; 
-	background-color: #eeebe3;
-   }
+
+.logo img, .right-div img {
+    max-width: 100%;
+    height: auto;
+}
 
 .logo img {
-	padding-top:10px;
-    max-width: 100%; 
-    height: auto;
-    width: 450px; 
+    padding-top: 10px;
+    width: 450px;
+	
 }
 
 .right-div {
     float: right;
-	padding-right:20px;
+    padding-right: 20px;
 }
+
 .right-div img {
-	max-width: 100%; 
-    height: auto; 
-    width: 100px; 
-	padding-top: 20px;
+    width: 100px;
+    padding-top: 20px;
 }
 
 h1 {
-    color: #5D6BBA; 
+    color: #5D6BBA;
     text-align: center;
     font-size: 48px;
 }
@@ -51,10 +51,11 @@ h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center; 
-    width: 80%; 
-    max-width: 900px; 
+    text-align: center;
+    width: 80%;
+    max-width: 900px;
 }
+
 .sort {
     text-align: right;
     margin-right: 120px;
@@ -70,7 +71,6 @@ h1 {
 
 .product img {
     width: 100%;
-    height: auto;
     border-radius: 8px;
 }
 
@@ -92,37 +92,37 @@ h1 {
     margin-bottom: 10px;
 }
 
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-
-nav ul li {
-    display: inline-block;
-    margin-right: 20px;  
-}
-
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    padding: 10px 15px;
-    display: block;  
-}
-
-
 nav {
-    background-color: #1A85A1; 
+    background-color: #1A85A1;
     padding: 10px;
 }
 
-
-nav ul li a:hover {
-    background-color: #DEDEDE;  
-    border-radius: 5px;
-	color:black;
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
 }
 
+nav ul li a {
+    color: #eeebe3;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+}
+
+nav ul li a:hover {
+    background-color: #DEDEDE;
+    border-radius: 5px;
+    color: black;
+}
+
+.footer {
+    background-color: #1A85A1;
+    color: #eeebe3;
+    text-align: center;
+    padding: 10px 15px;
+    font-size: 16px;
+    margin-top: auto;
+}

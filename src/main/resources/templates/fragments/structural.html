@@ -1,0 +1,45 @@
+<!-- Fragment for the header -->
+<div th:fragment="header">
+	<nav>
+    	<ul>
+        	<li><a th:href="@{/}">Shop</a></li>
+            <li><a th:href="@{/cart}">Cart</a></li>
+            <li><a th:href="@{/register}">Register</a></li>
+            <li><a th:href="@{/login}">Login</a></li>
+      	</ul>
+  	</nav>
+</div>
+
+<!-- Fragment for the footer -->
+<div th:fragment="footer">
+	<div class="footer">
+    	<p>"Ceci n'est pas un webshop" by Lars Martens</p>
+   	</div>
+</div>
+
+<!-- Fragment for company logo and shopping cart logo -->
+<div th:fragment="visuals">
+	<div class="top">
+		<div class="right-div">
+    		<img th:if="${isCartEmpty}" th:src="@{/images/basketEmpty.png}" alt="Basket Icon">
+			<img th:if="${!isCartEmpty}" th:src="@{/images/basketFull.png}" alt="Basket Icon">
+		</div>
+    	<div class="logo">
+    		<img th:src="@{/images/logo.png}" alt="Company Logo">
+ 		</div>
+	</div>
+</div>
+
+<!-- Fragment for dropdown menu to sort the watches -->
+<div th:fragment="sort">
+<div class="sort">
+	<form th:action="@{/}" method="get">
+    	<label for="price-sort">Sort by: </label>
+        <select id="price-sort" name="sortOrder" onchange="this.form.submit()">
+        	<option value="brand" th:selected="${sortOrder == 'brand'}">Brand</option>
+        	<option value="low-to-high" th:selected="${sortOrder == 'low-to-high'}">Price: Low to High</option>
+        	<option value="high-to-low" th:selected="${sortOrder == 'high-to-low'}">Price: High to Low</option>
+        </select>
+	</form>
+	</div>
+</div>

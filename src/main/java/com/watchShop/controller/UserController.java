@@ -2,8 +2,7 @@ package com.watchShop.controller;
 
 import javax.validation.Valid;
 
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.watchShop.model.Form;
 import com.watchShop.model.RegisterForm;
-import com.watchShop.service.MyUserDetailsService;
 import com.watchShop.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -28,6 +26,12 @@ public class UserController {
 	
 	@GetMapping("/login")
 	public String showLoginPage(Form form, Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		boolean isAuthenticated = false;
+		if (authentication.isAuthenticated() && !(authentication instanceof AnonymousAuthenticationToken)) {
+			isAuthenticated = true;
+		}
+		model.addAttribute("authentication", isAuthenticated);
 		return "login";
 	}
 
@@ -43,6 +47,12 @@ public class UserController {
 		
 	@GetMapping("/register")
 	public String showRegisterPage(Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		boolean isAuthenticated = false;
+		if (authentication.isAuthenticated() && !(authentication instanceof AnonymousAuthenticationToken)) {
+			isAuthenticated = true;
+		}
+		model.addAttribute("authentication", isAuthenticated);
 	    model.addAttribute("form", new RegisterForm());
 	    return "register"; 
 	}
