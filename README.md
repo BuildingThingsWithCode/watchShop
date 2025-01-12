@@ -10,12 +10,12 @@ This project is a work in progress. Still to do:
 - ~~Set up local postgres db, free online hosting was limited to 50 hours.~~
 - ~~Find another solution to host the project online.~~
 - ~~Add navigation header.~~
-- Create Thymeleaf fragments for recurring HTML elements.
+- ~~Create Thymeleaf fragments for recurring HTML elements.~~
 - ~~Add exception handling, custom exceptions and custom error page.~~
 - ~~Create login and register pages.~~
 - ~~Get familiar with Spring Security.~~
 - ~~Add security and authentication.~~
-- Add form validation.
+- ~~Add form validation.~~
 - Add payment/checkout functionality.
 - Add tests.
 - Use this project to learn HTMX.
