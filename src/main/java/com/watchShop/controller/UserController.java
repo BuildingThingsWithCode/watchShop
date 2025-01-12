@@ -1,5 +1,8 @@
 package com.watchShop.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -11,10 +14,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.watchShop.model.Form;
 import com.watchShop.model.RegisterForm;
+import com.watchShop.model.Watch;
 import com.watchShop.service.UserService;
+import com.watchShop.service.WatchService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,6 +29,15 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 
 	private final UserService userService;
+	private final WatchService watchService;
+	
+	@GetMapping("/")
+	public String home(@RequestParam(name = "sortOrder", defaultValue = "brand") String sortOrder, Model model, HttpServletResponse response) {
+		List<Watch> watches = watchService.findAllByOrder(sortOrder);
+		model.addAttribute("watches", watches);
+		model.addAttribute("sortOrder", sortOrder);
+		return "home";  
+	}
 	
 	@GetMapping("/login")
 	public String showLoginPage(Form form, Model model) {

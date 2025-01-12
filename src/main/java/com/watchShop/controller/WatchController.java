@@ -32,7 +32,6 @@ public class WatchController {
 
 	final private WatchService watchService;
 	final private ImageService imageService;
-    private final CartService cartService;
 
 	
 	@GetMapping("/{id}")
