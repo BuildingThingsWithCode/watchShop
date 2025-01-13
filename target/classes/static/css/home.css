@@ -118,6 +118,10 @@ nav ul li a:hover {
     color: black;
 }
 
+nav ul li.logout a {
+    margin-left: auto; 
+}
+
 .footer {
     background-color: #1A85A1;
     color: #eeebe3;

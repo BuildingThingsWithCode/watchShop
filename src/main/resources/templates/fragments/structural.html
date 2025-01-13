@@ -1,11 +1,21 @@
 <!-- Fragment for the header -->
 <div th:fragment="header">
 	<nav>
-    	<ul>
+    	<ul><ul style="display: flex;">
         	<li><a th:href="@{/}">Shop</a></li>
             <li><a th:href="@{/cart}">Cart</a></li>
             <li><a th:href="@{/register}">Register</a></li>
             <li><a th:href="@{/login}">Login</a></li>
+			<li class="logout">
+    		<form th:action="@{/logout}" method="post" style="display: inline;">
+        	<button type="submit" style="background: none; padding: 10px 15px; border-radius: 5px;
+              color: #eeebe3; border: none; font: inherit; text-decoration: none;
+              cursor: pointer;"
+              onmouseover="this.style.backgroundColor='#eeebe3'; this.style.color='black';" 
+              onmouseout="this.style.backgroundColor='#1A85A1'; this.style.color='#eeebe3';">Logout
+       		</button>
+    		</form>
+			</li>
       	</ul>
   	</nav>
 </div>
