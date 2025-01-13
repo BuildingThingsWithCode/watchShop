@@ -41,7 +41,7 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(password));  
         user.setEmail(email);
         Set<Role> roles = new HashSet<>();
-        Role userRole = roleRepository.findByName("ADMIN")
+        Role userRole = roleRepository.findByName("USER")
                 .orElseThrow(() -> new RuntimeException("Role USER not found"));
         roles.add(userRole);
         user.setRoles(roles);
