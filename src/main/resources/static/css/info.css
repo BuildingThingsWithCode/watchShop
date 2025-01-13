@@ -70,6 +70,7 @@ main {
 .product-info {
     width: 50%; 
     text-align: left; 
+	border-radius: 5px;      
 }
 
 /* Button in the product info */

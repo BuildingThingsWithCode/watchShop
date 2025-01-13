@@ -1,7 +1,5 @@
 package com.watchShop.config;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,11 +9,10 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.thymeleaf.spring5.view.AbstractThymeleafView;
+import org.springframework.web.client.RestTemplate;
 
 import com.watchShop.service.MyUserDetailsService;
 
@@ -47,11 +44,11 @@ public class ProjectConfig  {
 		.authorizeHttpRequests()
 		.antMatchers("/", "/register", "/css/**", "/images/**", "/login", "/info", "/base", "/logout").permitAll()
 		.antMatchers("/cart", "/checkout").authenticated()
-		.antMatchers("/admin/**").hasRole("ADMIN")
+		.antMatchers("/admin/**").hasAuthority("ADMIN")
 		.anyRequest().authenticated()
 		.and()
 		.formLogin(form -> form
-	            .loginPage("/login")               
+	            .loginPage("/login")   
 	            .loginProcessingUrl("/authentication") 
 	            .permitAll())
 		.logout(logout -> logout
@@ -60,20 +57,26 @@ public class ProjectConfig  {
 	            .invalidateHttpSession(true)
 	            .deleteCookies("JSESSIONID")
 	            .permitAll()
-	        );
+	        )
+		.exceptionHandling()
+	    .accessDeniedPage("/noaccess");
 
 		return http.build();
 	}
 
 	@Bean
 	public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
-		System.out.println("AuthenticationManager is being called");
 		return http.getSharedObject(AuthenticationManagerBuilder.class)
 				.userDetailsService(myUserDetailsService)
 				.passwordEncoder(passwordEncoder())
 				.and()
 				.build();
 	}
+	
+	@Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 
 }
 

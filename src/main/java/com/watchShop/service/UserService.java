@@ -41,7 +41,7 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(password));  
         user.setEmail(email);
         Set<Role> roles = new HashSet<>();
-        Role userRole = roleRepository.findByName("USER")
+        Role userRole = roleRepository.findByName("ADMIN")
                 .orElseThrow(() -> new RuntimeException("Role USER not found"));
         roles.add(userRole);
         user.setRoles(roles);
@@ -49,6 +49,7 @@ public class UserService {
     }
     
     public void authenticateUser(String username, String password) {
+    	System.out.println("authenticate user has been called "+this.getClass());
 		UsernamePasswordAuthenticationToken authenticationToken = 
 				new UsernamePasswordAuthenticationToken(username, password);
 		Authentication authentication = authenticationManager.authenticate(authenticationToken);

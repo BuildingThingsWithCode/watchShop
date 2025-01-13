@@ -1,6 +1,7 @@
 package com.watchShop.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.watchShop.model.Form;
 import com.watchShop.model.RegisterForm;
 import com.watchShop.model.Watch;
+import com.watchShop.service.QuoteService;
 import com.watchShop.service.UserService;
 import com.watchShop.service.WatchService;
 
@@ -30,6 +32,7 @@ public class UserController {
 
 	private final UserService userService;
 	private final WatchService watchService;
+	private final QuoteService quoteService;
 	
 	@GetMapping("/")
 	public String home(@RequestParam(name = "sortOrder", defaultValue = "brand") String sortOrder, Model model, HttpServletResponse response) {
@@ -82,4 +85,16 @@ public class UserController {
 		userService.authenticateUser(form.getUsername(), form.getPassword());
 		return "redirect:/";
 	}
+	
+	@GetMapping("/admin")
+	public String showAdminPage(Model model) {
+		Map<String, String> quote = quoteService.getQuote();
+		model.addAttribute("quote", quote.get("q"));
+		model.addAttribute("author", quote.get("a"));
+		return "admin";
+	}
+	
+	@GetMapping("/noaccess")
+    public String noAccessPage() {
+        return "noaccess";     }
 }

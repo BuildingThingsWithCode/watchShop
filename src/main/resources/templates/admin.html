@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout">
+<head>
+	<link rel="icon" href="/images/favicon.ico" />
+    <title>Admin page</title>
+    <link rel="stylesheet" th:href="@{/css/admin.css}" />
+</head>
+<body>
+    <header th:insert="fragments/structural :: header"></header>
+	<div th:insert="fragments/structural :: visuals"></div>
+    <main>
+		<div class="quote-container">
+			<p style="color:#1A85A1"> Our administrator quote of the day:</p>
+        	<p class="quote">" <span th:text="${quote}"></span> "</p>
+        	<p class="author" th:text="${author}"></p>
+    	</div>
+	</main>
+    <footer th:insert="fragments/structural :: footer"></footer>
+</body>
+</html>
