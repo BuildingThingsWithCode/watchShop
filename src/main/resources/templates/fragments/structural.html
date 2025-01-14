@@ -9,7 +9,6 @@
             <li><a th:href="@{/login}">Login</a></li>
 			<li class="logout">
     		<form th:action="@{/logout}" method="post" style="display: inline;">
-    		<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
     		<button type="submit" style="background: none; padding: 10px 15px; border-radius: 5px;
           	color: #eeebe3; border: none; font: inherit; text-decoration: none;
           	cursor: pointer;"
