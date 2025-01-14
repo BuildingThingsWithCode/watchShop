@@ -17,6 +17,7 @@ This project is a work in progress. Still to do:
 - ~~Add security and authentication.~~
 - ~~Add form validation.~~
 - ~~Add logout functionality.~~
+- ~~Make part of the webapplication only accessible to administrator accounts.~~
 - Add payment/checkout functionality.
 - Add tests.
 - Use this project to learn HTMX.
