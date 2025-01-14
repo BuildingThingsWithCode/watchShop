@@ -1,17 +1,21 @@
-<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<link rel="icon" href="/images/favicon.ico" />
-    <title>Error</title>
-    <link rel="stylesheet" th:href="@{/css/error.css}" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" th:href="@{/images/favicon.ico}" />
+    <title>No access</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/cart.css}">
 </head>
 <body>
-    <header th:insert="fragments/structural :: header"></header>
-    <main>
-    	<div class="error-container">
-     		<label>An error occurred.</label>
-    		<h1 th:text="${errorMessage}">Error message</h1>
-    	</div>
-    </main>
-    <footer th:insert="fragments/structural :: footer"></footer>
+    <div th:insert="fragments/structural :: header"></div>
+	<div th:insert="fragments/structural :: visuals"></div>
+	<main>
+		<h1 style="color: #4C5C69; background-color: #eeebe3;">There was an error:</h1>
+    	<h1 style="color: #4C5C69; background-color: #eeebe3;" th:text="${errorMessage}">
+    		Error message
+		</h1>
+   </main>
+	<div th:insert="fragments/structural ::footer"></div>
 </body>
 </html>
