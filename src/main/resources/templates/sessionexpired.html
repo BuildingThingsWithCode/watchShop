@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" th:href="@{/images/favicon.ico}" />
+    <title>No access</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}">
+</head>
+<body>
+    <div th:insert="fragments/structural :: header"></div>
+	<div th:insert="fragments/structural :: visuals"></div>
+	<main>
+    	<h1 style="color: #4C5C69; background-color: #eeebe3; padding: 10px; border-radius: 5px;">
+    		Session expired. Please login again.
+		</h1>
+   </main>
+	<div th:insert="fragments/structural ::footer"></div>
+</body>
+</html>
