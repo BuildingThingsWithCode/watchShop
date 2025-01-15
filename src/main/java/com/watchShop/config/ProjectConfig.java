@@ -1,6 +1,8 @@
 package com.watchShop.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -77,7 +79,13 @@ public class ProjectConfig  {
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
-
+	
+	@Bean
+	public ServletWebServerFactory servletContainer() {
+	    TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
+	    factory.addContextCustomizers(context -> context.setSessionTimeout(30)); 
+	    return factory;
+	}
 }
 
 
