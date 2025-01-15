@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
 public class TokenRepository {
 	
 	
-	public CsrfTokenRepository csrfTokenRepository() {
-	    CookieCsrfTokenRepository repository = CookieCsrfTokenRepository.withHttpOnlyFalse();
-	    repository.setCookieName("XSRF-TOKEN");
-	    return repository;
-	}
+//	public CsrfTokenRepository csrfTokenRepository() {
+//	    CookieCsrfTokenRepository repository = CookieCsrfTokenRepository.withHttpOnlyFalse();
+//	    repository.setCookieName("XSRF-TOKEN");
+//	    return repository;
+//	}
 }

@@ -1,26 +1,53 @@
 <!-- Fragment for the header -->
 <div th:fragment="header">
-	<nav>
-    	<ul><ul style="display: flex;">
-        	<li><a th:href="@{/}">Shop</a></li>
+    <nav>
+        <ul style="display: flex;">
+            <li><a th:href="@{/}">Shop</a></li>
             <li><a th:href="@{/cart}">Cart</a></li>
-			<li><a th:href="@{/admin}">Admin</a></li>
+            <li><a th:href="@{/admin}">Admin</a></li>
             <li><a th:href="@{/register}">Register</a></li>
             <li><a th:href="@{/login}">Login</a></li>
-			<li class="logout">
-    		<form th:action="@{/logout}" method="post" style="display: inline;">
-    		<button type="submit" style="background: none; padding: 10px 15px; border-radius: 5px;
-          	color: #eeebe3; border: none; font: inherit; text-decoration: none;
-          	cursor: pointer;"
-          	onmouseover="this.style.backgroundColor='#eeebe3'; this.style.color='black';" 
-          	onmouseout="this.style.backgroundColor='#1A85A1'; this.style.color='#eeebe3';">
-        	Logout
-    		</button>
-			</form>
-			</li>
-      	</ul>
-  	</nav>
+            <li class="logout">
+                <form th:action="@{/logout}" method="post" style="display: inline;">
+                    <button type="submit" style="background: none; padding: 10px 15px; border-radius: 5px;
+                        color: #eeebe3; border: none; font: inherit; text-decoration: none;
+                        cursor: pointer;"
+                        onmouseover="this.style.backgroundColor='#eeebe3'; this.style.color='black';" 
+                        onmouseout="this.style.backgroundColor='#1A85A1'; this.style.color='#eeebe3';">
+                        Logout
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </nav>
+    <script>
+        // Define the interval duration in milliseconds (e.g., 5 minutes)
+        const KEEP_ALIVE_INTERVAL = 300000; // 5 minutes
+
+        // Function to call the /keepAlive endpoint
+        function sendKeepAlive() {
+            fetch('/keepAlive', {
+                method: 'GET',
+                credentials: 'same-origin', // Include cookies for session management
+            }).then(response => {
+                if (response.ok) {
+                    console.log('Session kept alive successfully.');
+                } else {
+                    console.error('Failed to keep the session alive.');
+                }
+            }).catch(error => {
+                console.error('Error while sending keep-alive:', error);
+            });
+        }
+
+        // Set an interval to call the keepAlive function
+        setInterval(sendKeepAlive, KEEP_ALIVE_INTERVAL);
+
+        // Call keepAlive immediately to ensure the session starts fresh
+        sendKeepAlive();
+    </script>
 </div>
+
 
 <!-- Fragment for the footer -->
 <div th:fragment="footer">

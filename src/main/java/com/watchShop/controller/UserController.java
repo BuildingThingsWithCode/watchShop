@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -99,9 +100,10 @@ public class UserController {
 		return "noaccess";     
 	}
 	
-	@GetMapping("/test")
-	public String test() {
-		return "test";
-	}
+	// Endpoint to try to solve the problem that the server has a very short timeout.
+	@GetMapping("/keepAlive")
+    public ResponseEntity<String> keepAlive() {
+        return ResponseEntity.ok("Session is active");
+    }
 	
 }

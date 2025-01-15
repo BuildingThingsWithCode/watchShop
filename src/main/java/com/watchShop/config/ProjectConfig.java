@@ -61,9 +61,9 @@ public class ProjectConfig  {
 	            .permitAll()
 	        )
 		.exceptionHandling()
-	    .accessDeniedPage("/noaccess")
-	    .and()
-		.csrf().csrfTokenRepository(tokenService.getCsrfTokenRepository());
+	    .accessDeniedPage("/noaccess");
+//	    .and()
+//		.csrf().csrfTokenRepository(tokenService.getCsrfTokenRepository());
 
 		return http.build();
 	}

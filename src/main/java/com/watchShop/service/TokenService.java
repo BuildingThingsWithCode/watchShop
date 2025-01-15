@@ -11,9 +11,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TokenService {
 	
-	private final TokenRepository tokenrepository;
-	
-	public CsrfTokenRepository getCsrfTokenRepository() {
-		return tokenrepository.csrfTokenRepository();
-	}
+//	private final TokenRepository tokenrepository;
+//	
+//	public CsrfTokenRepository getCsrfTokenRepository() {
+//		return tokenrepository.csrfTokenRepository();
+//	}
 }
