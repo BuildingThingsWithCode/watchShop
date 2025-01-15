@@ -1,8 +1,6 @@
 package com.watchShop.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
-import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,6 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.client.RestTemplate;
 
 import com.watchShop.service.MyUserDetailsService;
+import com.watchShop.service.TokenService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 public class ProjectConfig  {
 
 	private final MyUserDetailsService myUserDetailsService;
+	private final TokenService tokenService;
 
 	@Bean 
 	public AuthenticationProvider authenticationProvider(@Autowired PasswordEncoder passwordEncoder) {
@@ -61,7 +61,9 @@ public class ProjectConfig  {
 	            .permitAll()
 	        )
 		.exceptionHandling()
-	    .accessDeniedPage("/noaccess");
+	    .accessDeniedPage("/noaccess")
+	    .and()
+		.csrf().csrfTokenRepository(tokenService.getCsrfTokenRepository());
 
 		return http.build();
 	}
@@ -79,13 +81,6 @@ public class ProjectConfig  {
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
-	
-	@Bean
-	public ServletWebServerFactory servletContainer() {
-	    TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
-	    factory.addContextCustomizers(context -> context.setSessionTimeout(30)); 
-	    return factory;
-	}
 }
 
 
