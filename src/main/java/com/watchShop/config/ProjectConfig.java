@@ -44,7 +44,7 @@ public class ProjectConfig  {
 	SecurityFilterChain configure(HttpSecurity http) throws Exception {
 		http
 		.authorizeHttpRequests()
-		.antMatchers("/", "/register", "/css/**", "/images/**", "/login", "/logout").permitAll()
+		.antMatchers("/", "/register", "/css/**", "/images/**", "/login", "/logout", "/keepAlive").permitAll()
 		.antMatchers("/cart", "/checkout").authenticated()
 		.antMatchers("/admin/**").hasAuthority("ADMIN")
 		.anyRequest().authenticated()
