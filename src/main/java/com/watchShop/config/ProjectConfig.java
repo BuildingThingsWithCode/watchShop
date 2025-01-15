@@ -15,7 +15,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.client.RestTemplate;
 
 import com.watchShop.service.MyUserDetailsService;
-import com.watchShop.service.TokenService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,7 +24,6 @@ import lombok.RequiredArgsConstructor;
 public class ProjectConfig  {
 
 	private final MyUserDetailsService myUserDetailsService;
-	private final TokenService tokenService;
 
 	@Bean 
 	public AuthenticationProvider authenticationProvider(@Autowired PasswordEncoder passwordEncoder) {
@@ -62,8 +60,6 @@ public class ProjectConfig  {
 	        )
 		.exceptionHandling()
 	    .accessDeniedPage("/noaccess");
-//	    .and()
-//		.csrf().csrfTokenRepository(tokenService.getCsrfTokenRepository());
 
 		return http.build();
 	}

@@ -99,11 +99,4 @@ public class UserController {
 	public String noAccessPage() {
 		return "noaccess";     
 	}
-	
-	// Endpoint to try to solve the problem that the server has a very short timeout.
-	@GetMapping("/keepAlive")
-    public ResponseEntity<String> keepAlive() {
-        return ResponseEntity.ok("Session is active");
-    }
-	
 }
