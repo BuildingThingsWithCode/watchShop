@@ -1,5 +1,6 @@
 A webshop portfolio project. Goal: to practice working with Spring and with a Postgres database.
-This project is a work in progress. Still to do:
+This project is a work in progress: 
+
 - Get familiar with Spring basics. :heavy_check_mark:
 - Set up environmental variables and connect to online datbase. :heavy_check_mark:
 - Populate database. :heavy_check_mark:
@@ -22,3 +23,4 @@ This project is a work in progress. Still to do:
 - Add tests.
 - Use this project to learn HTMX.
 
+![WatchShopScreenshot](https://github.com/user-attachments/assets/7a764045-d6c8-478f-9e68-80b741c90270)
