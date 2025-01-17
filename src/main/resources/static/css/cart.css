@@ -80,12 +80,9 @@ h3 {
     padding: 7px 16px;        
     border: 2px black; 
     border-radius: 5px;         
-    font-family: Arial, sans-serif; 
-    font-weight: bold;         
-    font-size: 11px;           
+    font-size: 16px;            
     cursor: pointer;          
     text-align: center;         
-    text-transform: uppercase; 
     text-decoration: none;      
     margin-top: 20px;          
    
