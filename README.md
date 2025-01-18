@@ -23,5 +23,6 @@ This project is a work in progress:
 - Add tests.
 - Use this project to learn HTMX.
 
-![WatchShopScreenshot](https://github.com/user-attachments/assets/009af693-acca-4a03-8385-caf2716c17e4)
+![WatchShopScreenshot](https://github.com/user-attachments/assets/3eb09751-3aa5-4262-a2e1-5907d5c7b867)
+
 
