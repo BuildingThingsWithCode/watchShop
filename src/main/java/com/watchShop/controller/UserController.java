@@ -1,7 +1,9 @@
 package com.watchShop.controller;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -16,10 +18,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.watchShop.model.Form;
 import com.watchShop.model.RegisterForm;
 import com.watchShop.model.Watch;
+import com.watchShop.service.CartService;
 import com.watchShop.service.QuoteService;
 import com.watchShop.service.UserService;
 import com.watchShop.service.WatchService;
@@ -28,11 +32,13 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
+@SessionAttributes("soldWatches")
 public class UserController {
 
 	private final UserService userService;
 	private final WatchService watchService;
 	private final QuoteService quoteService;
+	private final CartService cartService;
 
 	@GetMapping("/")
 	public String home(@RequestParam(name = "sortOrder", defaultValue = "brand") String sortOrder, Model model, HttpServletResponse response) {
@@ -102,5 +108,24 @@ public class UserController {
 	@PostMapping("/noaccess")
 	public String sessionExpiredPage() {
 		return "sessionexpired";
+	}
+	
+	@GetMapping("/checkout")
+	public String showCheckoutPage(Model model) {
+		model.addAttribute("cartItems", cartService.getAll());
+		model.addAttribute("totalPrice", cartService.getTotal());
+		return "checkout";
+	}
+	
+	@GetMapping("/completed-sale")
+	public String finishSale(@ModelAttribute("soldWatches") Set<Long> soldWatches) {
+		cartService.getAll().forEach(entry -> soldWatches.add(entry.getKey().getId()));
+		cartService.emptyCart();
+		return "redirect:/";
+	}
+	
+	@ModelAttribute("soldWatches")
+	public Set<Long> initializeBoughtWatches() {
+		return new HashSet<>();
 	}
 }

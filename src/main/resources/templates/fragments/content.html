@@ -2,9 +2,17 @@
 <div th:fragment="supply">
 <div class="container" id="product-container">
         <div class="product" th:each="watch : ${watches}">
-            <a th:href="@{/watch/{id}(id=${watch.id})}">
-                <img th:src="${watch.image.pathToImage}" alt="Watch Image">
-            </a>
+			<div class="image-container">
+				<!-- if user has not bought the watch during this session -->
+            	<a th:if="!${soldWatches.contains(watch.id)}" th:href="@{/watch/{id}(id=${watch.id})}">
+                	<img th:src="${watch.image.pathToImage}" alt="Watch Image">
+            	</a>
+				<!-- if user has bought the watch during this session -->
+				<div th:if="${soldWatches.contains(watch.id)}">
+            		<img th:src="${watch.image.pathToImage}" alt="Watch Image" class="watch-image">
+            		<img th:src="@{/images/sold.png}" alt="Sold Sticker" class="sold-sticker">
+        		</div>
+    		</div>
             <h3 th:text="${watch.name}">Name</h3>
             <div class="product-description" th:text="${watch.brand}">Brand</div>
             <div class="price" th:text="'€ ' + ${watch.price}">Price</div>
@@ -76,6 +84,53 @@
                 </table>
             </div>
         </form>
+		<!-- checkout button -->
+            <div class="checkout">
+                <a href="/checkout" class="checkout-button">
+                    <button type="button" class="checkout">Go to checkout</button>
+                </a>
+            </div>
     </div>
 </div>
 </div>
+
+<!-- Fragment to display the checkout items -->
+<div th:fragment="checkout" class="checkout-container">
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Brand</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="entry : ${cartItems}">
+                    <td th:text="${entry.key.brand}">Brand</td>
+                    <td th:text="${entry.key.name}">Name</td>
+                    <td th:text="'€ ' + ${entry.key.price}">Price</td>
+                    <td th:text="${entry.value}">Quantity</td>
+                    <td th:text="'€ ' + (${entry.key.price} * ${entry.value})">Subtotal</td>
+                </tr>
+
+                <tr>
+                    <td colspan="4" style="border: none;"></td>
+                    <td th:text="'€ ' + ${totalPrice}" style="text-align: right; font-weight: bold;"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+	<!-- finalize the sale button -->
+            <div class="buy">
+                <a href="/completed-sale" class="buy-button">
+                    <button type="button" class="buy">Finalize the purchase</button>
+                </a>
+            </div>
+	<div class="disclaimer">This website is a portfolio project, not a real webshop. Any actions taken, including
+								 adding items to the cart or proceeding to checkout, are purely for illustrative purposes
+								 and do not constitute a binding sale or transaction. No actual payments or deliveries
+								 will occur.</div>
+	</div>

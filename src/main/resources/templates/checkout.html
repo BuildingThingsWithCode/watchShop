@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" th:href="@{/images/favicon.ico}" />
+    <title>Checkout</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/checkout.css}">
+</head>
+
+<body>
+	<div th:insert="fragments/structural :: header"></div>
+	<main>
+	<div th:insert="fragments/structural :: visuals"></div>
+	<div th:insert="fragments/content :: checkout"></div>
+	</main>
+   	<div th:insert="fragments/structural ::footer"></div>
+</body>
+</html>
+

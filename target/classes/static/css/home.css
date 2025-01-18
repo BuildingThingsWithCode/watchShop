@@ -44,6 +44,7 @@ h1 {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
     padding: 20px;
+	margin-bottom: 20px;
 }
 
 .watch-container {
@@ -73,6 +74,30 @@ h1 {
     width: 100%;
     border-radius: 8px;
 }
+
+
+.image-container {
+    position: relative; 
+    display: inline-block;
+    width: 100%; 
+}
+
+.watch-image {
+    display: block;
+    width: 100%; 
+    height: auto;
+}
+
+.sold-sticker {
+    position: absolute; 
+    top: 10%; 
+    left: 0%; 
+    z-index: 10; 
+    pointer-events: none; 
+    text-align: center;
+}
+
+
 
 .product-description {
     margin-top: 10px;

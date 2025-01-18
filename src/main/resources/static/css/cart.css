@@ -94,7 +94,28 @@ h3 {
     border-color: #3e4391;      
 }
 
+.checkout{
+	    text-align: center;         
+}
 
+button.checkout {
+	background-color: #1A85A1;  
+    color: #eeebe3;               
+    padding: 7px 16px;        
+    border: 2px black; 
+    border-radius: 5px;         
+    font-size: 16px;            
+    cursor: pointer;          
+    text-decoration: none;      
+    margin-top: 20px;          
+	text-align: center;   
+	}
+	
+	button.checkout:hover {
+	background-color: #4C5C69;  
+    border-color: #3e4391;     
+	}
+	
 .container {
     width: 80%;
     margin: 0 auto;
