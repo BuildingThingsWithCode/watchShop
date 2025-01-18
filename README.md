@@ -19,8 +19,9 @@ This project is a work in progress:
 - Add form validation. :heavy_check_mark:
 - Add logout functionality. :heavy_check_mark:
 - Make part of the webapplication only accessible to administrator accounts. :heavy_check_mark:
-- Add payment/checkout functionality.
+- Add payment/checkout functionality. :heavy_check_mark:
 - Add tests.
 - Use this project to learn HTMX.
 
-![WatchShopScreenshot](https://github.com/user-attachments/assets/7a764045-d6c8-478f-9e68-80b741c90270)
+![WatchShopScreenshot](https://github.com/user-attachments/assets/009af693-acca-4a03-8385-caf2716c17e4)
+
