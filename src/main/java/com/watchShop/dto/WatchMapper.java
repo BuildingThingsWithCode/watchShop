@@ -8,8 +8,8 @@ import com.watchShop.model.Watch;
 @Component
 public class WatchMapper {
 	
-	public WatchDTO toDto(Watch watch) {
-        return new WatchDTO(
+	public WatchDto toWatchDto(Watch watch) {
+        return new WatchDto(
         		watch.getId(), 
         		watch.getName(), 
         		watch.getBrand(),
@@ -18,7 +18,7 @@ public class WatchMapper {
         		watch.getImage().getId());
 	}
 	
-	public Watch toEntity(WatchDTO dto, Image image) {
+	public Watch toWatch(WatchDto dto, Image image) {
         Watch watch = new Watch();
         watch.setId(dto.getId());
         watch.setName(dto.getName());

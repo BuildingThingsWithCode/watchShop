@@ -18,7 +18,7 @@ public class QuoteService {
 	private final String url = "https://zenquotes.io/api/today";
 	
 	public Map<String, String> getQuote(){
-		List< Map<String, String>> list = restTemplate.getForObject(url, List.class);
+		List<Map<String, String>> list = restTemplate.getForObject(url, List.class);
 		return list.get(0);
 	}
 	

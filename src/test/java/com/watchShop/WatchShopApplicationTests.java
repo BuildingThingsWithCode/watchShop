@@ -1,4 +1,4 @@
-package com.watches.watchShop;
+package com.watchShop;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.watchShop.dto.WatchDTO;
+import com.watchShop.dto.WatchDto;
 import com.watchShop.model.Image;
 import com.watchShop.model.Watch;
 import com.watchShop.service.CartService;
@@ -47,12 +47,12 @@ public class WatchController {
 	public String showAddWatchForm(Model model) {
 		List<Image> images = imageService.getAllImages();
 		model.addAttribute("images", images);
-		model.addAttribute("watchDTO", new WatchDTO());
+		model.addAttribute("watchDTO", new WatchDto());
 		return "add";
 	}
 
 	@PostMapping("/add")
-	public String addWatch(@ModelAttribute WatchDTO watchDTO, Model model) {
+	public String addWatch(@ModelAttribute WatchDto watchDTO, Model model) {
 		watchService.saveWatch(watchDTO);
 		return "redirect:/watch/add";
 	}

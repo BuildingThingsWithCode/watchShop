@@ -19,7 +19,6 @@ public class Image {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String description;
 	@Column(name = "pathtoimage")
 	private String pathToImage;
 

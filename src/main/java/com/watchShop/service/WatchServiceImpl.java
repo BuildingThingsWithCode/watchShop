@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.watchShop.dto.WatchDTO;
+import com.watchShop.dto.WatchDto;
 import com.watchShop.dto.WatchMapper;
 import com.watchShop.exception.DatabaseException;
 import com.watchShop.exception.WatchNotFoundException;
@@ -25,9 +25,9 @@ public class WatchServiceImpl implements WatchService{
 	private final ImageService imageService;
 	private final WatchMapper watchMapper;
 
-	public Watch saveWatch(WatchDTO watchDTO) {
+	public Watch saveWatch(WatchDto watchDTO) {
 		Image image = imageService.findById(watchDTO.getImageId());
-		Watch watch = watchMapper.toEntity(watchDTO, image);
+		Watch watch = watchMapper.toWatch(watchDTO, image);
 		try {
 		return watchRepository.save(watch);
 		} catch (DatabaseException e) {

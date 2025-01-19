@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class WatchDTO {
+public class WatchDto {
 	
 	    private Long id;
 		private String name;
@@ -17,6 +17,4 @@ public class WatchDTO {
 	    private BigDecimal price;
 	    private String description;
 	    private Long imageId;
-	
-
 }

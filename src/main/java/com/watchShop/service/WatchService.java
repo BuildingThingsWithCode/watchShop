@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.watchShop.dto.WatchDTO;
+import com.watchShop.dto.WatchDto;
 import com.watchShop.model.Watch;
 
 public interface WatchService {
-	Watch saveWatch(WatchDTO watchDT); 
+	Watch saveWatch(WatchDto watchDT); 
 	Watch getWatchById(Long id); 
 	ResponseEntity<String> getWatchDescription(@PathVariable Long id);
 	void deleteWatch(@PathVariable Long id); 
