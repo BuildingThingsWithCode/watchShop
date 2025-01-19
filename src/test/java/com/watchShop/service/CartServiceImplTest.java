@@ -33,8 +33,6 @@ class CartServiceImplTest {
     @Test
     void testAddItemToCart() {
         Watch watch = new Watch();
-        watch.setPrice(new BigDecimal("100.00"));
-
         cartService.add(watch);
         
         assertFalse(cartService.isEmpty());
@@ -45,8 +43,6 @@ class CartServiceImplTest {
     @Test
     void testRemoveItemFromCart() {
         Watch watch = new Watch();
-        watch.setPrice(new BigDecimal("100.00"));
-
         cartService.add(watch);
         cartService.remove(watch);
 
@@ -59,20 +55,17 @@ class CartServiceImplTest {
         watch1.setPrice(new BigDecimal("100.00"));
         Watch watch2 = new Watch();
         watch2.setPrice(new BigDecimal("200.00"));
-
         cartService.add(watch1);
         cartService.add(watch1);
         cartService.add(watch2);
-
         BigDecimal total = cartService.getTotal();
+        
         assertEquals(new BigDecimal("400.00"), total);
     }
 
     @Test
     void testEmptyCart() {
         Watch watch = new Watch();
-        watch.setPrice(new BigDecimal("100.00"));
-
         cartService.add(watch);
         cartService.emptyCart();
 
@@ -83,15 +76,10 @@ class CartServiceImplTest {
     void testRemoveItems() {
         Watch watch1 = new Watch();
         watch1.setId(1L);
-        watch1.setPrice(new BigDecimal("100.00"));
-
         Watch watch2 = new Watch();
         watch2.setId(2L);
-        watch2.setPrice(new BigDecimal("200.00"));
-
         cartService.add(watch1);
         cartService.add(watch2);
-
         when(watchService.getWatchById(1L)).thenReturn(watch1);
         when(watchService.getWatchById(2L)).thenReturn(watch2);
         List<Long> list = new ArrayList<>();
@@ -105,11 +93,8 @@ class CartServiceImplTest {
     @Test
     void testRemoveItemWithMultipleQuantities() {
         Watch watch = new Watch();
-        watch.setPrice(new BigDecimal("100.00"));
-
         cartService.add(watch);
         cartService.add(watch);
-
         cartService.remove(watch);
 
         assertFalse(cartService.isEmpty());
