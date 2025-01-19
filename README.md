@@ -1,6 +1,8 @@
 A webshop portfolio project. Goal: to practice working with Spring and with a Postgres database.
-This project is a work in progress: 
+Project is hosted online, if you want to try it out use user/user or admin/admin (username/password) to login as a user or an administrator.
+Project url: http://defensive-glori-larsmartens-4c10bcc4.koyeb.app/
 
+This project is a work in progress:
 - Get familiar with Spring basics. :heavy_check_mark:
 - Set up environmental variables and connect to online datbase. :heavy_check_mark:
 - Populate database. :heavy_check_mark:
