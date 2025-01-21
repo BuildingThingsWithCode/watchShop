@@ -125,7 +125,7 @@ public class UserController {
 	}
 	
 	@ModelAttribute("soldWatches")
-	public Set<Long> initializeBoughtWatches() {
+	public Set<Long> initializeSoldWatches() {
 		return new HashSet<>();
 	}
 }

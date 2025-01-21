@@ -1,17 +1,25 @@
 package com.watchShop.service;
 
-import static org.mockito.ArgumentMatchers.any;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import com.watchShop.model.Role;
 import com.watchShop.model.User;
 import com.watchShop.repository.UserRepository;
 
@@ -32,11 +40,27 @@ class MyUserDetailsServiceTest {
 	public void testLoadUserByUsernameSucces() {
 		// Arrange
 		String username = "John Doe";
-		User mockUser = mock(User.class); 
-		when(userRepository.findByUsername(any(String.class))).thenReturn(Optional.of(mockUser));
+		Set<Role> roles = new HashSet<>();
+		Role role = new Role();
+		role.setName("USER");
+		roles.add(role);
+		
+		User mockUser = mock(User.class);
+		mockUser.setUsername(username);
+		mockUser.setPassword("password");
+		mockUser.setRoles(roles);
+		when(userRepository.findByUsername(username)).thenReturn(Optional.of(mockUser));
+	    when(mockUser.getRoles()).thenReturn(roles);
 		
 		// Act
-		//User result = userDetailsService.loadUserByUsername(username);
+		UserDetails result = userDetailsService.loadUserByUsername(username);
+		
+		// Assert
+		assertNotNull(result);
+		assertEquals(mockUser.getUsername(), result.getUsername());
+		assertEquals(mockUser.getPassword(), result.getPassword());
+		assertEquals(1, result.getAuthorities().size()); 
+	    assertTrue(result.getAuthorities().contains(new SimpleGrantedAuthority("USER"))); 
 	}
 	
 	@Test
