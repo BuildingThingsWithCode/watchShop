@@ -48,18 +48,18 @@ public class ProjectConfig  {
 		.anyRequest().authenticated()
 		.and()
 		.formLogin(form -> form
-	            .loginPage("/login")   
-	            .loginProcessingUrl("/authentication") 
-	            .permitAll())
+				.loginPage("/login")   
+				.loginProcessingUrl("/authentication") 
+				.permitAll())
 		.logout(logout -> logout
-	            .logoutUrl("/logout") 
-	            .logoutSuccessUrl("/login") 
-	            .invalidateHttpSession(true)
-	            .deleteCookies("JSESSIONID")
-	            .permitAll()
-	        )
+				.logoutUrl("/logout") 
+				.logoutSuccessUrl("/login") 
+				.invalidateHttpSession(true)
+				.deleteCookies("JSESSIONID")
+				.permitAll()
+				)
 		.exceptionHandling()
-	    .accessDeniedPage("/noaccess");
+		.accessDeniedPage("/noaccess");
 
 		return http.build();
 	}
@@ -72,11 +72,11 @@ public class ProjectConfig  {
 				.and()
 				.build();
 	}
-	
+
 	@Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
+	}
 }
 
 
