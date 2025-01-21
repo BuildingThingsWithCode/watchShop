@@ -1,1 +1,4 @@
-com\watches\watchShop\WatchShopApplicationTests.class
+com\watchShop\dto\WatchMapperTest.class
+com\watchShop\WatchShopApplicationTests.class
+com\watchShop\service\ImageServiceImplTest.class
+com\watchShop\service\CartServiceImplTest.class

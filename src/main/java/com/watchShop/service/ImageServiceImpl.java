@@ -23,32 +23,12 @@ public class ImageServiceImpl implements ImageService {
 		Image image = new Image();
 		image.setPathToImage(pathToImage);
 		try {
-		return imageRepository.save(image); 
+			return imageRepository.save(image); 
 		} catch (DatabaseException e) {
 			throw new DatabaseException("Database error occurred while saving image with path :" + pathToImage, e);
 		}
 	}
 
-
-	public void saveImagesFromFolder(String filePath) {
-		File folder = new File(filePath);
-		if (!folder.exists() || !folder.isDirectory()) {
-			throw new IncorrectFilePathException("File with path : " + filePath + " could not be found");
-		}
-		File[] files = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".jpg")); 
-		if (files != null) {
-			for (File file : files) {
-				Image image = new Image();
-				image.setPathToImage(file.getAbsolutePath());
-				try {
-					imageRepository.save(image);
-				} catch (DatabaseException e) {
-					throw new DatabaseException("Database error occurred while saving image with path :" + file.getAbsolutePath(), e);
-				}
-			}
-		}
-	}
-	
 	public List<Image> getAllImages() {
 		try {
 			return imageRepository.findAll();
@@ -59,11 +39,7 @@ public class ImageServiceImpl implements ImageService {
 
 
 	public Image findById(Long id){
-		try {
-			return imageRepository.findById(id)
-					.orElseThrow(() -> new ImageNotFoundException("Image not found for ID: " + id));
-		} catch (DatabaseException e) {
-			throw new DatabaseException("Database error occurred while retrieving image with ID: " + id, e);
-		}
+		return imageRepository.findById(id)
+				.orElseThrow(() -> new ImageNotFoundException("Image not found for ID: " + id));
 	}
 }

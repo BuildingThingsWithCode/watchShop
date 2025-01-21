@@ -32,9 +32,13 @@ class CartServiceImplTest {
 
     @Test
     void testAddItemToCart() {
+    	// Arrange
         Watch watch = new Watch();
+        
+        // Act
         cartService.add(watch);
         
+        // Assert
         assertFalse(cartService.isEmpty());
         assertEquals(1, cartService.getAll().size());
         assertEquals(1, cartService.getAll().iterator().next().getValue());
@@ -42,15 +46,20 @@ class CartServiceImplTest {
 
     @Test
     void testRemoveItemFromCart() {
+    	// Arrange
         Watch watch = new Watch();
         cartService.add(watch);
+        
+        // Act
         cartService.remove(watch);
 
+        // Assert
         assertTrue(cartService.isEmpty());
     }
 
     @Test
     void testGetTotal() {
+    	// Arrange
         Watch watch1 = new Watch();
         watch1.setPrice(new BigDecimal("100.00"));
         Watch watch2 = new Watch();
@@ -58,22 +67,30 @@ class CartServiceImplTest {
         cartService.add(watch1);
         cartService.add(watch1);
         cartService.add(watch2);
+        
+        // Act
         BigDecimal total = cartService.getTotal();
         
+        // Assert
         assertEquals(new BigDecimal("400.00"), total);
     }
 
     @Test
     void testEmptyCart() {
+    	// Arrange
         Watch watch = new Watch();
         cartService.add(watch);
+        
+        // Act
         cartService.emptyCart();
-
+        
+        // Assert
         assertTrue(cartService.isEmpty());
     }
 
     @Test
     void testRemoveItems() {
+    	// Arrange
         Watch watch1 = new Watch();
         watch1.setId(1L);
         Watch watch2 = new Watch();
@@ -85,18 +102,25 @@ class CartServiceImplTest {
         List<Long> list = new ArrayList<>();
         list.add(1L);
         list.add(2L);
+        
+        // Act
         cartService.removeItems(list);
-
+        
+        // Assert
         assertTrue(cartService.isEmpty());
     }
 
     @Test
     void testRemoveItemWithMultipleQuantities() {
+    	// Arrange
         Watch watch = new Watch();
         cartService.add(watch);
         cartService.add(watch);
+        
+        // Act
         cartService.remove(watch);
-
+        
+        // Assert
         assertFalse(cartService.isEmpty());
         assertEquals(1, cartService.getAll().iterator().next().getValue());
     }
