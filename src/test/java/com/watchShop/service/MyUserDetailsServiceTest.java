@@ -3,8 +3,10 @@ package com.watchShop.service;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.doReturn;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.HashSet;
@@ -15,9 +17,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.watchShop.model.Role;
 import com.watchShop.model.User;
@@ -65,7 +69,18 @@ class MyUserDetailsServiceTest {
 	
 	@Test
 	public void testLoadUserByUsernameFail() {
-		String username = "John Doe";
+		// Arrange
+		String username = "NoneExistingUser";
+		String message = "User with username " + username + "was not found";
+		UsernameNotFoundException mockException = new UsernameNotFoundException(message);
+		when(userRepository.findByUsername(username)).thenThrow(mockException);
+		
+		// Act & Assert
+		UsernameNotFoundException exception = assertThrows(UsernameNotFoundException.class, () -> userDetailsService.loadUserByUsername(username));
+		
+		// Assert
+		assertEquals("User with username " + username + "was not found", exception.getMessage());
+		verify(userRepository).findByUsername(any(String.class));
 	}
 
 }
