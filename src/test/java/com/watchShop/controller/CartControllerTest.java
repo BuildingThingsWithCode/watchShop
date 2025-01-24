@@ -3,17 +3,24 @@ package com.watchShop.controller;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 //import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 //import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 //import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -22,6 +29,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -39,9 +47,6 @@ class CartControllerTest {
 	@Mock 
 	private WatchService watchService;
 
-	//	@Mock
-	//	private Model model;
-
 	@InjectMocks
 	private CartController cartController;
 
@@ -51,20 +56,20 @@ class CartControllerTest {
 	void setup() {
 		MockitoAnnotations.openMocks(this);
 	}
-	
+
 	// to handle returning a view, a view resolver is necessary in the MockMvc.
 	private void setupWithViewResolver() {
 		this.mockMvc = MockMvcBuilders.standaloneSetup(cartController)
 				.setViewResolvers((viewName, locale) -> {
-				    return new InternalResourceView("/path/to/views/" + viewName + ".html");
+					return new InternalResourceView("/path/to/views/" + viewName + ".html");
 				})
 				.build();
-    }
-	
+	}
+
 	// to handle a redirect, there should not be a view resolver in the MockMvc.
-    private void setupWithoutViewResolver() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(cartController).build();
-    }
+	private void setupWithoutViewResolver() {
+		this.mockMvc = MockMvcBuilders.standaloneSetup(cartController).build();
+	}
 
 	@Test
 	void testGetCart() throws Exception {
@@ -86,12 +91,12 @@ class CartControllerTest {
 		.andExpect(view().name("cart"))
 		.andExpect(model().attribute("cartItems", mockCartItems))
 		.andExpect(model().attribute("totalPrice", mockTotal));
-		
+
 		verify(cartService, times(1)).getAll();
 		verify(cartService, times(1)).getTotal();
 		verifyNoMoreInteractions(cartService);
 	}
-	
+
 	@Test
 	void testAddToCart() throws Exception {
 		// Arrange
@@ -99,15 +104,55 @@ class CartControllerTest {
 		Long mockWatchId = 1L;
 		Watch mockWatch = mock(Watch.class);
 		when(watchService.getWatchById(mockWatchId)).thenReturn(mockWatch);
-		
+
 		// Act & Assert
-		mockMvc.perform(post("/addToCart").param("watchId", mockWatchId.toString()))
+		mockMvc.perform(post("/add-to-cart").param("watchId", mockWatchId.toString()))
 		.andExpect(status().isFound())
 		.andExpect(redirectedUrl("/cart"));
-		
+
 		verify(watchService, times(1)).getWatchById(mockWatchId);
 		verify(cartService, times(1)).add(mockWatch);
 		verifyNoMoreInteractions(watchService, cartService);
 	}
 
+	@Test
+	void testDeleteFromCartItemsPresent() throws Exception {
+		// Arrange
+		setupWithoutViewResolver();
+		List<Long> mockCartItemIds = Arrays.asList(1L, 4L, 6L);
+
+		// Act & Assert
+		mockMvc.perform(post("/delete-from-cart").param("deleteItems", "1", "4", "6"))
+		.andExpect(status().isFound())
+		.andExpect(redirectedUrl("/cart"));
+
+		verify(cartService, times(1)).removeItems(mockCartItemIds);
+		verifyNoMoreInteractions(cartService);
+	}
+
+	@Test
+	void testDeleteFromCartEmptyItems() throws Exception {
+		// Arrange
+		setupWithoutViewResolver();
+
+		// Act & Assert
+		mockMvc.perform(post("/delete-from-cart").param("deleteItems", ""))
+		.andExpect(status().isFound())
+		.andExpect(redirectedUrl("/cart"));
+
+		verifyNoInteractions(cartService);
+	}
+	
+	@Test
+	void testDeleteFromCartNoItems() throws Exception {
+		// Arrange
+		setupWithoutViewResolver();
+
+		// Act & Assert
+		mockMvc.perform(post("/delete-from-cart"))
+		.andExpect(status().isFound())
+		.andExpect(redirectedUrl("/cart"));
+
+		verifyNoInteractions(cartService);
+	}
 }

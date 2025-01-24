@@ -29,15 +29,17 @@ public class CartController {
 		return "cart"; 
 	}
 
-	@PostMapping("/addToCart")
+	@PostMapping("/add-to-cart")
 	public String addToCart(@RequestParam("watchId") Long watchId) {
 		cartService.add(watchService.getWatchById(watchId));
 		return "redirect:/cart";
 	}
 
 	@PostMapping("/delete-from-cart")
-	public String deleteFromCart(@RequestParam(value = "deleteItems", required = false) Optional<List<Long>> deleteItemIds, Model model) {
-		deleteItemIds.ifPresent(v -> cartService.removeItems(v));
+	public String deleteFromCart(@RequestParam(value = "deleteItems", required = false) List<Long> deleteItemIds) {
+		if (deleteItemIds != null && !deleteItemIds.isEmpty()) {
+	        cartService.removeItems(deleteItemIds);
+	    }
 		return "redirect:/cart";
 	}
 }

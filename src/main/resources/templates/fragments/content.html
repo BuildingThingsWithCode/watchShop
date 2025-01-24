@@ -33,7 +33,7 @@
             <p th:text="${watch.description}">Description</p>
             <p th:text="'€ ' + ${watch.price}">Price</p>
 
-            <form th:action="@{/addToCart}" method="post">
+            <form th:action="@{/add-to-cart}" method="post">
                 <input type="hidden" name="watchId" th:value="${watch.id}" />
                 <button type="submit" class="btn">Add to shopping cart</button>
             </form>
