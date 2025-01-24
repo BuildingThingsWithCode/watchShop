@@ -1,14 +1,17 @@
 package com.watchShop.controller;
 
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+//import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+//import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+//import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
@@ -47,16 +50,26 @@ class CartControllerTest {
 	@BeforeEach
 	void setup() {
 		MockitoAnnotations.openMocks(this);
+	}
+	
+	// to handle returning a view, a view resolver is necessary in the MockMvc.
+	private void setupWithViewResolver() {
 		this.mockMvc = MockMvcBuilders.standaloneSetup(cartController)
 				.setViewResolvers((viewName, locale) -> {
 				    return new InternalResourceView("/path/to/views/" + viewName + ".html");
 				})
 				.build();
-	}
+    }
+	
+	// to handle a redirect, there should not be a view resolver in the MockMvc.
+    private void setupWithoutViewResolver() {
+        this.mockMvc = MockMvcBuilders.standaloneSetup(cartController).build();
+    }
 
 	@Test
 	void testGetCart() throws Exception {
 		// Arrange
+		setupWithViewResolver();
 		Watch watch1 = new Watch();
 		Watch watch2 = new Watch();
 		Map<Watch, Integer> map = new HashMap<>();
@@ -77,6 +90,24 @@ class CartControllerTest {
 		verify(cartService, times(1)).getAll();
 		verify(cartService, times(1)).getTotal();
 		verifyNoMoreInteractions(cartService);
+	}
+	
+	@Test
+	void testAddToCart() throws Exception {
+		// Arrange
+		setupWithoutViewResolver();
+		Long mockWatchId = 1L;
+		Watch mockWatch = mock(Watch.class);
+		when(watchService.getWatchById(mockWatchId)).thenReturn(mockWatch);
+		
+		// Act & Assert
+		mockMvc.perform(post("/addToCart").param("watchId", mockWatchId.toString()))
+		.andExpect(status().isFound())
+		.andExpect(redirectedUrl("/cart"));
+		
+		verify(watchService, times(1)).getWatchById(mockWatchId);
+		verify(cartService, times(1)).add(mockWatch);
+		verifyNoMoreInteractions(watchService, cartService);
 	}
 
 }

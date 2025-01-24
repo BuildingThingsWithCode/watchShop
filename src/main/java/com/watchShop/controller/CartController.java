@@ -30,7 +30,7 @@ public class CartController {
 	}
 
 	@PostMapping("/addToCart")
-	public String addToCart(@RequestParam("watchId") Long watchId, Model model) {
+	public String addToCart(@RequestParam("watchId") Long watchId) {
 		cartService.add(watchService.getWatchById(watchId));
 		return "redirect:/cart";
 	}
