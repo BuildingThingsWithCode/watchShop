@@ -23,20 +23,20 @@ public class CartController {
 	private final WatchService watchService;
 
 	@GetMapping("/cart")
-	public String getCart(Model model, HttpServletResponse response) {
+	public String getCart(Model model) {
 		model.addAttribute("cartItems", cartService.getAll());
 		model.addAttribute("totalPrice", cartService.getTotal());
 		return "cart"; 
 	}
 
 	@PostMapping("/addToCart")
-	public String addToCart(@RequestParam("watchId") Long watchId, Model model, HttpServletResponse response) {
+	public String addToCart(@RequestParam("watchId") Long watchId, Model model) {
 		cartService.add(watchService.getWatchById(watchId));
 		return "redirect:/cart";
 	}
 
 	@PostMapping("/delete-from-cart")
-	public String deleteFromCart(@RequestParam(value = "deleteItems", required = false) Optional<List<Long>> deleteItemIds, Model model, HttpServletResponse response) {
+	public String deleteFromCart(@RequestParam(value = "deleteItems", required = false) Optional<List<Long>> deleteItemIds, Model model) {
 		deleteItemIds.ifPresent(v -> cartService.removeItems(v));
 		return "redirect:/cart";
 	}
