@@ -1,18 +1,21 @@
 package com.watchShop.controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -29,6 +32,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.watchShop.model.Form;
 import com.watchShop.model.Watch;
 import com.watchShop.service.CartService;
 import com.watchShop.service.QuoteService;
@@ -111,4 +115,36 @@ class UserControllerTest {
 		.andExpect(model().attribute("authentication", false));
 	}
 
+	@Test
+	public void testLoginUser() throws Exception {
+		// Act & Assert
+		mockMvc.perform(post("/login")
+                .param("username", "")
+                .param("password", "thePassword"))
+        .andExpect(status().isOk())
+        .andExpect(view().name("login2"))
+        .andExpect(model().attributeExists("form"))
+        .andExpect(result -> {
+            Form form = (Form) result.getModelAndView().getModel().get("form");
+            assertNotNull(form);
+            assertEquals("", form.getUsername());
+            assertEquals("thePassword", form.getPassword());
+        });
+
+		// Verify interactions
+		verifyNoInteractions(userService);
+	}
 }
+
+//	// dees testen we nu
+//	@PostMapping("/login")
+//	public String loginUser(@Valid Form form, BindingResult result, Model model) {
+//		if (result.hasErrors()) {
+//			model.addAttribute("form", form); 
+//			return "login2"; 
+//		}
+//		else userService.authenticateUser(form.getUsername(), form.getPassword());
+//		return "redirect:/";
+//	}
+
+

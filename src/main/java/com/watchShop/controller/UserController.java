@@ -63,7 +63,7 @@ public class UserController {
 	public String loginUser(@Valid Form form, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			model.addAttribute("form", form); 
-			return "login"; 
+			return "login2"; 
 		}
 		else userService.authenticateUser(form.getUsername(), form.getPassword());
 		return "redirect:/";
