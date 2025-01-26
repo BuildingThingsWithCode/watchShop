@@ -56,7 +56,7 @@ public class UserController {
 			isAuthenticated = true;
 		}
 		model.addAttribute("authentication", isAuthenticated);
-		return "login";
+		return "login2";
 	}
 
 	@PostMapping("/login")
