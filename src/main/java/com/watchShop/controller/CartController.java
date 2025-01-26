@@ -26,7 +26,7 @@ public class CartController {
 	public String getCart(Model model) {
 		model.addAttribute("cartItems", cartService.getAll());
 		model.addAttribute("totalPrice", cartService.getTotal());
-		return "cart"; 
+		return "cart2"; 
 	}
 
 	@PostMapping("/add-to-cart")

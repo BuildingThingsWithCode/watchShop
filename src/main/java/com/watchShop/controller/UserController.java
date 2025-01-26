@@ -41,7 +41,7 @@ public class UserController {
 	private final CartService cartService;
 
 	@GetMapping("/")
-	public String home(@RequestParam(name = "sortOrder", defaultValue = "brand") String sortOrder, Model model, HttpServletResponse response) {
+	public String home(@RequestParam(name = "sortOrder", defaultValue = "brand") String sortOrder, Model model) {
 		List<Watch> watches = watchService.findAllByOrder(sortOrder);
 		model.addAttribute("watches", watches);
 		model.addAttribute("sortOrder", sortOrder);

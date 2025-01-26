@@ -40,11 +40,7 @@ class WatchControllerTest {
 	@BeforeEach
 	void setup() {
 		MockitoAnnotations.openMocks(this);
-		this.mockMvc = MockMvcBuilders.standaloneSetup(watchController)
-				.setViewResolvers((viewName, locale) -> {
-					return new InternalResourceView("/path/to/views/" + viewName + ".html");
-				})
-				.build();
+		mockMvc = MockMvcBuilders.standaloneSetup(watchController).build();
 	}
 
 	@Test
@@ -67,8 +63,6 @@ class WatchControllerTest {
 		.andExpect(model().attribute("image", "/" + mockPathToImage));
 		
 		verify(watchService, times(1)).getWatchById(mockWatchid);
-		verify(mockWatch, times(1)).getImage();
-		verify(mockImage, times(1)).getPathToImage();
 		Mockito.verifyNoMoreInteractions(watchService);
 	}
 

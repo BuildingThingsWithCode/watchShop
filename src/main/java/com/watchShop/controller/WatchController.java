@@ -2,9 +2,6 @@ package com.watchShop.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.watchShop.dto.WatchDto;
 import com.watchShop.model.Image;
 import com.watchShop.model.Watch;
-import com.watchShop.service.CartService;
 import com.watchShop.service.ImageService;
 import com.watchShop.service.WatchService;
 
@@ -42,7 +38,8 @@ public class WatchController {
 		return "info";
 	}
 	
-	//all methods below this point were only used to populate the database.
+	// All methods below this point were only used to populate the database before 
+	// I knew how to use psql.
 	@GetMapping("/add")
 	public String showAddWatchForm(Model model) {
 		List<Image> images = imageService.getAllImages();
