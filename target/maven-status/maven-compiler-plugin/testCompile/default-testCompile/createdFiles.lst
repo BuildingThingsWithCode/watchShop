@@ -1,4 +1,7 @@
-com\watchShop\dto\WatchMapperTest.class
-com\watchShop\WatchShopApplicationTests.class
-com\watchShop\service\ImageServiceImplTest.class
+com\watchShop\service\MyUserDetailsServiceTest.class
 com\watchShop\service\CartServiceImplTest.class
+com\watchShop\WatchShopApplicationTests.class
+com\watchShop\controller\CartControllerTest.class
+com\watchShop\service\ImageServiceImplTest.class
+com\watchShop\controller\WatchControllerTest.class
+com\watchShop\service\QuoteServiceTest.class

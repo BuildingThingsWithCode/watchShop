@@ -11,6 +11,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
@@ -31,8 +32,11 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.watchShop.model.Form;
+import com.watchShop.model.RegisterForm;
 import com.watchShop.model.Watch;
 import com.watchShop.service.CartService;
 import com.watchShop.service.QuoteService;
@@ -116,7 +120,7 @@ class UserControllerTest {
 	}
 
 	@Test
-	public void testLoginUser() throws Exception {
+	public void testLoginUserFail() throws Exception {
 		// Act & Assert
 		mockMvc.perform(post("/login")
                 .param("username", "")
@@ -131,20 +135,68 @@ class UserControllerTest {
             assertEquals("thePassword", form.getPassword());
         });
 
-		// Verify interactions
 		verifyNoInteractions(userService);
+	}
+	
+	@Test
+	public void testLoginUserSuccess() throws Exception {
+		// Act & Assert
+		mockMvc.perform(post("/login")
+                .param("username", "theUsername")
+                .param("password", "thePassword"))
+        .andExpect(status().isFound())
+        .andExpect(redirectedUrl("/"));
+
+		verify(userService, times(1)).authenticateUser("theUsername", "thePassword");
+	}
+	
+	@Test
+	public void testShowRegisterPageUserAlreadyAuthenticated() throws Exception {
+		 // Arrange
+        SecurityContext mockSecurityContext = mock(SecurityContext.class);
+        Authentication mockAuthentication = mock(Authentication.class);
+        when(mockSecurityContext.getAuthentication()).thenReturn(mockAuthentication);
+        when(mockAuthentication.isAuthenticated()).thenReturn(true);
+        SecurityContextHolder.setContext(mockSecurityContext);
+
+        // Act & Assert
+        mockMvc.perform(get("/register"))
+        		.andExpect(status().isOk())
+        		.andExpect(view().name("register2"))
+        		.andExpectAll(model().attribute("authentication", true))
+        		.andExpect(model().attributeDoesNotExist("form"));
+   
+        verify(mockSecurityContext).getAuthentication();
+	}
+	
+	@Test
+	public void testShowRegisterPageUserNotAuthenticated() throws Exception {
+		 // Arrange
+        SecurityContext mockSecurityContext = mock(SecurityContext.class);
+        Authentication mockAuthentication = mock(Authentication.class);
+        when(mockSecurityContext.getAuthentication()).thenReturn(mockAuthentication);
+        when(mockAuthentication.isAuthenticated()).thenReturn(false);
+        SecurityContextHolder.setContext(mockSecurityContext);
+
+        // Act & Assert
+        mockMvc.perform(get("/register"))
+        		.andExpect(status().isOk())
+        		.andExpect(view().name("register2"))
+        		.andExpectAll(model().attribute("authentication", false))
+        		.andExpect(model().attributeExists("form"));
+   
+        verify(mockSecurityContext).getAuthentication();
 	}
 }
 
-//	// dees testen we nu
-//	@PostMapping("/login")
-//	public String loginUser(@Valid Form form, BindingResult result, Model model) {
-//		if (result.hasErrors()) {
-//			model.addAttribute("form", form); 
-//			return "login2"; 
-//		}
-//		else userService.authenticateUser(form.getUsername(), form.getPassword());
-//		return "redirect:/";
+//@GetMapping("/register")
+//public String showRegisterPage(Model model) {
+//	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//	boolean isAuthenticated = false;
+//	if (authentication.isAuthenticated() && !(authentication instanceof AnonymousAuthenticationToken)) {
+//		isAuthenticated = true;
 //	}
-
-
+//	model.addAttribute("authentication", isAuthenticated);
+//	model.addAttribute("form", new RegisterForm());
+//	return "register"; 
+//}

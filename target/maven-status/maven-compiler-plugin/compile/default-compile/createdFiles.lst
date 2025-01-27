@@ -1,3 +1,4 @@
+com\watchShop\config\TestConfig.class
 com\watchShop\controller\UserController.class
 com\watchShop\model\RegisterForm.class
 com\watchShop\controller\CartController.class

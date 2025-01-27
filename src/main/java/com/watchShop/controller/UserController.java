@@ -52,40 +52,49 @@ public class UserController {
 	public String showLoginPage(Form form, Model model) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		boolean isAuthenticated = false;
-		if (authentication.isAuthenticated() && !(authentication instanceof AnonymousAuthenticationToken)) {
+		if (authentication != null && authentication.isAuthenticated() && !(authentication instanceof AnonymousAuthenticationToken)) {
 			isAuthenticated = true;
 		}
 		model.addAttribute("authentication", isAuthenticated);
 		return "login2";
 	}
-
+	
+	/*
+	 * Automatic Model Binding: When you use @Valid Form form, as a parameter Spring MVC 
+	 * automatically: a) Creates a Form object, b) Binds the request parameters to it 
+	 * c) Adds it to the model with the attribute name "form" (derived from the class name
+	 * with first letter lowercase). All this happens BEFORE your controller method is 
+	 * even executed.
+	 * So, we do not need to bind the form attribute to the model. Spring handles this for us.
+	 */
 	@PostMapping("/login")
 	public String loginUser(@Valid Form form, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			model.addAttribute("form", form); 
 			return "login2"; 
 		}
-		else userService.authenticateUser(form.getUsername(), form.getPassword());
-		return "redirect:/";
+		else {
+			userService.authenticateUser(form.getUsername(), form.getPassword());
+			return "redirect:/";
+		}
 	}
 
 	@GetMapping("/register")
 	public String showRegisterPage(Model model) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		boolean isAuthenticated = false;
+		boolean authenticated = false;
 		if (authentication.isAuthenticated() && !(authentication instanceof AnonymousAuthenticationToken)) {
-			isAuthenticated = true;
+			authenticated = true;
 		}
-		model.addAttribute("authentication", isAuthenticated);
-		model.addAttribute("form", new RegisterForm());
-		return "register"; 
+		model.addAttribute("authentication", authenticated);
+		if (!authenticated) model.addAttribute("form", new RegisterForm());
+		return "register2"; 
 	}
 
 	@PostMapping("/register")
 	public String createAndSaveUser(@Valid @ModelAttribute("form") RegisterForm form, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			model.addAttribute("form", form); 
-			return "register";
+			return "register2";
 		}
 		userService.registerUser(form.getUsername(), form.getPassword(), form.getEmail());
 		userService.authenticateUser(form.getUsername(), form.getPassword());
