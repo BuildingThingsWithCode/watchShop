@@ -78,7 +78,6 @@ class UserControllerTest {
 	}
 
 	@Test
-	@Ignore
 	void testHome() throws Exception {
 		// Arrange
 		List<Watch> mockWatchList = new ArrayList<>();
@@ -97,7 +96,6 @@ class UserControllerTest {
 	}
 
 	@Test
-	@Ignore
 	void testShowLoginPageAuthenticatedUser() throws Exception {
 		// Arrange
 		SecurityContext mockSecurityContext = mock(SecurityContext.class);
@@ -114,7 +112,6 @@ class UserControllerTest {
 	}
 
 	@Test
-	@Ignore
 	public void testShowLoginPageAnonymousUser() throws Exception {
 		// Arrange
 		SecurityContext mockSecurityContext = mock(SecurityContext.class);
@@ -132,7 +129,6 @@ class UserControllerTest {
 	}
 
 	@Test
-	@Ignore
 	public void testLoginUserSuccess() throws Exception {
 		// Act & Assert
 		mockMvc.perform(post("/login")
@@ -145,7 +141,6 @@ class UserControllerTest {
 	}
 
 	@Test
-	@Ignore
 	public void testLoginUserFail() throws Exception {
 		// Act & Assert
 		mockMvc.perform(post("/login")
@@ -167,7 +162,6 @@ class UserControllerTest {
 
 
 	@Test
-	@Ignore
 	public void testShowRegisterPageUserAlreadyAuthenticated() throws Exception {
 		// Arrange
 		SecurityContext mockSecurityContext = mock(SecurityContext.class);
@@ -187,7 +181,6 @@ class UserControllerTest {
 	}
 
 	@Test
-	@Ignore
 	public void testShowRegisterPageUserNotAuthenticated() throws Exception {
 		// Arrange
 		SecurityContext mockSecurityContext = mock(SecurityContext.class);
@@ -207,7 +200,6 @@ class UserControllerTest {
 	}
 
 	@Test
-	@Ignore
 	public void testCreateAndSaveUserSuccess() throws Exception {
 		// Act & Assert
 		mockMvc.perform(post("/register")
@@ -224,7 +216,6 @@ class UserControllerTest {
 	}
 
 	@Test
-	@Ignore
 	public void testCreateAndSaveUserFail() throws Exception {
 		// Act & Assert
 		mockMvc.perform(post("/register")
@@ -241,7 +232,6 @@ class UserControllerTest {
 	}
 
 	@Test
-	@Ignore
 	//@WithMockUser(username = "admin", roles = "ADMIN")
 	public void testShowAdminPageSuccess() throws Exception {
 		// Arrange
