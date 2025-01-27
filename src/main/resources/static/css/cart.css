@@ -108,7 +108,8 @@ button.checkout {
     cursor: pointer;          
     text-decoration: none;      
     margin-top: 20px;          
-	text-align: center;   
+	text-align: center;
+	margin-bottom: 20px;   
 	}
 	
 	button.checkout:hover {
