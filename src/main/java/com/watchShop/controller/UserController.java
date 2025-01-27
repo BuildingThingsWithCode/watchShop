@@ -93,7 +93,6 @@ public class UserController {
 	@PostMapping("/register")
 	public String createAndSaveUser(@Valid @ModelAttribute("form") RegisterForm form, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			model.addAttribute("form", form); 
 			return "register2";
 		}
 		userService.registerUser(form.getUsername(), form.getPassword(), form.getEmail());
@@ -106,12 +105,12 @@ public class UserController {
 		Map<String, String> quote = quoteService.getQuote();
 		model.addAttribute("quote", quote.get("q"));
 		model.addAttribute("author", quote.get("a"));
-		return "admin";
+		return "admin2";
 	}
 
 	@GetMapping("/noaccess")
 	public String noAccessPage() {
-		return "noaccess";     
+		return "noaccess2";     
 	}
 	
 	@PostMapping("/noaccess")
