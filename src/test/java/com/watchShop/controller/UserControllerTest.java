@@ -21,7 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Ignore;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -71,10 +70,10 @@ class UserControllerTest {
 		MockitoAnnotations.openMocks(this);
 		mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
 	}
-	
+
 	@AfterEach
 	public void clearContext() {
-	    SecurityContextHolder.clearContext();
+		SecurityContextHolder.clearContext();
 	}
 
 	@Test
