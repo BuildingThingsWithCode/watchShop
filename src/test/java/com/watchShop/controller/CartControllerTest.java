@@ -55,7 +55,6 @@ class CartControllerTest {
 	@Test
 	void testGetCart() throws Exception {
 		// Arrange
-		//setupWithViewResolver();
 		Watch watch1 = new Watch();
 		Watch watch2 = new Watch();
 		Map<Watch, Integer> map = new HashMap<>();

@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.watchShop.model.Form;
 import com.watchShop.model.RegisterForm;
@@ -108,12 +108,12 @@ public class UserController {
 		return "admin2";
 	}
 
-	@GetMapping("/noaccess")
+	@GetMapping("/no-access")
 	public String noAccessPage() {
-		return "noaccess2";     
+		return "noaccess";     
 	}
 	
-	@PostMapping("/noaccess")
+	@PostMapping("/no-access")
 	public String sessionExpiredPage() {
 		return "sessionexpired";
 	}
@@ -122,7 +122,7 @@ public class UserController {
 	public String showCheckoutPage(Model model) {
 		model.addAttribute("cartItems", cartService.getAll());
 		model.addAttribute("totalPrice", cartService.getTotal());
-		return "checkout";
+		return "checkout2";
 	}
 	
 	@GetMapping("/completed-sale")

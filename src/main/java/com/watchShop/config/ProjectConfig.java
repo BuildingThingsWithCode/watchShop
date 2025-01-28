@@ -59,7 +59,7 @@ public class ProjectConfig  {
 				.permitAll()
 				)
 		.exceptionHandling()
-		.accessDeniedPage("/noaccess");
+		.accessDeniedPage("/no-access");
 
 		return http.build();
 	}

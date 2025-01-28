@@ -2,6 +2,7 @@ package com.watchShop.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -15,23 +16,27 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -231,13 +236,7 @@ class UserControllerTest {
 	}
 
 	@Test
-	//@WithMockUser(username = "admin", roles = "ADMIN")
-	public void testShowAdminPageSuccess() throws Exception {
-		// Arrange
-		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken("admin", "password", 
-				AuthorityUtils.createAuthorityList("ROLE_ADMIN"));
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-
+	public void testShowAdminPage() throws Exception {
 		Map<String, String> mockMap = new HashMap<>();
 		mockMap.put("q", "this is a quote");
 		mockMap.put("a", "this is the author");
@@ -254,37 +253,76 @@ class UserControllerTest {
 	}
 
 	@Test
-	void testShowAdminPageNoAdminCredentialsFail() throws Exception {
-		// Arrange
-		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken("user", "password", 
-				AuthorityUtils.createAuthorityList("ROLE_USER"));
-		SecurityContextHolder.getContext().setAuthentication(authentication);
+	public void testNoAccessPage() throws Exception {
+		// Act & Assert
+		mockMvc.perform(get("/no-access"))
+		.andExpect(status().isOk())
+		.andExpect(view().name("noaccess"));
+	}
 
-		System.out.println("///////////////////////////////////////////"+SecurityContextHolder.getContext().getAuthentication().getCredentials());
-		mockMvc.perform(get("/admin"))
-		.andExpect(status().is3xxRedirection())
-		.andExpect(redirectedUrl("/noaccess"));
+	@Test
+	public void testShowCheckoutPage() throws Exception {
+		// Arrange
+		Watch watch1 = new Watch();
+		Watch watch2 = new Watch();
+		Map<Watch, Integer> map = new HashMap<>();
+		map.put(watch1, 1);
+		map.put(watch2, 3);
+		Set<Entry<Watch, Integer>> mockCartItems = map.entrySet();
+		BigDecimal mockTotal = BigDecimal.valueOf(1350.00);
+		when(cartService.getAll()).thenReturn(mockCartItems);
+		when(cartService.getTotal()).thenReturn(mockTotal);
+
+		// Act & Assert
+		mockMvc.perform(get("/checkout"))
+		.andExpect(status().isOk())
+		.andExpect(view().name("checkout2"))
+		.andExpect(model().attribute("cartItems", mockCartItems))
+		.andExpect(model().attribute("totalPrice", mockTotal));
+
+		verify(cartService, times(1)).getAll();
+		verify(cartService, times(1)).getTotal();
+		verifyNoMoreInteractions(cartService);
+	}
+
+	@Test
+	public void testFinishSale() throws Exception {
+		// Arrange
+		Watch watch1 = new Watch();
+		watch1.setId(1L);
+		Watch watch2 = new Watch();
+		watch2.setId(2L);
+		Map<Watch, Integer> cartItems = new HashMap<>();
+		cartItems.put(watch1, 1);
+		cartItems.put(watch2, 3);
+		Set<Entry<Watch, Integer>> mockCartItems = cartItems.entrySet();
+		MockHttpSession session = new MockHttpSession();
+		Set<Long> mockSoldWatches = new HashSet<>();
+		session.setAttribute("soldWatches", mockSoldWatches);
+		when(cartService.getAll()).thenReturn(mockCartItems);
+		doAnswer(invocation -> {
+			cartItems.clear();
+			return null;
+		})
+		.when(cartService).emptyCart();
+
+		// Act & Assert
+		mockMvc.perform(get("/completed-sale")
+				.session(session))
+		.andExpect(status().isFound())
+		.andExpect(redirectedUrl("/?soldWatches=1&soldWatches=2"));
+		Set<Long> updatedSoldWatches = (Set<Long>) session.getAttribute("soldWatches");
+		assertEquals(2, updatedSoldWatches.size());
+		assertEquals(0, cartItems.size());
+
+		verify(cartService, times(1)).getAll();
+		verify(cartService, times(1)).emptyCart();
 	}
 }
 
-//	@Test
-//	void testShowAdminPageNotAuthenticated() throws Exception {
-//	    mockMvc.perform(get("/admin"))
-//	            .andExpect(status().is3xxRedirection()) // Expect a redirection
-//	            .andExpect(redirectedUrl("/login")); // Expect redirection to the login page
-//	}
-
-
-
-
-
-
-
-
-//@GetMapping("/admin")
-//public String showAdminPage(Model model) {
-//	Map<String, String> quote = quoteService.getQuote();
-//	model.addAttribute("quote", quote.get("q"));
-//	model.addAttribute("author", quote.get("a"));
-//	return "admin";
+//@GetMapping("/completed-sale")
+//public String finishSale(@ModelAttribute("soldWatches") Set<Long> soldWatches) {
+//	cartService.getAll().forEach(entry -> soldWatches.add(entry.getKey().getId()));
+//	cartService.emptyCart();
+//	return "redirect:/";
 //}
