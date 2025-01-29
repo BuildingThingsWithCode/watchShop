@@ -319,10 +319,3 @@ class UserControllerTest {
 		verify(cartService, times(1)).emptyCart();
 	}
 }
-
-//@GetMapping("/completed-sale")
-//public String finishSale(@ModelAttribute("soldWatches") Set<Long> soldWatches) {
-//	cartService.getAll().forEach(entry -> soldWatches.add(entry.getKey().getId()));
-//	cartService.emptyCart();
-//	return "redirect:/";
-//}
