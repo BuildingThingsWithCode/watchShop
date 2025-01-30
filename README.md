@@ -1,8 +1,14 @@
-A webshop portfolio project. Goal: to practice working with Spring and with a Postgres database.
-Project is hosted online, if you want to try it out use user/user or admin/admin (username/password) to login as a user or an administrator.
-Project url: http://defensive-glori-larsmartens-4c10bcc4.koyeb.app/
+A webshop portfolio project. 
+Goal was to practice working with Spring and with a Postgres database. The project is hosted online. If you
+would like to try it out you can use user/user or admin/admin (username/password) to login as a user or as 
+an administrator. [Visit the Project](http://defensive-glori-larsmartens-4c10bcc4.koyeb.app/)
+Note: This project is hosted on a free hosting service. Since free hosting has its limitations, you may 
+occasionally notice slower response times.
 
-This project is a work in progress:
+![WatchShopScreenshot](https://github.com/user-attachments/assets/3eb09751-3aa5-4262-a2e1-5907d5c7b867)
+
+This checklist outlines all the key steps I planned and implemented to complete this project. It serves as a
+roadmap of the development process, tracking progress from start to finish.:
 - Get familiar with Spring basics. :heavy_check_mark:
 - Set up environmental variables and connect to online datbase. :heavy_check_mark:
 - Populate database. :heavy_check_mark:
@@ -22,9 +28,8 @@ This project is a work in progress:
 - Add logout functionality. :heavy_check_mark:
 - Make part of the webapplication only accessible to administrator accounts. :heavy_check_mark:
 - Add payment/checkout functionality. :heavy_check_mark:
-- Add tests.
-- Use this project to learn HTMX.
+- Add tests for controllers, repositories, services and DTO's. :heavy_check_mark:
 
-![WatchShopScreenshot](https://github.com/user-attachments/assets/3eb09751-3aa5-4262-a2e1-5907d5c7b867)
+
 
 
