@@ -1,9 +1,13 @@
-A webshop portfolio project. 
+# A webshop portfolio project.  
+
 Goal was to practice working with Spring and with a Postgres database. The project is hosted online. If you
-would like to try it out you can use user/user or admin/admin (username/password) to login as a user or as 
-an administrator. [Visit the Project](http://defensive-glori-larsmartens-4c10bcc4.koyeb.app/)
+would like to try it out you can log in with the following credentials:  
+user/user (user account)  
+admin/admin (administrator account)  
+[Link to the Project](http://defensive-glori-larsmartens-4c10bcc4.koyeb.app/)  
+
 Note: This project is hosted on a free hosting service. Since free hosting has its limitations, you may 
-occasionally notice slower response times.
+occasionally notice slower response times.  
 
 ![WatchShopScreenshot](https://github.com/user-attachments/assets/3eb09751-3aa5-4262-a2e1-5907d5c7b867)
 
