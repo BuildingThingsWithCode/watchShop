@@ -4,7 +4,7 @@ Goal was to practice working with Spring and with a Postgres database. This proj
 If you would like to try it out you can log in with the following credentials:  
 user/user (user account)  
 admin/admin (administrator account)  
-[Link to the Project](http://defensive-glori-larsmartens-4c10bcc4.koyeb.app/)  
+[Link to the project](http://defensive-glori-larsmartens-4c10bcc4.koyeb.app/)  
 
 Note: This project is hosted on a free hosting service. Since free hosting has its limitations, you may 
 occasionally notice slower response times.  
