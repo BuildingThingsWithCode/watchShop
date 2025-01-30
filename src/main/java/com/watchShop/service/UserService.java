@@ -34,16 +34,22 @@ public class UserService {
 		if (userRepository.findByEmail(email).isPresent()) {
 			throw new RuntimeException("Email already exists. Please choose another one.");
 		}
-		User user = new User();
-		user.setUsername(username);
-		user.setPassword(passwordEncoder.encode(password));  
-		user.setEmail(email);
 		Set<Role> roles = new HashSet<>();
 		Role userRole = roleRepository.findByName("USER")
 				.orElseThrow(() -> new RuntimeException("Role USER not found"));
 		roles.add(userRole);
-		user.setRoles(roles);
-		return userRepository.save(user);
+		User user = User.builder()
+				.username(username)
+				.password(passwordEncoder.encode(password))
+				.email(email)
+				.roles(roles)
+				.build();
+		System.out.println("user id before save= "+user.getId());
+		User userWithId = userRepository.save(user);
+		System.out.println("user id after save= "+user.getId());
+	    userRole.getUsers().add(userWithId);
+	    roleRepository.save(userRole);
+	    return userWithId;
 	}
 
 	public void authenticateUser(String username, String password) {
