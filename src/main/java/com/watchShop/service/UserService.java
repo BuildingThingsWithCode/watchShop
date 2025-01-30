@@ -44,12 +44,7 @@ public class UserService {
 				.email(email)
 				.roles(roles)
 				.build();
-		System.out.println("user id before save= "+user.getId());
-		User userWithId = userRepository.save(user);
-		System.out.println("user id after save= "+user.getId());
-	    userRole.getUsers().add(userWithId);
-	    roleRepository.save(userRole);
-	    return userWithId;
+		return userRepository.save(user);
 	}
 
 	public void authenticateUser(String username, String password) {

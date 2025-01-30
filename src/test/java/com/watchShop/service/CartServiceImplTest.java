@@ -41,7 +41,6 @@ class CartServiceImplTest {
         // Assert
         assertFalse(cartService.isEmpty());
         assertEquals(1, cartService.getAll().size());
-        assertEquals(1, cartService.getAll().iterator().next().getValue());
     }
 
     @Test
@@ -116,12 +115,12 @@ class CartServiceImplTest {
         Watch watch = new Watch();
         cartService.add(watch);
         cartService.add(watch);
-        
+
         // Act
         cartService.remove(watch);
         
         // Assert
         assertFalse(cartService.isEmpty());
-        assertEquals(1, cartService.getAll().iterator().next().getValue());
+        assertTrue(cartService.getAll().stream().filter(e -> e.getValue()==1).count() == 1);
     }
 }

@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,20 @@ public class RoleRepositoryTest {
 	@Test
 	void testSave() {
 		// Arrange
-		User user1 = User.builder().username("user1").password("password1").email("email1@somewhere.com").build();
-		User user2 = User.builder().username("user2").password("password2").email("email2@somewhere.com").build();
-		Role role = Role.builder().name("USER").users(Arrays.asList(user1, user2)).build();
+		User user1 = User.builder()
+				.username("user1")
+				.password("password1")
+				.email("email1@somewhere.com")
+				.build();
+		User user2 = User.builder()
+				.username("user2")
+				.password("password2")
+				.email("email2@somewhere.com")
+				.build();
+		Role role = Role.builder()
+				.name("USER")
+				.users(Arrays.asList(user1, user2))
+				.build();
 		List<Role> roleCollection = new ArrayList<>();
 		roleCollection.add(role);
 		user1.setRoles(roleCollection);
@@ -49,18 +61,31 @@ public class RoleRepositoryTest {
 		assertTrue(user2.getRoles().contains(savedRole)); 
 	}
 
-	//	@Test
-	//	public void testFindByName() {
-	//		// Arrange
-	//		User user1 = User.builder().build();
-	//		User user2 = User.builder().build();
-	//		List<User> userList = new ArrayList<>();
-	//		userList.add(user1);
-	//		userList.add(user2);
-	//		Role role = Role.builder().name("USER").users(userList).build();
-	//		
-	//		// Act
-	//		
-	//		// Assert
-	//	}
+		@Test
+		public void testFindByName() {
+			// Arrange
+			User user1 = User.builder()
+					.username("user1")
+					.password("password1")
+					.email("email1@somewhere.com")
+					.build();
+			User user2 = User.builder()
+					.username("user2")
+					.password("password2")
+					.email("email2@somewhere.com")
+					.build();
+			Role role = roleRepository.save(Role.builder()
+					.name("USER")
+					.users(Arrays.asList(user1, user2))
+					.build());
+			
+			// Act
+			Optional<Role> optionalRole = roleRepository.findById(role.getId());
+			
+			// Assert
+			assertTrue(optionalRole.isPresent());
+			assertTrue(optionalRole.get().getUsers().size() == 2);
+			assertTrue(optionalRole.get().getUsers().contains(user1));
+			assertTrue(optionalRole.get().getUsers().contains(user2));
+		}
 }

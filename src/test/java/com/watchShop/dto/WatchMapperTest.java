@@ -2,6 +2,7 @@ package com.watchShop.dto;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
 
@@ -27,12 +28,12 @@ class WatchMapperTest {
 		image.setPathToImage("/images/Seiko Alpinist.jpg");
 		Watch watch = new Watch(24L, "Alpinist", "Seiko", new BigDecimal(725.00), "Automaat Cal. 6R35, 39.5mm, Stalen kast, WR20 bar, Safier", image);
 		WatchDto dto = mapper.toWatchDto(watch);
-		assertEquals(watch.getId(), dto.getId());
+		assertTrue(watch.getId() == dto.getId());
 		assertEquals(watch.getName(), dto.getName());
 		assertEquals(watch.getBrand(), dto.getBrand());
 		assertEquals(watch.getPrice(), dto.getPrice());
 		assertEquals(watch.getDescription(), dto.getDescription());
-		assertEquals(watch.getImage().getId(), dto.getId());
+		assertTrue(watch.getImage().getId() == dto.getId());
 	}
 	
 	@Test
@@ -42,12 +43,12 @@ class WatchMapperTest {
 		image.setId(24L);
 		image.setPathToImage("/images/Seiko Alpinist.jpg");
 		Watch watch = mapper.toWatch(dto, image);
-		assertEquals(dto.getId(), watch.getId());
+		assertTrue(dto.getId() == watch.getId());
 		assertEquals(dto.getName(), watch.getName());
 		assertEquals(dto.getBrand(), watch.getBrand());
 		assertEquals(dto.getPrice(), watch.getPrice());
 		assertEquals(dto.getDescription(), watch.getDescription());
-		assertEquals(dto.getImageId(), watch.getImage().getId());
+		assertTrue(dto.getImageId() == watch.getImage().getId());
 		
 	}
 
