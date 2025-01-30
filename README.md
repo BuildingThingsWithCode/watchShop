@@ -1,7 +1,7 @@
 # A webshop portfolio project.  
 
-Goal was to practice working with Spring and with a Postgres database. The project is hosted online. If you
-would like to try it out you can log in with the following credentials:  
+Goal was to practice working with Spring and with a Postgres database. This project is hosted online.  
+If you would like to try it out you can log in with the following credentials:  
 user/user (user account)  
 admin/admin (administrator account)  
 [Link to the Project](http://defensive-glori-larsmartens-4c10bcc4.koyeb.app/)  
