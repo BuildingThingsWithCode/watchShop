@@ -1,6 +1,5 @@
 package com.watchShop.repository;
 
-import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -87,7 +86,7 @@ class WatchRepositoryTest {
 		assertTrue(foundWatch.isPresent());
 		assertEquals(watch, foundWatch.get());
 	}
-	
+
 	@Test
 	public void testDeleteById() {
 		// Arrange
@@ -97,14 +96,14 @@ class WatchRepositoryTest {
 				.price(BigDecimal.valueOf(12500.00))
 				.description("Expensive watch")
 				.build());
-        Optional<Watch> retrievedWatch = watchRepository.findById(watch.getId());
-        assertTrue(retrievedWatch.isPresent());
+		Optional<Watch> retrievedWatch = watchRepository.findById(watch.getId());
+		assertTrue(retrievedWatch.isPresent());
 
-        // Act
-        watchRepository.deleteById(watch.getId());
+		// Act
+		watchRepository.deleteById(watch.getId());
 
-        // Assert
-        Optional<Watch> deletedWatch = watchRepository.findById(watch.getId());
-        assertFalse(deletedWatch.isPresent());
+		// Assert
+		Optional<Watch> deletedWatch = watchRepository.findById(watch.getId());
+		assertFalse(deletedWatch.isPresent());
 	}
 }
