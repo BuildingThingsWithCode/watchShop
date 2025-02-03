@@ -25,25 +25,11 @@ public class ProjectConfig  {
 
 	private final MyUserDetailsService myUserDetailsService;
 
-	@Bean 
-	public AuthenticationProvider authenticationProvider(@Autowired PasswordEncoder passwordEncoder) {
-		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-		provider.setUserDetailsService(myUserDetailsService);
-		provider.setPasswordEncoder(passwordEncoder);
-		return provider;
-	}
-
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-
 	@Bean
 	SecurityFilterChain configure(HttpSecurity http) throws Exception {
 		http
 		.authorizeHttpRequests()
 		.antMatchers("/", "/register", "/css/**", "/images/**", "/login", "/logout").permitAll()
-		.antMatchers("/cart", "/checkout").authenticated()
 		.antMatchers("/admin/**").hasAuthority("ADMIN")
 		.anyRequest().authenticated()
 		.and()
@@ -71,6 +57,11 @@ public class ProjectConfig  {
 				.passwordEncoder(passwordEncoder())
 				.and()
 				.build();
+	}
+	
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
 	}
 
 	@Bean
