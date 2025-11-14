@@ -14,7 +14,7 @@ occasionally notice slower response times.
 This checklist outlines all the key steps I planned and implemented to complete this project. It serves as a
 roadmap of the development process, tracking progress from start to finish.:
 - Get familiar with Spring basics. :heavy_check_mark:
-- Set up environmental variables and connect to online datbase. :heavy_check_mark:
+- Set up environmental variables and connect to online database. :heavy_check_mark:
 - Populate database. :heavy_check_mark:
 - Design logo + shopping cart icon. :heavy_check_mark:
 - Create product page and add sorting functionality. :heavy_check_mark:
