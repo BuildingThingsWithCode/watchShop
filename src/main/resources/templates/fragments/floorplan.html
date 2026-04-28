@@ -1,0 +1,149 @@
+   <!-- One Seat -->
+<div th:fragment="seat">
+    <label>
+        <input type="checkbox" class="seat-toggle">
+        <svg class="seat" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45">
+            <path fill="#BDBDBD" d="M37.346,18.348H11.604c-1.966,0-3.557,1.769-3.557,3.947v32.524h32.854V22.295C40.902,20.117,39.312,18.348,37.346,18.348z"/>
+            <path fill="#BDBDBD" d="M41.108,54.819h4.999c0,0,0.151-15.16,0-18.853c-2.461-1.693-3.229-1.077-4.999,0"/>
+            <path fill="#BDBDBD" d="M7.866,54.819H2.864c0,0-0.151-15.16,0-18.853c2.462-1.693,3.233-1.077,5.002,0"/>
+        </svg>
+    </label>
+</div>
+
+<!-- One middle row of seats -->
+<div th:fragment="middleRow">
+	<div class="seat-row">
+    <!-- Insert 20 seats into this row -->
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>
+ 	<div th:replace="~{::seat}"></div>
+  </div>
+</div>
+
+<!-- One middle row of seats -->
+<div th:fragment="sideRow">
+	<div class="seat-row">
+    <!-- Insert 8 seat into this row -->
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>
+    <div th:replace="~{::seat}"></div>    
+</div>
+</div>
+
+<!--middle section -->
+<div th:fragment="middleSection">
+ 	<div th:replace="~{::middleRow}"></div>
+	<div th:replace="~{::middleRow}"></div>
+	<div th:replace="~{::middleRow}"></div>
+	<div th:replace="~{::middleRow}"></div>
+	<div th:replace="~{::middleRow}"></div>
+	<div th:replace="~{::middleRow}"></div>
+	<div th:replace="~{::middleRow}"></div>
+	<div th:replace="~{::middleRow}"></div>
+	<div th:replace="~{::middleRow}"></div>
+	<div th:replace="~{::middleRow}"></div>
+	<div th:replace="~{::middleRow}"></div>
+	<div th:replace="~{::middleRow}"></div>
+	<div th:replace="~{::middleRow}"></div>
+	<div th:replace="~{::middleRow}"></div>
+	<div th:replace="~{::middleRow}"></div>
+	<div th:replace="~{::middleRow}"></div>
+	<div th:replace="~{::middleRow}"></div>
+	<div th:replace="~{::middleRow}"></div>
+	<div th:replace="~{::middleRow}"></div>
+	<div th:replace="~{::middleRow}"></div>
+</div>
+
+<!--side sections -->
+<div th:fragment="leftSection">
+ 	<div th:replace="~{::sideRow}"></div>
+	<div th:replace="~{::sideRow}"></div>
+	<div th:replace="~{::sideRow}"></div>
+	<div th:replace="~{::sideRow}"></div>
+	<div th:replace="~{::sideRow}"></div>
+	<div th:replace="~{::sideRow}"></div>
+	<div th:replace="~{::sideRow}"></div>
+	<div th:replace="~{::sideRow}"></div>
+	<div th:replace="~{::sideRow}"></div>
+	<div th:replace="~{::sideRow}"></div>	
+</div>
+
+<div th:fragment="rightSection">
+ <div th:replace="~{::sideRow}"></div>
+	<div th:replace="~{::sideRow}"></div>
+	<div th:replace="~{::sideRow}"></div>
+	<div th:replace="~{::sideRow}"></div>
+	<div th:replace="~{::sideRow}"></div>
+	<div th:replace="~{::sideRow}"></div>
+	<div th:replace="~{::sideRow}"></div>
+	<div th:replace="~{::sideRow}"></div>
+	<div th:replace="~{::sideRow}"></div>
+	<div th:replace="~{::sideRow}"></div>
+</div>
+
+<div th:fragment="legend">
+    <table class="legend-table">
+        <thead>
+            <tr>
+                <th>Unavailable</th>
+                <th>Free</th>
+                <th>Selected</th>
+                <th>Current</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <svg class="legend" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45">
+                        <path fill="#F44336" d="M37.346,18.348H11.604c-1.966,0-3.557,1.769-3.557,3.947v32.524h32.854V22.295C40.902,20.117,39.312,18.348,37.346,18.348z"/>
+                        <path fill="#F44336" d="M41.108,54.819h4.999c0,0,0.151-15.16,0-18.853c-2.461-1.693-3.229-1.077-4.999,0"/>
+                        <path fill="#F44336" d="M7.866,54.819H2.864c0,0-0.151-15.16,0-18.853c2.462-1.693,3.233-1.077,5.002,0"/>
+                    </svg>
+                </td>
+                <td>
+                    <svg class="legend" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45">
+                        <path fill="#BDBDBD" d="M37.346,18.348H11.604c-1.966,0-3.557,1.769-3.557,3.947v32.524h32.854V22.295C40.902,20.117,39.312,18.348,37.346,18.348z"/>
+                        <path fill="#BDBDBD" d="M41.108,54.819h4.999c0,0,0.151-15.16,0-18.853c-2.461-1.693-3.229-1.077-4.999,0"/>
+                        <path fill="#BDBDBD" d="M7.866,54.819H2.864c0,0-0.151-15.16,0-18.853c2.462-1.693,3.233-1.077,5.002,0"/>
+                    </svg>
+                </td>
+                <td>
+                    <svg class="legend" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45">
+                        <path fill="#4CAF50" d="M37.346,18.348H11.604c-1.966,0-3.557,1.769-3.557,3.947v32.524h32.854V22.295C40.902,20.117,39.312,18.348,37.346,18.348z"/>
+                        <path fill="#4CAF50" d="M41.108,54.819h4.999c0,0,0.151-15.16,0-18.853c-2.461-1.693-3.229-1.077-4.999,0"/>
+                        <path fill="#4CAF50" d="M7.866,54.819H2.864c0,0-0.151-15.16,0-18.853c2.462-1.693,3.233-1.077,5.002,0"/>
+                    </svg>
+                </td>
+                <td>
+                    <svg class="legend" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45">
+                        <path fill="#FF9800" d="M37.346,18.348H11.604c-1.966,0-3.557,1.769-3.557,3.947v32.524h32.854V22.295C40.902,20.117,39.312,18.348,37.346,18.348z"/>
+                        <path fill="#FF9800" d="M41.108,54.819h4.999c0,0,0.151-15.16,0-18.853c-2.461-1.693-3.229-1.077-4.999,0"/>
+                        <path fill="#FF9800" d="M7.866,54.819H2.864c0,0-0.151-15.16,0-18.853c2.462-1.693,3.233-1.077,5.002,0"/>
+                    </svg>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

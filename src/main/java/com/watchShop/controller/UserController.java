@@ -136,4 +136,9 @@ public class UserController {
 	public Set<Long> initializeSoldWatches() {
 		return new HashSet<>();
 	}
+	
+	@GetMapping("/test")
+	public String showTestPage() {
+		return "theater";
+	}
 }

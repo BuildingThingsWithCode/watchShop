@@ -29,23 +29,22 @@ public class ProjectConfig  {
 	SecurityFilterChain configure(HttpSecurity http) throws Exception {
 		http
 		.authorizeHttpRequests()
-		.antMatchers("/", "/register", "/css/**", "/images/**", "/login", "/logout").permitAll()
+		.antMatchers("/", "/register", "/css/**", "/images/**", "/login", "/logout", "/student/**", "/test").permitAll()
 		.antMatchers("/admin/**").hasAuthority("ADMIN")
 		.anyRequest().authenticated()
 		.and()
-		.formLogin(form -> form
-				.loginPage("/login")   
-				.loginProcessingUrl("/authentication") 
-				.permitAll())
-		.logout(logout -> logout
-				.logoutUrl("/logout") 
-				.logoutSuccessUrl("/login") 
-				.invalidateHttpSession(true)
-				.deleteCookies("JSESSIONID")
-				.permitAll()
-				)
-		.exceptionHandling()
-		.accessDeniedPage("/no-access");
+				.formLogin(form -> form
+						.loginPage("/login")   
+						.loginProcessingUrl("/authentication") 
+						.permitAll())
+				.logout(logout -> logout
+						.logoutUrl("/logout") 
+						.logoutSuccessUrl("/login") 
+						.invalidateHttpSession(true)
+						.deleteCookies("JSESSIONID")
+						.permitAll())
+				.exceptionHandling()
+				.accessDeniedPage("/no-access");
 
 		return http.build();
 	}
@@ -58,7 +57,8 @@ public class ProjectConfig  {
 				.and()
 				.build();
 	}
-	
+
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();

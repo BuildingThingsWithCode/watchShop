@@ -47,7 +47,7 @@
     <div th:if="${isCartEmpty}">
         <h1> There are no items in your cart. </h1>
     </div>
-    <div th:if="${!cartItems.isEmpty()}">
+    <div th:if="${!isCartEmpty}">
         <form th:action="@{/delete-from-cart}" method="post" autocomplete="off">
             <div class="table-wrapper">
                 <table>

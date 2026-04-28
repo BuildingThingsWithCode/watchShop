@@ -54,6 +54,7 @@ public class UserService {
 		UsernamePasswordAuthenticationToken authenticationToken = 
 				new UsernamePasswordAuthenticationToken(username, password);
 		Authentication authentication = authenticationManager.authenticate(authenticationToken);
+		System.out.println("tried to authenticate authentication= "+authentication.isAuthenticated()); 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 	}
 }

@@ -1,0 +1,16 @@
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout">
+<head>
+	<link rel="icon" href="/images/favicon.ico" />
+    <title>Silver Screen Movie Theater</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/theater.css}">
+</head>
+<body>
+	<div class="screen">SCREEN</div>
+	<div th:insert="fragments/floorplan :: legend"></div>
+	<div class="floorplan-container">
+	<div th:insert="fragments/floorplan :: leftSection"></div>
+   	<div th:insert="fragments/floorplan :: middleSection"></div>
+	<div th:insert="fragments/floorplan :: rightSection"></div>
+	</div>
+</body>
+</html>
