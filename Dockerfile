@@ -1,10 +1,10 @@
-FROM eclipse-temurin:8-jdk-alpine
+FROM eclipse-temurin:8-jdk
 
 WORKDIR /app
 
 COPY . .
 
-RUN apk add --no-cache maven
+RUN apt-get update && apt-get install -y maven
 
 RUN mvn clean package -DskipTests
 
