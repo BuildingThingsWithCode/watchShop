@@ -11,4 +11,4 @@ jobs:
     steps:
       - name: Ping the website
         run: |
-          curl -I -m 30 -L https://your-springboot-app-url.com
+          curl -I -m 30 -L https://defensive-glori-larsmartens-4c10bcc4.koyeb.app/
